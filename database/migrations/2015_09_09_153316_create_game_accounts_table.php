@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('UID', 10)->unique();
             $table->text('username');
-            $table->integer('shifts worked')->nullable();
-            $table->text('Golden Eggs collected')->nullable();
-            $table->text('Power Eggs collected')->nullable();
-            $table->text('King Salmonids defeated')->nullable();
-            $table->text('Crew members rescued')->nullable();
-            $table->text('Total points')->nullable();
+            $table->integer('Shiftsworked')->nullable();
+            $table->text('GoldenEggsCollected')->nullable();
+            $table->text('PowerEggsCollected')->nullable();
+            $table->text('KingSalmonidsDefeated')->nullable();
+            $table->text('CrewMembersRescued')->nullable();
+            $table->text('Totalpoints')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 

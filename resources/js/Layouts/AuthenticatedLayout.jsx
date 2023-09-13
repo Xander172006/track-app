@@ -23,7 +23,7 @@ export default function Authenticated({ user, header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href="/dashboard">
-                                    Dashboard
+                                    Stats dashboard
                                 </NavLink>
                             </div>
                         </div>

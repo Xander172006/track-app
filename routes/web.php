@@ -16,8 +16,14 @@ Route::get('/', function () {
     ]);
 });
 
+// displays the stats dashboard 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+// creates a new Game Account
 Route::post('/create-account', [GameAccountController::class, 'createAccount'])->name('createAccount');
+
+// Updates Game Account Stats
+Route::post('/update-game-account', [GameAccountController::class, 'updateAccountStats'])->name('updateAccountStats');
 
 
 Route::middleware('auth')->group(function () {

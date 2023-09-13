@@ -6,17 +6,38 @@ import { Head } from '@inertiajs/react';
 const Edit = ({ auth, error, success, gameAccount, user }) => {
     const { data, setData, post } = useForm({
         username: '',
-        nintendo_uid: '', // Add a field for Nintendo UID.
+        password: '',
+        UID: '',
+        shifts: 0,
+        goldeneggs: 0,
+        powereggs: 0,
+        kings: 0,
+        crewmembers: 0,
+        totalPoints: 0,
     });
 
+    // displays the tab of the settings menu
+    const [updateSuccess, setUpdateSuccess] = useState(false);
     const [ activeTab , setActiveTab ] = useState("gebruikersinformatie");
     
-
+    // creates a new Game Account
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted');
         post('/create-account', data);
     };
+
+    // Updates Game Account stats
+    const updateGameStats = async (e) => {
+        e.preventDefault();
+        try {
+          post('/update-game-account', data);
+          setUpdateSuccess(true);
+        } catch (error) {
+          console.error('Error updating game stats', error);
+        }
+    };
+      
 
     function obscureEmail(email) {
         const parts = email.split('@');
@@ -41,17 +62,29 @@ const Edit = ({ auth, error, success, gameAccount, user }) => {
     return (
         <AuthenticatedLayout user={auth.user}>
             <Head title='account'/>
-            <main className='p-12'>
+            <main className='p-8'>
                 <div className='max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6'>
+                    {!gameAccount && (
+                        <h1 className='text-[1.5rem] flex justify-center text-white'>Register Game account</h1>
+                    )}
                     <div className="p-4 sm:p-8 bg-black text-white shadow sm:rounded-lg">
                         {!gameAccount ? (
-                            <form onSubmit={handleSubmit} className='flex flex-col w-[30%] justify-start'>
+                            <>
+                            <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center gap-2 mt-4'>
                                 <input
                                     type="text"
                                     name="username"
+                                    placeholder='Username'
                                     value={data.username}
-                                    className="bg-gray-900 border-orange-700 border-[1px] h-[2rem] rounded-lg w-[50%] text-gray-300"
+                                    className="bg-white border-gray-400 border-[3px] h-[3rem] rounded-lg w-[35%] text-black text-[0.9rem] placeholder:text-gray-400"
                                     onChange={(e) => setData('username', e.target.value)}
+                                />
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder='Wachtwoord'
+                                    className="bg-white border-gray-400 border-[3px] h-[3rem] rounded-lg w-[35%] text-black text-[0.9rem] placeholder:text-gray-400"
+                                    onChange={(e) => setData('password', e.target.value)}
                                 />
 
                                 {error && (
@@ -64,9 +97,24 @@ const Edit = ({ auth, error, success, gameAccount, user }) => {
                                         {success}
                                     </div>
                                 )}
-
-                                <button className='flex justify-center my-3 bg-orange-700 p-2 w-[30%] items-center text-center rounded-lg' type='submit'>Submit</button>
+                                <div className='flex flex-row text-[0.85rem] w-full justify-center items-center gap-[8rem]'>
+                                    <a href="" className='text-blue-500'>Wachtwoord vergeten</a>
+                                    <button className='flex justify-center my-3 bg-orange-700 p-2 items-center text-center rounded-lg w-[10%]' type='submit'>Registreer</button>
+                                </div>
                             </form>
+
+                            <form className='flex justify-center flex-col items-center text-[0.9rem] my-12 bg-gray-800 w-[40%] rounded-lg py-6 mx-auto'>
+                                <h1>Registreer met UID</h1>
+
+                                <input
+                                    type="number"
+                                    name="UID"
+                                    placeholder='UID'
+                                    className="bg-white border-gray-400 border-[3px] h-[2.5rem] my-6 rounded-lg w-[60%] text-black text-[0.9rem] placeholder:text-gray-400"
+                                    onChange={(e) => setData('UID', e.target.value)}
+                                />
+                            </form>
+                           </>
                         ) : (
                             <div className='grid grid-cols-2 place-items-center px-[10%] mt-[2rem]'>
                                 <div className='flex flex-col justify-center items-center gap-5 mb-auto'>
@@ -139,7 +187,7 @@ const Edit = ({ auth, error, success, gameAccount, user }) => {
                                             <h1 className='text-[1.75rem]'>Game Account Settings</h1>
 
                                             <div className='bg-gray-800 mt-6 rounded-lg'>
-                                                <form className='flex flex-col'>
+                                                <form className='flex flex-col' onSubmit={updateGameStats}>
                                                     <div className='flex flex-row justify-between px-7 py-4'>
                                                         <h2 className='font-bold text-[1.1rem]'>Game Stats</h2>
                                                         <button className='text-[0.85rem] border-[2px] border-gray-600 px-3 rounded-xl
@@ -147,16 +195,17 @@ const Edit = ({ auth, error, success, gameAccount, user }) => {
                                                     </div>
 
                                                     <ul className=' bg-gray-700'>
-                                                        <form onSubmit={}>
-                                                            <li className='px-6 py-3 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'><span>Shifts worked:          </span> <input className='ml-auto bg-gray-700 h-7 border[1px] border-gray-700 text-gray-400 text-[0.9rem]' value={gameAccount['shifts worked']}/></li>
-                                                            <li className='px-6 py-3 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'><span>Golden Eggs collected:  </span> <input className='ml-auto bg-gray-700 h-7 border[1px] border-gray-700 text-gray-400 text-[0.9rem]' value={gameAccount['Golden Eggs collected']}/></li>
-                                                            <li className='px-6 py-3 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'><span>Power Eggs collected:   </span> <input className='ml-auto bg-gray-700 h-7 border[1px] border-gray-700 text-gray-400 text-[0.9rem]' value={gameAccount['Power Eggs collected']}/></li>
-                                                            <li className='px-6 py-3 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'><span>King Salmonids defeated:</span> <input className='ml-auto bg-gray-700 h-7 border[1px] border-gray-700 text-gray-400 text-[0.9rem]' value={gameAccount['King Salmonids defeated']}/></li>
-                                                            <li className='px-6 py-3 mx-6 border-b-[1px] border-gray-500 font-thin text-[0.8rem] flex flex-row'><span>Crew Members defeated:  </span> <input className='ml-auto bg-gray-700 h-7 border[1px] border-gray-700 text-gray-400 text-[0.9rem]' value={gameAccount['Crew members rescued']}/></li>
-
-                                                            <li className='px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row'><span>Total points:           </span> <input className='ml-auto bg-gray-700 h-7 border[1px] border-gray-700 text-gray-400 text-[0.9rem]' value={gameAccount['Total poins']}/></li>
-                                                            <p className='text-gray-400 font-thin text-[0.75rem] px-6 py-2'>To get this information download the nintendo switch online app and search your in game stats on splatoon 3</p>
-                                                        </form>
+                                                        <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'><span className='mt-1'>Shifts worked:          </span> <input className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' onChange={(e) => setData('shifts', e.target.value)} type='number' name='shifts' placeholder={gameAccount.Shiftsworked}/></li>
+                                                        <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'><span className='mt-1'>Golden Eggs collected:  </span> <input className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' onChange={(e) => setData('goldeneggs', e.target.value)} type='number' name='goldeneggs' placeholder={gameAccount.GoldenEggsCollected}/></li>
+                                                        <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'><span className='mt-1'>Power Eggs collected:   </span> <input className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' onChange={(e) => setData('powereggs', e.target.value)} type='number' name='powereggs' placeholder={gameAccount.PowerEggsCollected}/></li>
+                                                        <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'><span className='mt-1'>King Salmonids defeated:</span> <input className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' onChange={(e) => setData('kings', e.target.value)} type='number' name='kings' placeholder={gameAccount.KingSalmonidsDefeated}/></li>
+                                                        <li className='px-6 py-2 mx-6 border-b-[1px] border-gray-500 font-thin text-[0.8rem] flex flex-row'><span className='mt-1'>Crew Members defeated:  </span> <input className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' onChange={(e) => setData('crewmembers', e.target.value)} type='number' name='crewmembers' placeholder={gameAccount.CrewMembersRescued}/></li>
+                                                        <li className='px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row'><span className='mt-1'>Total points: </span> <input className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' type='number' onChange={(e) => setData('totalPoints', e.target.value)} name='totalPoints' placeholder={gameAccount.TotalPoints}/></li>
+                                                        {updateSuccess ? (
+                                                            <div className="text-green-600 my-2 px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row">Game stats updated successfully</div>
+                                                        ) : null}
+                                                        
+                                                        <p className='text-gray-400 font-thin text-[0.75rem] px-6 py-2'>To get this information download the nintendo switch online app and search your in game stats on splatoon 3</p>
                                                     </ul>
                                                 </form>
                                                 <form className='flex flex-col'>
