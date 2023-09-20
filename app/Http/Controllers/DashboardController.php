@@ -2,31 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Bosses;
 use App\Models\game_accounts;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Api\SalmonrunStatsApiController;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $response = Http::post('http://localhost/api/salmon-run-stats');
-        
-        $find_account = game_accounts::where('user_id', Auth::id())->first();
-        $gameAccount = $find_account;
+        $response = Http::post('http://localhost/api/salmon-run/game-data');
 
-        if ($response->status() === 200) {
-            $data = $response->json();
-    
-            // var_dump($data['shiftResults'][0]['results'][0]['quota']);
-            return Inertia::render('Dashboard', [
-                'data' => $data,
-                'GameAccount' => $gameAccount
-            ]);
+        if ($request->input('evp')) {
+            $api = new SalmonrunStatsApiController();
+            $GameData = $api->GameData($request->input('evp'));
         } else {
-            return Inertia::render('ErrorPage');
+            $GameData = $response->json();
         }
+
+        $user = Auth::user();
+        $gameAccount = game_accounts::where('user_id', Auth::id())->first();
+        $bosses = Bosses::where('account_id', Auth::id())->first();
+        
+    
+        return Inertia::render('Dashboard', [
+            'GameData' => $GameData,
+            'GameAccount' => $gameAccount,
+            'user' => $user,
+            'bosses' => $bosses,
+        ]);
     }
 }

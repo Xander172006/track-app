@@ -1,1 +1,2 @@
-use composer require guzzlehttp/guzzle
+npm install chart.js
+npm install chartjs-plugin-datalabels

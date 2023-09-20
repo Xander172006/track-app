@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class game_accounts extends Model
 {
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function bosses()
+    {
+        return $this->hasMany(Boss::class);
+    }
 }

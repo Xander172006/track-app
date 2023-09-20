@@ -26,6 +26,12 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        // Add a foreign key relationship between game_accounts and bosses
+        Schema::table('bosses', function (Blueprint $table) {
+            $table->unsignedBigInteger('game_account_id')->nullable();
+            $table->foreign('game_account_id')->references('id')->on('game_accounts');
+        });
     }
 
     /**
@@ -33,6 +39,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Remove the foreign key relationship between game_accounts and bosses
+        Schema::table('bosses', function (Blueprint $table) {
+            $table->dropForeign(['game_account_id']);
+        });
+
         Schema::dropIfExists('game_accounts');
     }
 };

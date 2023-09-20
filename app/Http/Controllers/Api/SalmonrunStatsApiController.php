@@ -1,20 +1,18 @@
 <?php
-/*
-namespace App\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Resources\SalmonrunStatsResource;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
-class SalmonrunStatsController extends Controller
+class SalmonrunStatsApiController extends Controller
 {
-    public function GameData(Request $request)
+    public function GameData($playerEvp)
     {   
-        $playerEvp = $request->input('playerEvp', 0);
-      
         $totalBossCounts = [
             'steelhead' => 0,
             'scrapper' => 0,
@@ -219,4 +217,4 @@ class SalmonrunStatsController extends Controller
 
         return $bosses;
     }
-}*/
+}

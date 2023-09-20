@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bosses;
 use App\Models\game_accounts;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -15,18 +16,13 @@ class GameAccountController extends Controller
     public function displayAccount()
     {
         $user = User::where('id', Auth::id())->first();
-        $find_account = game_accounts::where('user_id', Auth::id())->first();
-        $gameAccount = null;
-
-        if ($find_account) {
-            $gameAccount = $find_account;
-        }
+        $GameAccount = game_accounts::where('user_id', Auth::id())->first();
 
         return Inertia::render('Profile/Edit', [
             'status' => session('status'),
             'error' => '',
             'success' => '',
-            'gameAccount' => $gameAccount,
+            'gameAccount' => $GameAccount,
             'user' => $user,
         ]);
     }
@@ -56,17 +52,61 @@ class GameAccountController extends Controller
         // If the password is correct, proceed to create the game account
         $account = new game_accounts();
         $generate_new_UID = str_pad(rand(0, 9999999999), 10, '0', STR_PAD_LEFT);
-
+        
         $account->user_id = Auth::id();
         $account->username = $request->input('username');
         $account->UID = $generate_new_UID;
         $account->save();
 
+
+        //Creates a bosses table for the GameAccount
+        $findGameAccount = game_accounts::where('user_id', Auth::id())->first();
+        $Bosses = new Bosses();
+        $Bosses->account_id = $findGameAccount->id;
+        $Bosses->save();
+
         return redirect()->route('profile.edit', ['success' => 'Account has been created.']);
     }
 
-    public function updateAccountStats(Request $request)
-    {       
+
+
+    public function updateUserAccount(Request $request)
+    {
+        $account = User::where('id', Auth::id())->first();
+    
+        if ($account) {
+            $username = $request->input('username');
+            
+            if (!empty($username)) {
+                $account->name = $username;
+                $account->geboortedatum = $request->input('geboortedatum');
+                $account->geslacht = $request->input('geslacht');
+                $account->Land = $request->input('regio');
+                $account->save();
+            } else {
+                return response()->json(['message' => 'Username cannot be empty'], 400);
+            }
+        } else {
+            return response()->json(['message' => 'User account not found'], 404);
+        }
+    }
+
+    public function updateUserSecurity(Request $request)
+    {
+        $account = User::where('id', Auth::id())->first();
+
+        if ($account) {
+            $newemail = $request->input('email');
+
+            $account->email = $newemail;
+            $account->save();
+        } else {
+            return response()->json(['message' => 'User account not found'], 404);
+        }
+    }
+
+    public function updateGameAccount(Request $request)
+    {   
         $gameAccount = game_accounts::where('user_id', Auth::id())->first();
 
         if ($gameAccount) {
@@ -76,11 +116,9 @@ class GameAccountController extends Controller
             $gameAccount->KingSalmonidsDefeated = $request->input('kings');
             $gameAccount->CrewMembersRescued = $request->input('crewmembers');
             $gameAccount->TotalPoints = $request->input('totalPoints');
-            
             $gameAccount->save();
         } else {
             return response()->json(['message' => 'Game account not found'], 404);
         }
-
     }
 }
