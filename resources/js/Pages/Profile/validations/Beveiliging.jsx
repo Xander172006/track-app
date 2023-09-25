@@ -48,8 +48,11 @@ export default function GebruikersInformatie({ user }) {
     
 return (
     <>
-        <h1 className='text-[1.75rem]'>Beveiliging informatie</h1>                   
-        <div className='bg-gray-800 mt-6 rounded-lg'>
+        <div className='bg-black h-[1rem] rounded-t-[3rem] p-5 flex justify-center'>
+            <h1 className='text-[1.25rem]'>Beveiliging informatie</h1>                   
+        </div>
+
+        <div className='bg-gray-800 mt-6'>
             <form className='flex flex-col' onSubmit={UpdateSecurity}>
                 <div className='flex flex-row justify-between px-7 py-4'>
                     <h2>E-mailadres</h2>

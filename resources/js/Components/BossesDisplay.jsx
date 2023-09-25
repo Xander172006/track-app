@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from '@inertiajs/react';
 
-export default function ActiveTab({ GameData }) {
-  let shiftscount = Math.ceil(GameData.data.playerEvp - 40 / 20);
+export default function BossesDisplay({ GameData }) {
+  let shiftscount = Math.ceil(GameData.data.playerEvp / 20) - 2;
 
   // Initialize variables to store the count for each boss
   let steelheadCount = 0;
@@ -31,6 +31,7 @@ export default function ActiveTab({ GameData }) {
     'Big shots': "https://cdn.wikimg.net/en/splatoonwiki/images/9/92/S3_Big_Shot_icon.png?20221009043319"
   }
 
+
   for (let i = 0; i <= shiftscount; i++) {
     const shiftResults = GameData.data.shiftResults[i];
 
@@ -40,36 +41,111 @@ export default function ActiveTab({ GameData }) {
           const bossCounts = shiftResults.results[j].bossCounts;
 
           // Update the counts for each boss
-          steelheadCount += bossCounts.steelhead || 0;
-          scrapperCount += bossCounts.scrapper || 0;
-          flyfishCount += bossCounts.flyfish || 0;
-          mawsCount += bossCounts.maws || 0;
-          stingerCount += bossCounts.stinger || 0;
-          steeleelsCount += bossCounts.steeleals || 0;
-          drizzlersCount += bossCounts.drizzlers || 0;
-          salmonlidsCount += bossCounts.slamonlids || 0;
-          flippersCount += bossCounts.flippers || 0;
-          fishsticksCount += bossCounts.fishsticks || 0;
-          bigShotsCount += bossCounts["Big shots"] || 0;
+          steelheadCount += bossCounts.steelhead;
+          scrapperCount += bossCounts.scrapper;
+          flyfishCount += bossCounts.flyfish;
+          mawsCount += bossCounts.maws;
+          stingerCount += bossCounts.stinger;
+          steeleelsCount += bossCounts.steeleals;
+          drizzlersCount += bossCounts.drizzlers;
+          salmonlidsCount += bossCounts.slamonlids;
+          flippersCount += bossCounts.flippers;
+          fishsticksCount += bossCounts.fishsticks;
+          bigShotsCount += bossCounts["Big shots"];
         }
       }
     }
   }
+  
+  const { data, post } = useForm({
+      boss1: steelheadCount,
+      boss2: flyfishCount,
+      boss3: mawsCount,
+      boss4: steeleelsCount,
+      boss5: stingerCount,
+      boss6: scrapperCount,
+      boss7: drizzlersCount,
+      boss8: flippersCount,
+      boss9: fishsticksCount,
+      boss10: salmonlidsCount,
+      boss11: bigShotsCount
+  });
+
+  const updateBossesStats = async (e) => {
+    
+    try {
+      post('/update-bosscounts', data);
+    } catch (error) {
+      console.error('Error updating Bosses data', error);
+    }
+  };
 
   return (
     <>
-      <form className='flex flex-row p-3'>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
-        <span className='flex flex-row'><img src={bossIcons['steelhead']} alt="" width="35%" /><input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="" value={steeleelsCount} /></span>
+      <h1 className='font-bold p-3'>Total amount of bosses found: </h1>
+      <form className='flex flex-col p-3' onSubmit={updateBossesStats}>
+          <div className='flex flex-row'>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['steelhead']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss1" disabled value={steelheadCount} />
+              </span>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['flyfish']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss2" disabled value={flyfishCount} />
+              </span>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['maws']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss3" disabled value={mawsCount} />
+              </span>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['steeleals']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss4" disabled value={steeleelsCount} />
+              </span>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['stinger']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss5" disabled value={stingerCount} />
+              </span>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['scrapper']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss6" disabled value={scrapperCount} />
+              </span>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['drizzlers']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss7" disabled value={drizzlersCount} />
+              </span>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['flippers']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss8" disabled value={flippersCount} />
+              </span>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['slamonlids']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss9" disabled value={salmonlidsCount} />
+              </span>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['fishsticks']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss10" disabled value={fishsticksCount} />
+              </span>
+
+              <span className='flex flex-row'>
+                <img src={bossIcons['Big shots']} alt="" width="35%" />
+                <input className='w-[4rem] text-[0.9rem] bg-gray-900 border-none text-white' type="number" name="boss11" disabled value={bigShotsCount} />
+              </span>
+
+          </div>
+
+          <div>
+            <button className='p-2 mt-7 rounded-lg text-white bg-orange-600' type='submit'>Add bosses</button>
+          </div>
       </form>
     </>
   )

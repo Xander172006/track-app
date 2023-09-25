@@ -23,6 +23,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 // update stat route
 Route::post('/update-stats', [DashboardController::class, 'index']);
 Route::get('/update-stats', [DashboardController::class, 'index']);
+Route::post('/update-bosscounts', [DashboardController::class, 'updateBosses']);
 
 
 

@@ -1,17 +1,41 @@
 import { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 
-export default function ChartComponent() {
+export default function ChartComponent({ bosses }) {
     useEffect(() => {
         const ctx = document.getElementById('myChart');
         if (ctx) {
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['', '', '', '', '', '', '', '', '', '', ''],
+                    labels: [
+                        bosses.steelheads, 
+                        bosses.flyfishes, 
+                        bosses.maws, 
+                        bosses.steeleals, 
+                        bosses.stingers, 
+                        bosses.scrappers, 
+                        bosses.drizzlers, 
+                        bosses.flippers, 
+                        bosses.slamonlids, 
+                        bosses.fishticks, 
+                        bosses.bigshots
+                    ],
                     datasets: [{
                         label: '# of Votes',
-                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                        data: [
+                            bosses.steelheads, 
+                            bosses.flyfishes,
+                            bosses.maws, 
+                            bosses.steeleals, 
+                            bosses.stingers, 
+                            bosses.scrappers, 
+                            bosses.drizzlers, 
+                            bosses.flippers, 
+                            bosses.slamonlids, 
+                            bosses.fishticks, 
+                            bosses.bigshots
+                        ],
                         backgroundColor: 'orange',
                         borderWidth: 1
                     }]

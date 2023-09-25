@@ -7,6 +7,7 @@ use App\Models\game_accounts;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,13 +19,22 @@ class GameAccountController extends Controller
         $user = User::where('id', Auth::id())->first();
         $GameAccount = game_accounts::where('user_id', Auth::id())->first();
 
-        return Inertia::render('Profile/Edit', [
-            'status' => session('status'),
-            'error' => '',
-            'success' => '',
-            'gameAccount' => $GameAccount,
-            'user' => $user,
-        ]);
+        // gets the gearset of the month in salmon run
+        $response = Http::get('https://splatoon3.ink/data/coop.json');
+
+
+        if ($response->successful()) {
+            $salmonrunApi = $response->json();
+            
+            return Inertia::render('Profile/Edit', [
+                'status' => session('status'),
+                'error' => '',
+                'success' => '',
+                'gameAccount' => $GameAccount,
+                'user' => $user,
+                'SalmonrunApi' => $salmonrunApi
+            ]);
+        }
     }
 
     public function createAccount(Request $request)
@@ -115,7 +125,7 @@ class GameAccountController extends Controller
             $gameAccount->PowerEggsCollected = $request->input('powereggs');
             $gameAccount->KingSalmonidsDefeated = $request->input('kings');
             $gameAccount->CrewMembersRescued = $request->input('crewmembers');
-            $gameAccount->TotalPoints = $request->input('totalPoints');
+            $gameAccount->Totalpoints = $request->input('totalPoints');
             $gameAccount->save();
         } else {
             return response()->json(['message' => 'Game account not found'], 404);

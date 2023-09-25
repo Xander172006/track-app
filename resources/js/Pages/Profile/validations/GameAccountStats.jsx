@@ -69,22 +69,24 @@ export default function gameAccountStats({ gameAccount }) {
 
     return (
         <>
-        <h1 className='text-[1.75rem]'>Game Account Settings</h1>
+        <div className='bg-black h-[1rem] rounded-t-[3rem] p-4 flex justify-center'>
+            <h1 className='text-[1.25rem] text-orange-700'>Grizzco Point Card </h1>
+        </div>
 
-        <div className='bg-gray-800 mt-6 rounded-lg'>
-            <form className='flex flex-col' onSubmit={updateGameStats}>
+        <div className='mt-6'>
+            <form className='flex flex-col bg-gray-900' onSubmit={updateGameStats}>
                 <div className='flex flex-row justify-between px-7 py-4'>
                     <h2 className='font-bold text-[1.1rem]'>Game Stats</h2>
                     <button className='text-[0.85rem] border-[2px] border-gray-600 px-3 rounded-xl
                     hover:bg-gray-600 transition duration-300 ease-in-out'>Wijzigen</button>
                 </div>
 
-                <ul className=' bg-gray-700'>
+                <ul className='bg-gray-700'>
 
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Shifts worked: </span>
                         <input
-                            className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
                             value={shiftsWorked}
                             onChange={handleShiftsWorkedChange}
                             type='number'
@@ -94,7 +96,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Golden Eggs collected:  </span> 
                         <input 
-                            className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' 
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
                             value={GoldenEggsCollected}
                             onChange={handleGoldenEggsChange} 
                             type='number' 
@@ -104,7 +106,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Power Eggs collected:   </span> 
                         <input 
-                            className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' 
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
                             value={PowerEggsCollected}
                             onChange={handlePowerEggsChange} 
                             type='number' 
@@ -114,7 +116,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>King Salmonids defeated:</span>
                         <input 
-                            className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' 
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
                             value={KingSalmonidsDefeated}
                             onChange={handleKingSalmonidsChange} 
                             type='number' 
@@ -124,7 +126,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-2 mx-6 border-b-[1px] border-gray-500 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Crew Members defeated:  </span>
                         <input 
-                            className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' 
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' 
                             value={CrewMembersRescued}
                             onChange={handleCrewMembersChange} 
                             type='number' 
@@ -134,7 +136,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Total points: </span>
                         <input 
-                            className='ml-auto w-[40%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' 
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' 
                             value={Totalpoints}
                             onChange={handleTotalPointsChange} 
                             type='number' 
@@ -149,13 +151,13 @@ export default function gameAccountStats({ gameAccount }) {
                     <p className='text-gray-400 font-thin text-[0.75rem] px-6 py-2'>To get this information download the nintendo switch online app and search your in game stats on splatoon 3</p>
                 </ul>
             </form>
-            <form className='flex flex-col'>
+            <form className='flex flex-col bg-gray-900 rounded-b-xl'>
                 <div className='flex flex-row justify-between px-7 py-4'>
                     <h2>Game user account</h2>
                     <button className='text-[0.85rem] border-[2px] border-gray-600 px-3 rounded-xl
                     hover:bg-gray-600 transition duration-300 ease-in-out'>Wijzigen</button>
                 </div>
-                <ul className=' bg-gray-700 rounded-b-xl'>
+                <ul className='rounded-b-xl bg-gray-700'>
                     <li className='py-3 mx-6 border-b-[1px] border-gray-500 font-thin text-[0.9rem] flex flex-row'><span>username: </span> <span className='ml-auto'>{gameAccount.username}</span></li>
                     <li className=' py-3 mx-6 font-thin text-[0.9rem] flex flex-row'><span>UID: </span> <span className='ml-auto'>{gameAccount.UID}</span></li>
                 </ul>

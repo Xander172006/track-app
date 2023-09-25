@@ -11,11 +11,11 @@ import BossesDisplay from '@/Components/BossesDisplay';
 
 export default function Dashboard({ auth, GameAccount, user, bosses, GameData }) {
     const { data, setData, post } = useForm({
-        evp: bosses.playerEvp
+        evp: ''
     });
 
 
-    const [EvpLevel, setEvplevel] = useState(bosses.playerEvp);
+    const [EvpLevel, setEvplevel] = useState('');
 
     const HandleEvpLevel = (e) => {
         setEvplevel(e.target.value);
@@ -97,7 +97,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData })
                                         <li className='flex flex-row'><span className='font-bold'>Power eggs collected: </span>    <span className='ml-auto'>{GameAccount.PowerEggsCollected}</span></li>
                                         <li className='flex flex-row'><span className='font-bold'>King salmonids defeated: </span> <span className='ml-auto'>{GameAccount.KingSalmonidsDefeated}</span></li>
                                         <li className='flex flex-row'><span className='font-bold'>Crew members rescued: </span>    <span className='ml-auto'>{GameAccount.CrewMembersRescued}</span></li>
-                                        <li className='flex flex-row'><span className='font-bold'>Total points: </span>            <span className='ml-auto'>{GameAccount.TotalPoints}</span></li>
+                                        <li className='flex flex-row'><span className='font-bold'>Total points: </span>            <span className='ml-auto'>{GameAccount.Totalpoints}</span></li>
                                     </>
                                 )}
                             </ul>
@@ -131,8 +131,8 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData })
 
                 <div className="max-w-7xl mx-3 sm:mx-auto sm:px-6 lg:px-1 grid grid-cols-1 gap-[0.5rem] sm:grid-cols-2 py-4">
                     <div className='bg-gray-900 rounded-xl p-3'>
-                        <Chartcomponent />
-                        <ul className='flex flex-row px-2 ml-11 gap-5 relative bottom-4'>
+                        <Chartcomponent bosses={bosses} />
+                        <ul className='flex flex-row px-2 ml-11 gap-5 relative bottom-0'>
                             <li><img src="https://cdn.wikimg.net/en/splatoonwiki/images/9/9a/S3_Steelhead_icon.png?20221009043423" alt="steelhead" className='w-[120%]' /></li>
                             <li><img src="https://cdn.wikimg.net/en/splatoonwiki/images/2/24/S3_Flyfish_icon.png?20221009043406" alt="flyfish" className='w-[120%]' /></li>
                             <li><img src="https://cdn.wikimg.net/en/splatoonwiki/images/8/83/S3_Maws_icon.png?20221009043400" alt="maws" className='w-[120%]' /></li>

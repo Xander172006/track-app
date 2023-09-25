@@ -35,4 +35,34 @@ class DashboardController extends Controller
             'bosses' => $bosses,
         ]);
     }
+
+    public function updateBosses(Request $request)
+    {
+        try {
+            $account = Bosses::where('account_id', Auth::id())->first();
+
+            if ($account) {
+                var_dump(intval($request->input('boss1')));
+                
+                $account->steelheads += intval($request->input('boss1'));
+                $account->flyfishes += intval($request->input('boss2'));
+                $account->maws += intval($request->input('boss3'));
+                $account->steeleals += intval($request->input('boss4'));
+                $account->stingers += intval($request->input('boss5'));
+                $account->scrappers += intval($request->input('boss6'));
+                $account->drizzlers += intval($request->input('boss7'));
+                $account->flippers += intval($request->input('boss8'));
+                $account->slamonlids += intval($request->input('boss9'));
+                $account->fishticks += intval($request->input('boss10'));
+                $account->bigshots += intval($request->input('boss11'));
+                $account->save();
+
+                return response()->json(['message' => 'success']);
+            } else {
+                return response()->json(['message' => 'Account not found'], 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error updating Bosses data', 'error' => $e->getMessage()], 500);
+        }
+    }
 }

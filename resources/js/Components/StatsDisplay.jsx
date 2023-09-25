@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from '@inertiajs/react';
 
-export default function ActiveTab({ GameData }) {
+export default function StatsDisplay({ GameData }) {
     let rank = Math.ceil(GameData.data.playerEvp / 20) - 3;
 
     const waveResults = [];

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from '@inertiajs/react';
 
 
-export default function ActiveTab({ GameData }) {
+export default function ShifDisplay({ GameData }) {
 
     return (
        <>

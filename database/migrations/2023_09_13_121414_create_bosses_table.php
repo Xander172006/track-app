@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bosses', function (Blueprint $table) {
             $table->id();
-            $table->integer('playerEvp')->default(0); // Set default value to 0
+            $table->integer('playerEvp')->default(0);
             $table->integer('steelheads')->default(0);
             $table->integer('flyfishes')->default(0);
             $table->integer('maws')->default(0);
