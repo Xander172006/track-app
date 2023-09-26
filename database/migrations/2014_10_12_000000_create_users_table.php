@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date('geboortedatum')->nullable();
             $table->text('geslacht')->nullable();
             $table->text('Land')->nullable();
+            $table->text('profiel')->nullable();
+            $table->text('bio')->nullable();
             $table->timestampTz('timezone')->nullable();
             $table->rememberToken();
             $table->timestamps();

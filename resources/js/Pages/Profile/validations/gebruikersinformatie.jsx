@@ -72,7 +72,7 @@ export default function GebruikersInformatie({ user }) {
                          hover:bg-gray-600 transition duration-300 ease-in-out'>Edit</button>
                     </div>
                     <ul className='bg-gray-700 rounded-b-xl'>
-                        <li className='px-6 py-3 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
+                        <li className='px-6 py-4 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
                             <strong className='font-bold'>Username: </strong>
                             <input
                                 className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
@@ -82,7 +82,7 @@ export default function GebruikersInformatie({ user }) {
                                 name='username'
                             />
                         </li>
-                        <li className='px-6 py-3 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
+                        <li className='px-6 py-4 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
                             <strong className='font-bold'>Birthday:  </strong>
                             <input 
                                 className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
@@ -92,8 +92,8 @@ export default function GebruikersInformatie({ user }) {
                                 name='geboortedatum'
                             />
                         </li>
-                        <li className='px-6 py-3 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
-                            <strong className='font-bold'>Gender:       </strong>
+                        <li className='px-6 py-4 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
+                            <strong className='font-bold'>Pronounce as:       </strong>
                             <input 
                                 className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
                                 value={AccountGeslacht}
@@ -102,7 +102,7 @@ export default function GebruikersInformatie({ user }) {
                                 name='geslacht'
                             />
                         </li>
-                        <li className='px-6 py-3 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
+                        <li className='px-6 py-4 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
                             <strong className='font-bold'>Country/region:     </strong>
                             <input 
                                 className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'

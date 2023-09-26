@@ -78,7 +78,25 @@ class GameAccountController extends Controller
         return redirect()->route('profile.edit', ['success' => 'Account has been created.']);
     }
 
+    public function editProfilePicture(Request $request)
+    {
+        if (!Auth::check()) {
+            return Inertia::render('Profile/Edit')->with('error', 'You do not have permission to change your profile picture.');
+        }
 
+        if ($request->file('ProfileInput')) {
+            $file = $request->file('ProfileInput');
+            $fileName = $file->getClientOriginalName();
+            $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        
+            $newFileName = uniqid('profile-', true) . '.' . $fileExt;
+            $file->storeAs('/public/images', $newFileName);
+        
+            $user = User::where('id', Auth::id())->first();
+            $user->profiel = $newFileName;
+            $user->save();
+        }
+    }
 
     public function updateUserAccount(Request $request)
     {

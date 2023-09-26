@@ -1,0 +1,16 @@
+input[type="file"] {
+    display: none;
+}
+
+/* Style the custom button */
+.custom-file-upload {
+    display: inline-block;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 15%;
+}
+
+  /* Style when a file is selected */
+
+  

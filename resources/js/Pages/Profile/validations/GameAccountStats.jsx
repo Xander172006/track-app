@@ -91,56 +91,62 @@ export default function gameAccountStats({ gameAccount }) {
                             onChange={handleShiftsWorkedChange}
                             type='number'
                             name='shifts'
+                            placeholder='No information'
                         />
                     </li>
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Golden Eggs collected:  </span> 
                         <input 
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
                             value={GoldenEggsCollected}
                             onChange={handleGoldenEggsChange} 
                             type='number' 
-                            name='goldeneggs' 
+                            name='goldeneggs'
+                            placeholder='No information'
                         />
                     </li>
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Power Eggs collected:   </span> 
                         <input 
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
                             value={PowerEggsCollected}
                             onChange={handlePowerEggsChange} 
                             type='number' 
-                            name='powereggs' 
+                            name='powereggs'
+                            placeholder='No information'
                         />
                     </li>
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>King Salmonids defeated:</span>
                         <input 
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
                             value={KingSalmonidsDefeated}
                             onChange={handleKingSalmonidsChange} 
                             type='number' 
-                            name='kings' 
+                            name='kings'
+                            placeholder='No information'
                         />
                     </li>
                     <li className='px-6 py-2 mx-6 border-b-[1px] border-gray-500 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Crew Members defeated:  </span>
                         <input 
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' 
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]' 
                             value={CrewMembersRescued}
                             onChange={handleCrewMembersChange} 
                             type='number' 
-                            name='crewmembers' 
+                            name='crewmembers'
+                            placeholder='No information'
                         />
                     </li>
                     <li className='px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Total points: </span>
                         <input 
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300' 
+                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]' 
                             value={Totalpoints}
                             onChange={handleTotalPointsChange} 
                             type='number' 
-                            name='totalPoints' 
+                            name='totalPoints'
+                            placeholder='No information'
                         />
                     </li>
 

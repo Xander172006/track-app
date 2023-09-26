@@ -28,6 +28,7 @@ Route::post('/update-bosscounts', [DashboardController::class, 'updateBosses']);
 
 
 Route::post('/create-account', [GameAccountController::class, 'createAccount'])->name('createAccount');
+Route::post('/update-profile-picture', [GameAccountController::class, 'editProfilePicture'])->name('editProfilePicture');
 Route::post('/update-game-account', [GameAccountController::class, 'updateGameAccount'])->name('updateGameAccount');
 Route::post('/update-user-account', [GameAccountController::class, 'updateUserAccount'])->name('updateUserAccount');
 Route::post('/update-user-security', [GameAccountController::class, 'updateUserSecurity'])->name('updateUserSecurity');
