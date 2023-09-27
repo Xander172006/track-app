@@ -99,7 +99,7 @@ export default function ActiveTab({ gameAccount, activeTab, setActiveTab, user }
 
                 <div className='flex flex-row w-full gap-5'>
                     <textarea 
-                        className='bg-gray-900 border-[1.5px] border-gray-600 text-[0.8rem]' 
+                        className='bg-gray-900 border-[1.5px] border-gray-600 text-[0.9rem]' 
                         name="bio" 
                         id="bio" 
                         value={AccountBio}

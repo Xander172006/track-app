@@ -44,7 +44,8 @@ export default function footer() {
                     </ul>
                 </div>
             </div>
-            <div className='bg-gray-900 w-full grid grid-cols-1 sm:grid-cols-2 gap-5 text-gray-400 p-10 place-items-center'>
+
+            <div className='bg-gray-900 w-full grid grid-cols-1 sm:grid-cols-2 gap-5 text-gray-400 p-6 place-items-center'>
                 <div className='flex flex-col gap-4'>
                     <div className='flex flex-row gap-4'>
                         <p>Terms & Conditions</p><span className='text-gray-600'>|</span>

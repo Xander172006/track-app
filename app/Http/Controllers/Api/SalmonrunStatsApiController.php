@@ -11,8 +11,10 @@ use Inertia\Inertia;
 
 class SalmonrunStatsApiController extends Controller
 {
-    public function GameData($playerEvp)
-    {   
+    public function GameData($playerEvp, $losses)
+    {
+        $playerEvp += (20 * $losses);
+
         $totalBossCounts = [
             'steelhead' => 0,
             'scrapper' => 0,
@@ -45,19 +47,38 @@ class SalmonrunStatsApiController extends Controller
             ['minEvp' => 599, 'maxEvp' => 698, 'hazard' => 279.8, 'quota' => [28, 30, 33], 'bossCount' => [27, 29, 31]],
             ['minEvp' => 699, 'maxEvp' => 731, 'hazard' => 299.8, 'quota' => [29, 31, 33], 'bossCount' => [28, 30, 32]],
             ['minEvp' => 732, 'maxEvp' => 864, 'hazard' => 306.4, 'quota' => [29, 31, 34], 'bossCount' => [29, 31, 33]],
-            ['minEvp' => 865, 'maxEvp' => 999, 'hazard' => 333, 'quota' => [30, 32, 35], 'bossCount' => [30, 32, 35]],
+            ['minEvp' => 865, 'maxEvp' => 2000, 'hazard' => 333, 'quota' => [30, 32, 35], 'bossCount' => [30, 32, 35]],
         ];
 
         $quota = [];
         $bossCount = [];
-    
+
+        $totalCohozunas = 0;
+        $totalhorrorburus = 0;
+
         $rand = 0;
         $tides = ['normal', 'low', 'high'];
+        
         $currentEvp = 40;
         $spawnedBosses = [];
         $totalBossCount = 0;
-    
+        $kingBossCount = 0;
+
         while ($currentEvp <= $playerEvp) {
+            if ($kingBossCount >= 5 && $currentEvp >= 100) {
+                $kingBoss = rand(0, 1) === 0 ? 'horrorborus' : 'cohozuna';
+                $kingBossCount = 0;
+
+                if ($kingBoss === 'horrorborus') {
+                    $totalhorrorburus++;
+                } else {
+                    $totalCohozunas++;
+                }
+            } else {
+                $kingBoss = null;
+                $kingBossCount++;
+            }
+
             foreach ($hazardLevels as $level) {
                 if ($currentEvp >= $level['minEvp'] && $currentEvp <= $level['maxEvp']) {
                     $quota = $level['quota'];
@@ -65,13 +86,13 @@ class SalmonrunStatsApiController extends Controller
                     break;
                 }
             }
-    
+
             // Generate the list of spawned bosses for the current EVP
             $bossesForCurrentEvp = [];
 
             for ($i = 0; $i < count($quota); $i++) {
                 $rand = rand(1, 5);
-            
+
                 if ($rand <= 3) {
                     $givenTide = $tides[0]; // normal tide 60%
                 } elseif ($rand == 4) {
@@ -79,17 +100,17 @@ class SalmonrunStatsApiController extends Controller
                 } else {
                     $givenTide = $tides[2]; // high tide 20%
                 }
-            
+
                 // Check if a night wave occurs for results of waves
                 $nightWaveOccurrence = rand(1, 5) == 5;
                 $nightWave = 'daytime';
-            
+
                 if ($nightWaveOccurrence) {
                     $nightWaves = $this->nightWaves();
                     foreach ($nightWaves as $wave => $waveData) {
                         if (in_array($givenTide, $waveData['tides']) && rand(1, $waveData['chance']) == 1) {
                             $nightWave = $wave;
-            
+
                             if ($nightWave == 'rush' || $nightWave == 'grillers' || $nightWave == 'tornado' || $nightWave == 'mudmouth' ||
                                 $nightWave == 'mothership' || $nightWave == 'goldie_seeking') {
                                 $bossCount[$i] = 0;
@@ -98,27 +119,27 @@ class SalmonrunStatsApiController extends Controller
                         }
                     }
                 }
-            
+
                 // Retrieve individual boss spawns
                 $bosses = $this->bosses();
                 $bossNames = array_keys($bosses);
                 $bossCounts = [];
-            
+
                 // Calculate minimum count for each boss type
                 $minBossCount = floor($bossCount[$i] / count($bossNames));
                 $remainingBosses = $bossCount[$i] % count($bossNames);
-            
+
                 // Initialize the boss counts with the minimum count
                 foreach ($bossNames as $bossName) {
                     $bossCounts[$bossName] = $minBossCount;
                 }
-            
+
                 // Distribute the remaining bosses evenly
                 $bossNames = array_merge($bossNames, $bossNames); // Duplicate the boss names to ensure fairness
                 for ($j = 0; $j < $remainingBosses; $j++) {
                     $bossCounts[$bossNames[$j]]++;
                 }
-            
+
                 $boss = [
                     'quota' => $quota[$i],
                     'bossCounts' => $bossCounts,
@@ -127,16 +148,33 @@ class SalmonrunStatsApiController extends Controller
                 ];
                 $bossesForCurrentEvp[] = $boss;
             }
-    
+
             $totalAmountBosses = array_sum($bossCount);
-    
+
             // Add the spawned bosses to the overall list
             $spawnedBosses[] = [
                 'evp' => $currentEvp,
                 'results' => $bossesForCurrentEvp,
                 'totalAmountBosses' => $totalAmountBosses,
             ];
-    
+
+            // If a King Boss appeared, add it as one extra wave
+            if ($kingBoss) {
+                $totalAmountBosses += 1; // Count it as an extra wave
+                $spawnedBosses[] = [
+                    'evp' => $currentEvp,
+                    'results' => [
+                        [
+                            'quota' => 1, // Quota for King Boss
+                            'bossCounts' => [$kingBoss => 1], // One King Boss
+                            'tide' => $givenTide,
+                            'nightWave' => $nightWave,
+                        ],
+                    ],
+                    'totalAmountBosses' => 1, // Total boss count for this wave
+                ];
+            }
+
             // Get the total boss count
             $totalBossCount += $totalAmountBosses;
 
@@ -147,15 +185,27 @@ class SalmonrunStatsApiController extends Controller
         foreach ($spawnedBosses as $shiftResult) {
             foreach ($shiftResult['results'] as $result) {
                 foreach ($result['bossCounts'] as $bossType => $count) {
-                    $totalBossCounts[$bossType] += $count;
+                    if ($bossType === 'cohozuna' || $bossType === 'horrorborus') {
+                        // For King Bosses
+                        $totalCohozunas += ($bossType === 'cohozuna') ? $count : 0;
+                        $totalhorrorburus += ($bossType === 'horrorborus') ? $count : 0;
+                    } else {
+                        // For regular bosses
+                        $totalBossCounts[$bossType] += $count;
+                    }
                 }
             }
         }
+        
 
         return new SalmonrunStatsResource([
             'playerEvp' => $playerEvp,
             'shiftResults' => $spawnedBosses,
-            'totalAmountBosses' => $totalBossCount
+            'totalAmountBosses' => $totalBossCount,
+            'totalAmountKings' => [
+                'cohozuna' => $totalCohozunas,
+                'horrorborus' => $totalhorrorburus,
+            ],
         ]);
     }
 
@@ -195,7 +245,7 @@ class SalmonrunStatsApiController extends Controller
                 'chance' => 1 / 6,
             ],
         ];
-        
+
         return $nightWaves;
     }
 
@@ -212,7 +262,7 @@ class SalmonrunStatsApiController extends Controller
             'slamonlids' => ['normal', 'low', 'high'],
             'flippers' => ['normal', 'low', 'high'],
             'fishsticks' => ['normal', 'low', 'high'],
-            'Big shots' => ['normal', 'low']
+            'Big shots' => ['normal', 'low'],
         ];
 
         return $bosses;

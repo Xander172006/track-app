@@ -4,8 +4,8 @@ import "../../css/style.css"
 export default function CarouselDisplay() {
 
     return (
-        <div className='h-[20%] m-auto w-[90%] relative grid place-items-center overflow-hidden'>
-            <div id='slide-track'>
+        <div className='h-[20%] px-3 w-[100%] relative grid place-items-center overflow-hidden pr-auto'>
+            <div id='slide-track' className='w-full'>
 
                 <div className='h-[20%] w-[20%] flex items-center p-4'>
                     <img className='w-full' src="/storage/images/rotations/rotation_1.jpg" alt="rotation1" />

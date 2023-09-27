@@ -52,10 +52,16 @@ export default function ChartComponent({ bosses }) {
                             ticks: {
                                 color: 'white', // Set y-axis label text color to white
                             },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)', // Set y-axis grid line color
+                            },
                         },
                         x: {
                             ticks: {
                                 color: 'white', // Set x-axis label text color to white
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)', // Set x-axis grid line color
                             },
                         },
                     },

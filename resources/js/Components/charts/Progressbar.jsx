@@ -15,25 +15,23 @@ export default function Progressbar({ bosses, records }) {
     'bigshots': bosses.bigshots,
   };
 
-  console.log(records[0].badgeImage);
-
   const checkpointFlags = [100, 1000, 10000];
 
   return (
     <>
         <div className='grid grid-cols-2 sm:grid-cols-2'>
             <div className='grid grid-cols-3 place-items-center w-full'>
-                {records.map((record, index) => (
-                    <div key={index} className='px-1 py-2 flex flex-row justify-start text-[0.6rem] sm:text-[0.75rem] items-center gap-2'>
-                        <img className='w-[50%] sm:w-[35%] mr-auto' src={record.badgeImage} alt={`Badge ${index}`} />
-                        <span>{record.Boss}</span>
-                    </div>
-                ))}
+            {records.map((record, index) => (
+                <div key={index} className='px-1 py-2 flex flex-row justify-start text-[0.6rem] sm:text-[0.75rem] items-center gap-2'>
+                    <img className='w-[50%] sm:w-[35%] mr-auto' src={record.badgeImage} alt={`Badge ${index}`} />
+                    <span>{record.Boss}</span>
+                </div>
+            ))}
             </div>
 
             <div className='grid grid-cols-1 place-content-center gap-[4.5%] sm:gap-[3.75%] text-[0.5rem] sm:text-[0.8rem] items-center text-center'>
                 {Object.entries(bossValues).map(([bossType, bossValue]) => (
-                    <div className='w-[85%] sm:w-[90%] ml-auto sm:mr-4 bg-gray-800 my-1 h-3 sm:h-5 rounded-md relative'>
+                    <div key={bossValue} className='w-[85%] sm:w-[90%] ml-auto sm:mr-4 bg-gray-800 my-1 h-3 sm:h-5 rounded-md relative'>
                         <div style={{ width: `${Math.ceil(bossValue / 100)}%` }} className={`h-3 sm:h-5 bg-blue-600 relative rounded-e-sm rounded-s-md`}>
                             <span className='ml-auto flex justify-end pr-1'>{bossValue}</span>
                         </div>

@@ -12,6 +12,7 @@ class SalmonrunStatsResource extends JsonResource
             'playerEvp' => $this->resource['playerEvp'],
             'shiftResults' => $this->formatShiftResults($this->resource['shiftResults']),
             'totalAmountBosses' => $this->resource['totalAmountBosses'],
+            'totalAmountKings' => $this->resource['totalAmountKings'], // Add this line
         ];
     }
 

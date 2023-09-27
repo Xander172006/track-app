@@ -74,7 +74,7 @@ export default function GebruikersInformatie({ user }) {
                         <li className='px-6 py-4 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
                             <strong className='font-bold'>Username: </strong>
                             <input
-                                className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
+                                className='ml-auto bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
                                 value={AccountUsername}
                                 onChange={HandleUsername}
                                 type='text'
@@ -84,7 +84,7 @@ export default function GebruikersInformatie({ user }) {
                         <li className='px-6 py-4 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
                             <strong className='font-bold'>Birthday:  </strong>
                             <input 
-                                className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
+                                className='ml-auto bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
                                 value={AccountGeboortedatum}
                                 onChange={HandleGeboortedatum}
                                 type='date'
@@ -94,7 +94,7 @@ export default function GebruikersInformatie({ user }) {
                         <li className='px-6 py-4 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
                             <strong className='font-bold'>Pronounce as:</strong>
                             <select
-                                className='ml-auto text-right bg-gray-700 h-9 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
+                                className='ml-auto bg-gray-700 h-9 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
                                 value={AccountGeslacht}
                                 onChange={HandleGeslacht}
                                 name='geslacht'
@@ -107,7 +107,7 @@ export default function GebruikersInformatie({ user }) {
                         <li className='px-6 py-4 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
                             <strong className='font-bold'>Country/region:     </strong>
                             <input 
-                                className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
+                                className='ml-auto bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
                                 value={AccountRegio}
                                 onChange={HandleRegio}
                                 type='text'

@@ -21,7 +21,8 @@ class DashboardController extends Controller
 
         if ($request->input('evp')) {
             $api = new SalmonrunStatsApiController();
-            $GameData = $api->GameData($request->input('evp'));
+            
+            $GameData = $api->GameData($request->input('evp'), $request->input('losses'));
         } else {
             $GameData = $response->json();
         }
