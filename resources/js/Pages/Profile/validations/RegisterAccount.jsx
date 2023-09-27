@@ -40,13 +40,13 @@ return (
         </div>
         
         {error && (
-            <div className="text-red-500 my-2">
+            <div className="text-red-500 my-2 flex justify-center">
                 {error}
             </div>
         )}
 
         {success && (
-            <div className="text-green-500 my-2">
+            <div className="text-green-500 my-2 flex justify-center">
                 {success}
             </div>
         )}

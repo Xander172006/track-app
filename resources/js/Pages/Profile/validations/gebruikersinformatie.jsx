@@ -50,7 +50,6 @@ export default function GebruikersInformatie({ user }) {
 
     // updates the user account information
     const UpdateUserAccount = async(e) => {
-        e.preventDefault();
         try {
             post('/update-user-account', data);
             setUpdateSuccess(true);
@@ -93,14 +92,17 @@ export default function GebruikersInformatie({ user }) {
                             />
                         </li>
                         <li className='px-6 py-4 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
-                            <strong className='font-bold'>Pronounce as:       </strong>
-                            <input 
-                                className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
+                            <strong className='font-bold'>Pronounce as:</strong>
+                            <select
+                                className='ml-auto text-right bg-gray-700 h-9 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
                                 value={AccountGeslacht}
                                 onChange={HandleGeslacht}
-                                type='text'
                                 name='geslacht'
-                            />
+                            >
+                                <option value='he/him'>he/him</option>
+                                <option value='she/her'>she/her</option>
+                                <option value='they'>they</option>
+                            </select>
                         </li>
                         <li className='px-6 py-4 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
                             <strong className='font-bold'>Country/region:     </strong>

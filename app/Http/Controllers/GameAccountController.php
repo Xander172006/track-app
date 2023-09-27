@@ -98,6 +98,19 @@ class GameAccountController extends Controller
         }
     }
 
+    public function updateBio(Request $request)
+    {
+        if (!Auth::check()) {
+            return Inertia::render('Profile/Edit')->with('error', 'You do not have permission to change your bio information.');
+        }
+
+        if ($request->input('bio')) {
+            $user = User::where('id', Auth::id())->first();
+            $user->bio = $request->input('bio');
+            $user->save();
+        }
+    }
+
     public function updateUserAccount(Request $request)
     {
         $account = User::where('id', Auth::id())->first();

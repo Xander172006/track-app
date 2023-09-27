@@ -11,6 +11,31 @@ input[type="file"] {
     width: 15%;
 }
 
-  /* Style when a file is selected */
+@media (min-width: 640px) {
+    #slide-track {
+        display: flex;
+        width: calc(250px * 18);
+        animation: scroll 40s linear infinite;
+    }
+}
 
-  
+
+@media (max-width: 640px) {
+    #slide-track {
+        display: flex;
+        width: calc(150px * 18);
+        animation: scroll 40s linear infinite;
+    }
+}
+
+
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-250px * 9));
+    }
+}

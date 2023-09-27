@@ -5,14 +5,24 @@ import '../../../../css/style.css';
 
 export default function ActiveTab({ gameAccount, activeTab, setActiveTab, user }) {
     const { data, setData, post } = useForm({});
-    const [updateSuccess, setUpdateSuccess] = useState(false);
+
+    // update requests success
+    const [updatedProfileSuccess, setUpdateProfileSuccess] = useState(false);
+    const [updatedBioSuccess, setUpdateBioSuccess] = useState(false);
+
+    const [AccountBio, setAccountBio] = useState(user.bio)
 
     const handleFileChange = (e) => {
         setData('ProfileInput', e.target.files[0]);
     };
 
+    const HandleAccountBio = (e) => {
+        setAccountBio(e.target.value);
+        setData('bio', e.target.value);
+        localStorage.setItem('AccountBio', e.target.value);
+    }
+
     const handleSubmit = async (e) => {
-        e.preventDefault();
         const formData = new FormData();
         formData.append('ProfileInput', data.ProfileInput);
 
@@ -22,9 +32,18 @@ export default function ActiveTab({ gameAccount, activeTab, setActiveTab, user }
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            setUpdateSuccess(true);
+            setUpdateProfileSuccess(true);
         } catch (error) {
             console.log('Error updating profile picture', error);
+        }
+    };
+
+    const UpdateAccountBio = async(e) => {
+        try {
+            post('/update-user-bio', data);
+            setUpdateBioSuccess(true);
+        } catch (errror) {
+            console.log('Error updating user bio', error);
         }
     };
 
@@ -48,7 +67,7 @@ export default function ActiveTab({ gameAccount, activeTab, setActiveTab, user }
                 </div>
                 <input className='flex justify-start sm:ml-3 mr-auto text-gray-300 p-2 text-[0.75rem] rounded-lg hover:scale-[1.15] transition duration-300 ease-in-out' type="submit" name='SubmitProfile' value="change"/>
             </form>
-            {updateSuccess ? (
+            {updatedProfileSuccess ? (
                 <p className="text-green-600 text-[0.9rem]">Updated profile picture</p>
             ) : null}
 
@@ -75,13 +94,26 @@ export default function ActiveTab({ gameAccount, activeTab, setActiveTab, user }
                 </div>
             </div>
                
-            <form className='flex flex-col w-[80%] sm:w-[60%] mt-6'>
+            <form className='flex flex-col w-[80%] sm:w-[60%] mt-6' onSubmit={UpdateAccountBio}>
                 <h3 className='text-gray-400'>Bio</h3>
 
                 <div className='flex flex-row w-full gap-5'>
-                    <textarea className='bg-gray-900 border-[1.5px] border-gray-600 text-[0.8rem]' name="bio" id="bio" cols="25" rows="3" placeholder='Add some information about youself'></textarea>
-                    <button className='bg-gray-600 p-[6px] rounded-md text-[0.9rem] sm:w-[20%] h-[10%] mt-auto'>change</button>
+                    <textarea 
+                        className='bg-gray-900 border-[1.5px] border-gray-600 text-[0.8rem]' 
+                        name="bio" 
+                        id="bio" 
+                        value={AccountBio}
+                        onChange={HandleAccountBio}
+                        cols="25" 
+                        rows="4" 
+                        placeholder='Add some information about youself'
+                    >
+                    </textarea>
+                    <button className='bg-gray-600 p-[6px] rounded-md text-[0.9rem] sm:w-[20%] h-[10%] mt-auto' type='submit'>change</button>
                 </div>
+                {updatedBioSuccess ? (
+                    <p className="text-green-600 text-[0.9rem]">Updated bio information</p>
+                ) : null}
             </form>
         </div>
     )

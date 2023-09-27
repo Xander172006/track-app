@@ -5,16 +5,20 @@ import { Head } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import Footer from '@/Layouts/footer'; 
 
-import Chartcomponent from '@/Components/Chartcomponent';
+// charts
+import Chartcomponent from '@/Components/charts/Chartcomponent';
+import Progressbar from '@/Components/charts/Progressbar';
+
+
 import ShiftDisplay from '@/Components/ShiftDisplay';
 import StatsDisplay from '@/Components/StatsDisplay';
 import BossesDisplay from '@/Components/BossesDisplay';
+import Carouseldisplay from '@/Components/CarouselDisplay';
 
-export default function Dashboard({ auth, GameAccount, user, bosses, GameData }) {
+export default function Dashboard({ auth, GameAccount, user, bosses, GameData, records }) {
     const { data, setData, post } = useForm({
         evp: ''
     });
-
 
     const [EvpLevel, setEvplevel] = useState('');
 
@@ -47,18 +51,18 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData })
             <Head title="Dashboard" />
 
             <div className="py-5">
-                <div className="max-w-7xl mx-3 sm:mx-auto sm:px-6 lg:px-1 grid grid-cols-1 gap-[1.5rem] sm:grid-cols-3">
-                    <div className="bg-black text-white p-6 overflow-hidden shadow-sm sm:rounded-lg flex flex-row items-center gap-2">
+                <div className="max-w-[90%] mx-3 sm:mx-auto sm:px-0 lg:px-0 grid grid-cols-1 gap-[1.5rem] sm:grid-cols-3">
+                    <div className="bg-black text-white p-6 overflow-hidden shadow-sm rounded-lg flex flex-row items-center gap-2">
                         {GameAccount && (
                             <>
                             <div className='flex flex-col'>
-                                <div className='flex flex-row items-center gap-6'>
+                                <div className='flex flex-row items-center gap-6 bg-gray-700 rounded-xl'>
                                     {user.profiel ? (
                                         <img
                                             src={`/storage/images/${user.profiel}`}
                                             alt="profilePicture"
                                             className='rounded-[20px] w-[25%]'
-                                        />                        
+                                        />
                                     ) : (
                                         <img src="https://cdn.accounts.nintendo.com/account/images/common/defaults/mii.png?t=1693897123" alt="profilePicture" className='w-[25%] rounded-3xl'/>
                                     )}
@@ -66,7 +70,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData })
                                 </div>
 
                                 <div className='my-5 mt-8'>
-                                    <h3 className='flex justify-start p-1 border-b-[1px] border-gray-400 text-start'>Public Information</h3>
+                                    <h3 className='flex sm:text-gray-500 justify-start p-1 border-b-[1px] border-gray-400 text-start'>Public Information</h3>
 
                                     <ul className='text-[0.9rem] p-4 flex flex-col gap-2'>
                                         <li className='flex flex-row'><span>{user.email}</span></li>
@@ -86,7 +90,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData })
                             </>
                         )}
                     </div>
-                    <div className="bg-black text-white p-6 overflow-hidden shadow-sm sm:rounded-lg flex flex-col items-center gap-2">
+                    <div className="bg-black text-white p-6 overflow-hidden shadow-sm rounded-lg flex flex-col items-center gap-2">
                         <h1 className='text-[1.2rem]'>Game Stats</h1>
 
                         <div className='flex flex-col gap-5 w-[80%]'>
@@ -112,7 +116,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData })
                             </ul>
                         </div>
                     </div>
-                    <div className="bg-black text-white p-6 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div className="bg-black text-white p-6 overflow-hidden shadow-sm rounded-lg">
                         <h1 className='text-white text-[1.35rem] mb-4'>Update stats</h1>
 
                         <p className='text-gray-400 text-[0.8rem]'>provide your rank level you ended with.
@@ -129,16 +133,36 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData })
                             />
                             <button type='submit' className='text-white bg-orange-600 py-2 px-3 rounded-lg'>update</button>
                         </form>
-                        {GameData && (
+                        {GameData ? (
                             <>
                                 <h1 className='pt-4 text-[1.1rem]'>Found shift results: </h1>
                                 <ShiftDisplay GameData={GameData}/>
                             </>
+                        ) : (
+                            <div className='flex justify-center items-center my-[10%]'>
+                                <p className='text-center text-[1.5rem] text-orange-700'>No stats found yet...</p>
+                            </div>
                         )}
                     </div>
                 </div>
 
                 <div className="max-w-7xl mx-3 sm:mx-auto sm:px-6 lg:px-1 grid grid-cols-1 gap-[1.5rem] sm:grid-cols-2 py-4">
+                    {GameData && (
+                        <div className='bg-black rounded-xl p-4 text-white'>
+                            <h1 className='pt-4 text-[1.1rem]'>Last Game stats: </h1>
+                            <StatsDisplay GameData={GameData}/>
+                        </div>
+                    )}
+                </div>
+                <div className="max-w-7xl mx-3 sm:mx-auto sm:px-6 lg:px-1 gap-[0.5rem] sm:grid-cols-2 py-1">
+                    {GameData && (
+                        <div className='bg-gray-900 rounded-xl p-3 text-white'>
+                            <BossesDisplay GameData={GameData}/>
+                        </div>
+                    )}
+                </div>
+
+                <div className="max-w-[90%] mx-3 sm:mx-auto sm:px-6 lg:px-1 grid grid-cols-1 gap-[1.5rem] sm:grid-cols-2 py-4">
                     <div className='bg-black rounded-xl p-3'>
                         <Chartcomponent bosses={bosses} />
                         <ul className='flex flex-row px-2 ml-11 gap-5 relative bottom-0'>
@@ -155,26 +179,24 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData })
                             <li><img src="https://cdn.wikimg.net/en/splatoonwiki/images/9/92/S3_Big_Shot_icon.png?20221009043319" alt="bigshots" className='w-[120%]' /></li>
                         </ul>
                     </div>
-                    <div className='bg-black rounded-xl p-4 text-white'>
-                        {GameData ? (
+                    <div className='bg-black rounded-xl p-2 mx-0 text-white'>
+                        {GameAccount && (
                             <>
-                                <h1 className='pt-4 text-[1.1rem]'>Last Game stats: </h1>
-                                <StatsDisplay GameData={GameData}/>
+                                
+                                <Progressbar bosses={bosses} records={records}/>
                             </>
-                        ) : (
-                            <div className='flex justify-center items-center text-center w-full h-full'>
-                                <p className='text-center text-[1.5rem] text-orange-700'>No stats found yet...</p>
-                            </div>
                         )}
                     </div>
                 </div>
-                <div className="max-w-7xl mx-3 sm:mx-auto sm:px-6 lg:px-1 gap-[0.5rem] sm:grid-cols-2 py-1">
-                    {GameData && (
-                        <div className='bg-gray-900 rounded-xl p-3 text-white'>
-                            <BossesDisplay GameData={GameData}/>
-                        </div>
-                    )}
+
+                <div className="max-w-[90%] mx-3 sm:mx-auto sm:px-2 lg:px-1 gap-[0.5rem] sm:grid-cols-1 py-1">
+                    <div className='bg-black rounded-xl p-4 text-white'>
+                        <h1 className='font-bold text-[1.25rem] p-4'>Rotations</h1>
+
+                        <Carouseldisplay/>
+                    </div>
                 </div>
+
             </div>
             <Footer/>
         </AuthenticatedLayout>

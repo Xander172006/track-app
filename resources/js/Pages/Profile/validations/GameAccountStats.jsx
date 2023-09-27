@@ -58,7 +58,6 @@ export default function gameAccountStats({ gameAccount }) {
 
     // Updates Game Account stats
     const updateGameStats = async (e) => {
-        e.preventDefault();
         try {
           post('/update-game-account', data);
           setUpdateSuccess(true);
@@ -86,7 +85,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Shifts worked: </span>
                         <input
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
+                            className='ml-auto text-left bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
                             value={shiftsWorked}
                             onChange={handleShiftsWorkedChange}
                             type='number'
@@ -97,7 +96,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Golden Eggs collected:  </span> 
                         <input 
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
+                            className='ml-auto text-left bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
                             value={GoldenEggsCollected}
                             onChange={handleGoldenEggsChange} 
                             type='number' 
@@ -108,7 +107,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Power Eggs collected:   </span> 
                         <input 
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
+                            className='ml-auto text-left bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
                             value={PowerEggsCollected}
                             onChange={handlePowerEggsChange} 
                             type='number' 
@@ -119,7 +118,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-2 border-b-[1px] border-gray-500 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>King Salmonids defeated:</span>
                         <input 
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
+                            className='ml-auto text-left bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]'
                             value={KingSalmonidsDefeated}
                             onChange={handleKingSalmonidsChange} 
                             type='number' 
@@ -130,7 +129,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-2 mx-6 border-b-[1px] border-gray-500 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Crew Members defeated:  </span>
                         <input 
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]' 
+                            className='ml-auto text-left bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]' 
                             value={CrewMembersRescued}
                             onChange={handleCrewMembersChange} 
                             type='number' 
@@ -141,7 +140,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className='px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row'>
                         <span className='mt-1'>Total points: </span>
                         <input 
-                            className='ml-auto text-right bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]' 
+                            className='ml-auto text-left bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem]' 
                             value={Totalpoints}
                             onChange={handleTotalPointsChange} 
                             type='number' 

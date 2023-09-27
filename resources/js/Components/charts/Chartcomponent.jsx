@@ -37,7 +37,7 @@ export default function ChartComponent({ bosses }) {
                         {
                             label: '# of Votes',
                             data: labels,
-                            backgroundColor: 'orange',
+                            backgroundColor: '#DB5500',
                             borderWidth: 1,
                         },
                     ],
@@ -47,7 +47,7 @@ export default function ChartComponent({ bosses }) {
                         y: {
                             beginAtZero: false,
                             min: 0,
-                            max: 4000,
+                            max: 5000,
                             stepSize: 500,
                             ticks: {
                                 color: 'white', // Set y-axis label text color to white
@@ -69,5 +69,5 @@ export default function ChartComponent({ bosses }) {
         }
     }, [bosses]);
 
-    return <canvas id='myChart' width='350' height='180'></canvas>;
+    return <canvas id='myChart' width='350' height='250'></canvas>;
 }

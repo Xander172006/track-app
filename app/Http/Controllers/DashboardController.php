@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+
 use App\Models\Bosses;
+use App\Models\records;
 use App\Models\game_accounts;
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\SalmonrunStatsApiController;
 
@@ -26,6 +29,7 @@ class DashboardController extends Controller
         $user = Auth::user();
         $gameAccount = game_accounts::where('user_id', Auth::id())->first();
         $bosses = Bosses::where('account_id', Auth::id())->first();
+        $records = records::all();
         
     
         return Inertia::render('Dashboard', [
@@ -33,6 +37,7 @@ class DashboardController extends Controller
             'GameAccount' => $gameAccount,
             'user' => $user,
             'bosses' => $bosses,
+            'records' => $records,
         ]);
     }
 
