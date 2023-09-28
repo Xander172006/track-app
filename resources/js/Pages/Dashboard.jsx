@@ -3,13 +3,16 @@ import { useForm } from '@inertiajs/react';
 import { Head } from '@inertiajs/react';
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import Footer from '@/Layouts/footer'; 
+import Footer from '@/Layouts/footer';
 
 // charts
 import Chartcomponent from '@/Components/charts/Chartcomponent';
 import Progressbar from '@/Components/charts/Progressbar';
-import '../../css/style.css'
+import DonutChartcomponent from '@/Components/charts/DonutChartcomponent';
+import LineChartcomponent from '@/Components/charts/LineChartcomponent';
 
+// css
+import '../../css/style.css';
 
 import ShiftDisplay from '@/Components/ShiftDisplay';
 import StatsDisplay from '@/Components/StatsDisplay';
@@ -29,16 +32,16 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
         setEvplevel(e.target.value);
         setData('evp', e.target.value);
         localStorage.setItem('EvpLevel', e.target.value);
-    }
+    };
 
     const HandleGameslossed = (e) => {
         setGamesLossed(e.target.value);
         setData('losses', e.target.value);
         localStorage.setItem('GamesLossed', e.target.value);
-    }
+    };
 
     console.log(GameData);
-    
+
     const updateStats = async (e) => {
         e.preventDefault();
 
@@ -47,17 +50,13 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                 evp: EvpLevel,
                 losses: GamesLossed,
             });
-            
         } catch (error) {
             console.error('Error updating stats:', error);
         }
     };
-    
+
     return (
-        <AuthenticatedLayout
-        user={auth.user}
-        
-        >
+        <AuthenticatedLayout user={auth.user}>
             <Head title="Dashboard" />
 
             <div className="py-5">
@@ -65,33 +64,33 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                     <div className="bg-black text-white p-4 overflow-hidden shadow-md shadow-gray-900 rounded-lg flex flex-row items-center gap-2">
                         {GameAccount && (
                             <>
-                            <div className='flex flex-col mb-auto'>
-                                <div className='flex flex-row items-center gap-6 bg-gray-700 rounded-md'>
-                                    {user.profiel ? (
-                                        <img
-                                            src={`/storage/images/${user.profiel}`}
-                                            alt="profilePicture"
-                                            className='rounded-[20px] w-[20%]'
-                                        />
-                                    ) : (
-                                        <img src="https://cdn.accounts.nintendo.com/account/images/common/defaults/mii.png?t=1693897123" alt="profilePicture" className='w-[25%] rounded-3xl'/>
-                                    )}
-                                    <p className='text-[1.25rem] font-bold'>{GameAccount.username} <span className='text-gray-400 font-thin'>{user.geslacht}</span></p>
-                                </div>
+                                <div className='flex flex-col mb-auto'>
+                                    <div className='flex flex-row items-center gap-6 bg-gray-700 rounded-md'>
+                                        {user.profiel ? (
+                                            <img
+                                                src={`/storage/images/${user.profiel}`}
+                                                alt="profilePicture"
+                                                className='rounded-[20px] w-[20%]'
+                                            />
+                                        ) : (
+                                            <img src="https://cdn.accounts.nintendo.com/account/images/common/defaults/mii.png?t=1693897123" alt="profilePicture" className='w-[25%] rounded-3xl' />
+                                        )}
+                                        <p className='text-[1.25rem] font-bold'>{GameAccount.username} <span className='text-gray-400 font-thin'>{user.geslacht}</span></p>
+                                    </div>
 
-                                <div className='my-5 mt-6 grid sm:grid-cols-1 gap-2 sm:place-items-center'>
-                                    <ul className='text-[0.8rem] flex flex-col gap-2 sm:w-full'>
-                                        <li className='flex flex-row bg-gray-700 p-2 rounded-md pr-7'><span>{user.email}</span></li>
-                                        <li className='flex flex-row bg-gray-700 p-2 rounded-md pr-7'><span>{user.geboortedatum}</span></li>
-                                        <li className='flex flex-row bg-gray-700 p-2 rounded-md pr-7'><span>{user.Land}</span></li>
-                                    </ul>
+                                    <div className='my-5 mt-6 grid sm:grid-cols-1 gap-2 sm:place-items-center'>
+                                        <ul className='text-[0.8rem] flex flex-col gap-2 sm:w-full'>
+                                            <li className='flex flex-row bg-gray-700 p-2 rounded-md pr-7'><span>{user.email}</span></li>
+                                            <li className='flex flex-row bg-gray-700 p-2 rounded-md pr-7'><span>{user.geboortedatum}</span></li>
+                                            <li className='flex flex-row bg-gray-700 p-2 rounded-md pr-7'><span>{user.Land}</span></li>
+                                        </ul>
 
-                                    <div className='flex flex-col mb-auto mr-auto mt-2 w-[70%]'>
-                                        <h4 className='text-[1.25rem] text-gray-400 border-b-[1px] border-gray-500'>About me</h4>
-                                        <p className='text-[0.9rem] my-2'>{user.bio}</p>
+                                        <div className='flex flex-col mb-auto mr-auto mt-2 w-[70%]'>
+                                            <h4 className='text-[1.25rem] text-gray-400 border-b-[1px] border-gray-500'>About me</h4>
+                                            <p className='text-[0.9rem] my-2'>{user.bio}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </>
                         )}
                         {!GameAccount && (
@@ -124,22 +123,20 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                         <h1 className='text-white text-[1.35rem] mb-4 bg-orange-700 p-2 w-full rounded-md font-bold'>Update stats</h1>
 
                         <form className='my-3 flex flex-col gap-2 mt-8' onSubmit={updateStats}>
-                            <label for="evp" className='flex flex-row items-center bg-gray-700 rounded-md px-2'>
+                            <label className='flex flex-row items-center bg-gray-700 rounded-md px-2'>
                                 <span>Eggsecutive rank</span>
                                 <input 
                                     className='bg-gray-800 rounded-lg h-[2rem] w-[30%] my-1 text-gray-300 ml-auto'
-                                    id="evp"
                                     value={EvpLevel}
                                     onChange={HandleEvpLevel}
                                     type="number"
                                     name='evp'
                                 />
                             </label>
-                            <label for="losses" className='flex flex-row items-center bg-gray-700 rounded-md px-2'>
+                            <label className='flex flex-row items-center bg-gray-700 rounded-md px-2'>
                                 <span>Games lossed</span>
                                 <input 
                                     className='bg-gray-800 rounded-lg h-[2rem] w-[30%] my-1 text-gray-300 ml-auto'
-                                    id="losses"
                                     value={GamesLossed}
                                     onChange={HandleGameslossed}
                                     type="number"
@@ -148,29 +145,25 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                             </label>
                             <button type='submit' className='text-white bg-orange-700 py-2 px-3 rounded-lg w-[30%] sm:w-[20%] ml-auto hover:scale-[1.05] focus:bg-orange-500 focus:text-gray-300 transition duration-300 ease-in-out'>update</button>
                         </form>
-                       
                     </div>
                 </div>
 
                 {GameData && (
-                    <div className="max-w-7xl mx-3 sm:mx-auto sm:px-6 lg:px-1 grid grid-cols-1 gap-[1.5rem] sm:grid-cols-2 py-4">
-                        <div className='bg-black rounded-xl p-4 text-white'>
-                            <h1 className='pt-4 text-[1.1rem]'>Last Game stats: </h1>
-                            <StatsDisplay GameData={GameData}/>
+                    <div className="max-w-[90%] mx-3 sm:mx-auto sm:px-6 lg:px-1 grid grid-cols-1 gap-[1.5rem] sm:grid-cols-2 py-4">
+                        <div className='bg-black shadow-md shadow-gray-800 rounded-xl p-2 text-white sm:w-[150%]'>
+                            <h1 className='p-2 text-[1.25rem] font-bold'>Game results</h1>
+                            <LineChartcomponent GameData={GameData}/>
                         </div>
-                    </div>
-                )}
 
-                {GameData && (
-                    <div className="max-w-7xl mx-3 sm:mx-auto sm:px-6 lg:px-1 gap-[0.5rem] sm:grid-cols-2 py-1">
-                        <div className='bg-gray-900 rounded-xl p-3 text-white'>
-                            <BossesDisplay GameData={GameData}/>
+                        <div className='bg-black shadow-md shadow-gray-800 rounded-xl p-3 text-white ml-auto w-full sm:w-[50%]'>
+                            <div className='h-[10%]'><DonutChartcomponent GameData={GameData} bosses={bosses}/></div>
                         </div>
-                    </div>
+                     </div>
                 )}
 
                 <div className="max-w-[90%] mx-3 sm:mx-auto sm:px-6 lg:px-1 grid grid-cols-1 gap-[2rem] sm:grid-cols-2 py-4 mt-4">
-                    <div className='bg-black rounded-xl p-4'>
+                    <div className='bg-black rounded-xl p-2'>
+                        <h1 className='text-white font-bold p-2 mb-4 text-[1.25rem] bg-orange-700 rounded-md'>Total count of bosses</h1>
                         <Chartcomponent bosses={bosses} />
                         <ul className='flex flex-row px-2 ml-11 gap-5 relative bottom-0'>
                             <li><img src="https://cdn.wikimg.net/en/splatoonwiki/images/9/9a/S3_Steelhead_icon.png?20221009043423" alt="steelhead" className='w-[120%]' /></li>
@@ -189,6 +182,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                     <div className='bg-black rounded-xl p-2 mx-0 text-white'>
                         {GameAccount && (
                             <>
+                                <h1 className='p-2 mb-4 font-bold text-[1.25rem] bg-orange-700 w-full rounded-md'>Progress towards badges</h1>
                                 <Progressbar bosses={bosses} records={records}/>
                             </>
                         )}
@@ -196,6 +190,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                 </div>
 
                 <div className="max-w-[90%] flex flex-col justify-center mx-auto sm:grid sm:grid-cols-2 sm:place-content-center sm:mx-auto sm:px-0 lg:px-1 gap-[0.5rem] py-1" style={{ gridTemplateColumns: '1fr 3fr' }}>
+                    
                     <div className='bg-black rounded-xl p-4 text-white py-auto flex flex-col items-start justify-start' style={{ gridColumn: '1 / span 1' }}>
                         <h1 className='font-bold text-[1.5rem]'>Kings defeated</h1>
                         {GameAccount && (
@@ -210,12 +205,11 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
 
                     <div className='bg-black rounded-xl p-4 text-white' style={{ gridColumn: '2 / span 3' }}>
                         <h1 className='font-bold text-[1.5rem] p-4'>Rotations</h1>
-                        <div className='w-full'><Carouseldisplay /></div>
+                        <div className='w-full px-3'><Carouseldisplay /></div>
                     </div>
                 </div>
-
             </div>
-            <Footer/>
+            <Footer />
         </AuthenticatedLayout>
     );
 }

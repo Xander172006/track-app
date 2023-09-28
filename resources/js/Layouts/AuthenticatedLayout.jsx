@@ -3,7 +3,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import Salmonrun_logo from '../../images/Salmon_logo.webp'
+import Salmonrun_logo from '../../images/Salmon_logo.webp';
 import { Link } from '@inertiajs/react';
 
 export default function Authenticated({ user, header, children }) {
@@ -17,7 +17,7 @@ export default function Authenticated({ user, header, children }) {
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
                                 <Link href="/dashboard">
-                                    <img src={Salmonrun_logo} alt="salmon_run"  className='w-[40%]'/>
+                                    <img src={Salmonrun_logo} alt="salmon_run" className='w-[40%]'/>
                                 </Link>
                             </div>
 
