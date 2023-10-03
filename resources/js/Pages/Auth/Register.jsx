@@ -100,6 +100,9 @@ export default function Register() {
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
+                    <div className='mr-auto'>
+                        <a className='text-blue-700' href="/login">Login</a>
+                    </div>
                     <Link
                         href={route('login')}
                         className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md"

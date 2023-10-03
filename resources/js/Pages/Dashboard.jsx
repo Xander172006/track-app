@@ -93,19 +93,25 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                             </>
                         )}
                         {!GameAccount && (
-                            <>
+                            <div className='mb-auto w-full flex flex-row items-center gap-4 h-full'>
                                 <img src="https://cdn.accounts.nintendo.com/account/images/common/defaults/mii.png?t=1693897123" alt="No-profile" className='w-[20%] rounded-3xl' />
-                                <p>Unnamed</p>
-                            </>
+                                <p>No profile</p>
+                            </div>
                         )}
                     </div>
 
+                    {!GameAccount && (
+                        <div className='bg-black text-white p-4 overflow-hidden shadow-md shadow-gray-900 rounded-lg flex flex-row items-center gap-2 justify-center'>
+                            <p>Go to your profile and Register game account</p>
+                        </div>
+                    )}
+
+                    {GameAccount && (
                     <div className="bg-black text-white p-6 overflow-hidden shadow-md shadow-gray-800 rounded-lg flex flex-col items-center gap-2">
                         <h1 className='text-[1.25rem] font-bold mr-auto bg-orange-700 p-2 rounded-md w-full'>Game Stats</h1>
 
                         <div className='flex flex-col gap-5 w-full my-5'>
                             <ul className='flex flex-col gap-3 text-[0.9rem]'>
-                                {GameAccount && (
                                     <>
                                         <li className='flex flex-row bg-gray-700 p-[0.4rem] rounded-md'><span className='font-bold'>Shifts worked: </span>           <span className='ml-auto'>{GameAccount.Shiftsworked}</span></li>
                                         <li className='flex flex-row bg-gray-700 p-[0.4rem] rounded-md'><span className='font-bold'>Golden eggs collected: </span>   <span className='ml-auto'>{GameAccount.GoldenEggsCollected}</span></li>
@@ -113,11 +119,12 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                                         <li className='flex flex-row bg-gray-700 p-[0.4rem] rounded-md'><span className='font-bold'>Crew members rescued: </span>    <span className='ml-auto'>{GameAccount.CrewMembersRescued}</span></li>
                                         <li className='flex flex-row bg-gray-700 p-[0.4rem] rounded-md'><span className='font-bold'>Total points: </span>            <span className='ml-auto'>{GameAccount.Totalpoints}</span></li>
                                     </>
-                                )}
                             </ul>
                         </div>
                     </div>
+                    )}
 
+                    {GameAccount && (
                     <div className="bg-black text-white p-4 overflow-hidden shadow-md shadow-gray-800 rounded-lg">
                         <h1 className='text-white text-[1.35rem] mb-4 bg-orange-700 p-2 w-full rounded-md font-bold'>Update stats</h1>
 
@@ -145,6 +152,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                             <button type='submit' className='text-white bg-orange-700 py-2 px-3 rounded-lg w-[30%] sm:w-[20%] ml-auto hover:scale-[1.05] focus:bg-orange-500 focus:text-gray-300 transition duration-300 ease-in-out'>update</button>
                         </form>
                     </div>
+                )}
                 </div>
 
                 {GameData && (
@@ -159,6 +167,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                      </div>
                 )}
 
+                {GameAccount && (
                 <div className="max-w-[90%] mx-3 sm:mx-auto sm:px-6 lg:px-1 grid grid-cols-1 gap-[2rem] sm:grid-cols-2 py-4 mt-4">
                     <div className='bg-black rounded-xl p-2'>
                         <h1 className='text-white font-bold p-2 mb-4 text-[1.25rem] bg-orange-700 rounded-md'>Total count of bosses</h1>
@@ -178,27 +187,24 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                         </ul>
                     </div>
                     <div className='bg-black rounded-xl p-2 mx-0 text-white'>
-                        {GameAccount && (
                             <>
                                 <h1 className='p-2 mb-4 font-bold text-[1.25rem] bg-orange-700 w-full rounded-md'>Progress towards badges</h1>
                                 <Progressbar bosses={bosses} records={records}/>
                             </>
-                        )}
                     </div>
                 </div>
+                )}
 
+                {GameAccount && (
                 <div className="max-w-[90%] flex flex-col justify-center mx-auto sm:grid sm:grid-cols-2 sm:place-content-center sm:mx-auto sm:px-0 lg:px-1 gap-[0.5rem] py-1" style={{ gridTemplateColumns: '1fr 3fr' }}>
-                    
                     <div className='bg-black rounded-xl p-4 text-white py-auto flex flex-col items-start justify-start' style={{ gridColumn: '1 / span 1' }}>
                         <h1 className='font-bold text-[1.5rem]'>Kings defeated</h1>
-                        {GameAccount && (
                             <>
                                 <div className='flex flex-row justify-center items-center mx-auto my-auto'>
                                     <img className='w-[10rem]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/7/7a/S3_Cohozuna_icon.png/120px-S3_Cohozuna_icon.png" alt="KingsDefeated" />
                                     <strong className='text-[1.5rem]'>{GameAccount.KingSalmonidsDefeated}</strong>
                                 </div>
                             </>
-                        )}
                     </div>
 
                     <div className='bg-black rounded-xl p-4 text-white' style={{ gridColumn: '2 / span 3' }}>
@@ -206,8 +212,16 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                         <div className='w-full px-3'><Carouseldisplay /></div>
                     </div>
                 </div>
+                )}
             </div>
-            <Footer />
+            
+            {!GameAccount ? (
+                <div className='absolute bottom-0'>
+                    <Footer />
+                </div>
+            ) : (
+                <Footer/>
+            )}
         </AuthenticatedLayout>
     );
 }
