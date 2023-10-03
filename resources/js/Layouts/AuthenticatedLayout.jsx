@@ -37,7 +37,9 @@ export default function Authenticated({ user, header, children }) {
                                                 type="button"
                                                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-black hover:text-gray-700 dark:hover:text-gray-300 transition ease-in-out duration-150"
                                             >
-                                                {user.name}
+                                                {user && (
+                                                    <>{user.name}</>
+                                                )}
 
                                                 <svg
                                                     className="ml-2 -mr-0.5 h-4 w-4"
@@ -99,10 +101,12 @@ export default function Authenticated({ user, header, children }) {
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-                        <div className="px-4">
-                            <div className="font-medium text-base text-gray-800 dark:text-gray-200">{user.name}</div>
-                            <div className="font-medium text-sm text-gray-500">{user.email}</div>
-                        </div>
+                        {user && (
+                            <div className="px-4">
+                                <div className="font-medium text-base text-gray-800 dark:text-gray-200">{user.name}</div>
+                                <div className="font-medium text-sm text-gray-500">{user.email}</div>
+                            </div>
+                        )}
 
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>

@@ -9,7 +9,7 @@ import Footer from '@/Layouts/footer';
 import Chartcomponent from '@/Components/charts/Chartcomponent';
 import Progressbar from '@/Components/charts/Progressbar';
 import DonutChartcomponent from '@/Components/charts/DonutChartcomponent';
-import LineChartcomponent from '@/Components/charts/LineChartcomponent';
+import RadarChartcomponent from '@/Components/charts/RadarChartcomponent';
 
 // css
 import '../../css/style.css';
@@ -40,7 +40,6 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
         localStorage.setItem('GamesLossed', e.target.value);
     };
 
-    console.log(GameData);
 
     const updateStats = async (e) => {
         e.preventDefault();
@@ -151,12 +150,11 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                 {GameData && (
                     <div className="max-w-[90%] mx-3 sm:mx-auto sm:px-6 lg:px-1 grid grid-cols-1 gap-[1.5rem] sm:grid-cols-2 py-4">
                         <div className='bg-black shadow-md shadow-gray-800 rounded-xl p-2 text-white sm:w-[150%]'>
-                            <h1 className='p-2 text-[1.25rem] font-bold'>Game results</h1>
-                            <LineChartcomponent GameData={GameData}/>
+                            <RadarChartcomponent GameData={GameData}/>
                         </div>
 
                         <div className='bg-black shadow-md shadow-gray-800 rounded-xl p-3 text-white ml-auto w-full sm:w-[50%]'>
-                            <div className='h-[10%]'><DonutChartcomponent GameData={GameData} bosses={bosses}/></div>
+                            <div className='h-[10%] w-full'><DonutChartcomponent GameData={GameData} bosses={bosses}/></div>
                         </div>
                      </div>
                 )}

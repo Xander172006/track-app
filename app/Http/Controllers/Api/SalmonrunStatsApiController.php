@@ -95,20 +95,20 @@ class SalmonrunStatsApiController extends Controller
 
                 if ($rand <= 3) {
                     $givenTide = $tides[0]; // normal tide 60%
-                } elseif ($rand == 4) {
+                } else if ($rand == 4) {
                     $givenTide = $tides[1]; // low tide 20%
                 } else {
                     $givenTide = $tides[2]; // high tide 20%
                 }
 
                 // Check if a night wave occurs for results of waves
-                $nightWaveOccurrence = rand(1, 5) == 5;
+                $nightWaveOccurrence = rand(1, 4) == 4;
                 $nightWave = 'daytime';
 
                 if ($nightWaveOccurrence) {
                     $nightWaves = $this->nightWaves();
                     foreach ($nightWaves as $wave => $waveData) {
-                        if (in_array($givenTide, $waveData['tides']) && rand(1, $waveData['chance']) == 1) {
+                        if (in_array($givenTide, $waveData['tides']) && rand(2, $waveData['chance']) == 2) {
                             $nightWave = $wave;
 
                             if ($nightWave == 'rush' || $nightWave == 'grillers' || $nightWave == 'tornado' || $nightWave == 'mudmouth' ||
@@ -175,6 +175,7 @@ class SalmonrunStatsApiController extends Controller
                 ];
             }
 
+
             // Get the total boss count
             $totalBossCount += $totalAmountBosses;
 
@@ -197,6 +198,19 @@ class SalmonrunStatsApiController extends Controller
             }
         }
         
+        $array = [
+            'boss1' => 0,
+            'boss2' => 0,
+            'boss3' => 0,
+            'boss4' => 0,
+            'boss5' => 0,
+            'boss6' => 0,
+            'boss7' => 0,
+            'boss8' => 0,
+            'boss9' => 0,
+            'boss10' => 0,
+            'boss11' => 0
+        ];
 
         return new SalmonrunStatsResource([
             'playerEvp' => $playerEvp,
@@ -212,6 +226,23 @@ class SalmonrunStatsApiController extends Controller
     public function nightWaves()
     {
         $nightWaves = [
+            'tornado' => [
+                'tides' => ['low'],
+                'chance' => 1 / 2,
+            ],
+            'cohack_charge' => [
+                'tides' => ['low'],
+                'chance' => 1 / 2,
+            ],
+            
+            'mudmouth' => [
+                'tides' => ['normal', 'high'],
+                'chance' => 1 / 60,
+            ],
+            'goldie_seeking' => [
+                'tides' => ['normal', 'high'],
+                'chance' => 1 / 6,
+            ],
             'rush' => [
                 'tides' => ['normal', 'high'],
                 'chance' => 1 / 6,
@@ -220,29 +251,14 @@ class SalmonrunStatsApiController extends Controller
                 'tides' => ['normal', 'high'],
                 'chance' => 1 / 6,
             ],
-            'fog' => [
-                'tides' => ['normal', 'low', 'high'],
-                'chance' => 1 / 8,
-            ],
-            'cohack_charge' => [
-                'tides' => ['low'],
-                'chance' => 1 / 4,
-            ],
-            'tornado' => [
-                'tides' => ['low'],
-                'chance' => 1 / 4,
-            ],
-            'mudmouth' => [
-                'tides' => ['normal', 'high'],
-                'chance' => 1 / 6,
-            ],
+
             'mothership' => [
                 'tides' => ['normal', 'low', 'high'],
-                'chance' => 1 / 8,
+                'chance' => 1 / 4,
             ],
-            'goldie_seeking' => [
-                'tides' => ['normal', 'high'],
-                'chance' => 1 / 6,
+            'fog' => [
+                'tides' => ['normal', 'low', 'high'],
+                'chance' => 1 / 4,
             ],
         ];
 

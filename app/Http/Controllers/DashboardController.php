@@ -62,8 +62,6 @@ class DashboardController extends Controller
                 $account->fishticks += intval($request->input('boss10'));
                 $account->bigshots += intval($request->input('boss11'));
                 $account->save();
-
-                return response()->json(['message' => 'success']);
             } else {
                 return response()->json(['message' => 'Account not found'], 404);
             }

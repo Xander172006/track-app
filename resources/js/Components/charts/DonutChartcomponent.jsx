@@ -34,6 +34,21 @@ export default function DonutChartcomponent({ GameData, bosses }) {
   }
 
 
+  const bossesarray = {
+    'boss1': 0,
+    'boss2': 0,
+    'boss3': 0,
+    'boss4': 0,
+    'boss5': 0,
+    'boss6': 0,
+    'boss7': 0,
+    'boss8': 0,
+    'boss9': 0,
+    'boss10': 0,
+    'boss11': 0,
+  }
+  
+
   // gives the correct sum of each bosscount for shifts
   for (let i = 0; i <= shiftscount; i++) {
     const shiftResults = GameData.data.shiftResults[i];
@@ -42,6 +57,18 @@ export default function DonutChartcomponent({ GameData, bosses }) {
       for (let j = 1; j <= 3; j++) {
         if (shiftResults.results[j]) {
           const bossCounts = shiftResults.results[j].bossCounts;
+
+          bossesarray.boss1 += bossCounts.steelhead,
+          bossesarray.boss2 += bossCounts.flyfish,
+          bossesarray.boss3 += bossCounts.maws,
+          bossesarray.boss4 += bossCounts.steeleals,
+          bossesarray.boss5 += bossCounts.stinger,
+          bossesarray.boss6 += bossCounts.scrapper,
+          bossesarray.boss7 += bossCounts.drizzlers,
+          bossesarray.boss8 += bossCounts.flippers,
+          bossesarray.boss9 += bossCounts.slamonlids,
+          bossesarray.boss10 += bossCounts.fishsticks,
+          bossesarray.boss11 += bossCounts['Big shots'],
 
           // Update the counts for each boss
           steelheadCount += bossCounts.steelhead;
@@ -57,6 +84,15 @@ export default function DonutChartcomponent({ GameData, bosses }) {
           bigShotsCount += bossCounts["Big shots"];
         }
       }
+    }
+  }
+
+
+  let sum = 0;
+
+  for (const key in bossesarray) {
+    if (bossesarray.hasOwnProperty(key)) {
+      sum += bossesarray[key];
     }
   }
 
@@ -107,14 +143,18 @@ export default function DonutChartcomponent({ GameData, bosses }) {
   ];
 
   // sends a post request to route /update-bosscounts
+  const [updateSuccess, setUpdateSuccess] = useState(false);
   const updateBossesStats = async (e) => {
     try {
       post('/update-bosscounts', data);
+      setUpdateSuccess(true);
     } catch (error) {
       console.error('Error updating Bosses data', error);
     }
   };
+
   
+  console.log(bossValues);
 
   const chartRef = useRef(null);
 
@@ -157,7 +197,7 @@ export default function DonutChartcomponent({ GameData, bosses }) {
               position: 'left',
               align: 'center', 
               labels: {
-                color: 'white', 
+                color: 'white',
               },
             },
           },
@@ -170,11 +210,21 @@ export default function DonutChartcomponent({ GameData, bosses }) {
 
 
   return (
+    <div className='grid grid-cols-1 w-full'>
       <div className='w-full sm:w-[100%]'>
-          <h1 className='font-bold text-white text-[1.3rem]'>Bosses found: </h1>
+          <h1 className='font-bold text-white text-[1.3rem] bg-orange-700 rounded-md p-2'>Bosses found: </h1>
           <canvas className='grid grid-cols-2 place-content-center gap-3 w-full' id='MyDonutchart'></canvas>
-          <span className='relative left-[60%] bottom-[11.5rem] font-bold'>total: {GameData.data.totalAmountBosses}</span>
-
+         
+          <span className='relative left-[62.5%] bottom-[10.5rem] font-bold text-[0.9rem]'>total: {sum}</span>
       </div>
+
+      <form className='flex flex-col justify-center items-center gap-4' onSubmit={updateBossesStats}>
+          <h2 className='font-bold text-[1.2rem]'>save boss values</h2>
+          <button className='bg-orange-700 p-2 rounded-lg w-[40%] hover:scale-[1.05] transition duration-300 ease-in-out' type="submit">save</button>
+          {updateSuccess ? (
+              <div className="text-green-600 my-2 px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row">Bosses have successfully been updated</div>
+          ) : null}
+      </form>
+    </div>
   );
 }
