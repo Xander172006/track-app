@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('game_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('UID', 10)->unique();
+            $table->string('UID', 10)->nullable();
             $table->text('username');
             $table->integer('Shiftsworked')->nullable();
             $table->integer('GoldenEggsCollected')->nullable();

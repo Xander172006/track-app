@@ -1,14 +1,14 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
-import backgroundImage from '../../images/salmon-run.jpg'; // Import your background image
-import logoImage from '../../images/salmonrun_logo.jpg'; // Import your background image
+import backgroundImage from '../../images/salmon-run.jpg';
+import logoImage from '../../images/salmonrun_logo.jpg';
 
 export default function Guest({ children }) {
     const guestStyle = {
         position: 'relative',
-        backgroundImage: `url(${backgroundImage})`, // Set the background image
-        backgroundSize: 'cover', // Adjust as needed
-        backgroundPosition: 'center', // Adjust as needed
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
     };
 
     const overlayStyle = {
@@ -22,17 +22,16 @@ export default function Guest({ children }) {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Adjust the alpha value (0.5 in this example) to control darkness
     };
 
     return (
         <div className="min-h-screen" style={guestStyle}>
             <div style={overlayStyle}>
-                <div>
-                </div>
-
-                <div className="w-full sm:max-w-md mt-6 px-6 py-4 backdrop-blur-[7.5px] bg-black bg-opacity-60 shadow-md overflow-hidden sm:rounded-2xl flex justify-center flex-col items-center">
+                <img src="https://media.gamepedia.jp/wp-content/uploads/sites/123/2022/09/07204408/title-480x194.png" alt="Logo" className="w-[50%] sm:w-[20%] h-[6.5rem] rounded-2xl opacity-80 flex justify-center mb-5 sm:mt-0 mt-8" />
+                <div className="w-full sm:max-w-md max-w-[90%] mb-14 px-10 py-4 backdrop-blur-[5px] bg-black bg-opacity-60 border-[2px] border-orange-700 border-opacity-40 shadow-lg shadow-gray-900 overflow-hidden sm:rounded-lg flex justify-center flex-col items-center">
                     <Link href="#">
-                        <img src={logoImage} alt="Logo" className="w-[11rem] h-[6.5rem] rounded-2xl opacity-70 flex justify-center mb-10 mt-2" />
+                        
                     </Link>
                     {children}
                 </div>

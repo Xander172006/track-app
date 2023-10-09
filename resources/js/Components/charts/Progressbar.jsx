@@ -15,31 +15,29 @@ export default function Progressbar({ bosses, records }) {
     'bigshots': bosses.bigshots,
   };
 
-  const checkpointFlags = [100, 1000, 10000];
-
   return (
     <>
-        <div className='grid grid-cols-2 sm:grid-cols-2'>
+        <div className='grid grid-cols-2 sm:grid-cols-2 my-5'>
             <div className='grid grid-cols-3 place-items-center w-full'>
             {records.map((record, index) => (
-                <div key={index} className='px-1 py-2 flex flex-row justify-start text-[0.6rem] sm:text-[0.75rem] items-center gap-2'>
-                    <img className='w-[50%] sm:w-[35%] mr-auto' src={record.badgeImage} alt={`Badge ${index}`} />
+                <div key={index} className='px-1 py-2 flex flex-row justify-center text-[0.6rem] sm:text-[0.75rem] items-center'>
+                    <img className='w-[50%] sm:w-[35%] mr-1' src={record.badgeImage} alt={`Badge ${record.id}`} />
                     <span>{record.Boss}</span>
                 </div>
             ))}
             </div>
 
-            <div className='grid grid-cols-1 place-content-center gap-[4.5%] sm:gap-[3.75%] text-[0.5rem] sm:text-[0.8rem] items-center text-center'>
+            <div className='grid grid-cols-1 place-content-center gap-[4.5%] sm:gap-[3.75%] text-[0.5rem] sm:text-[0.8rem] items-center text-center h-[90%] my-auto'>
                 {Object.entries(bossValues).map(([bossType, bossValue]) => (
-                    <div key={bossValue} className='w-[85%] sm:w-[90%] ml-auto sm:mr-4 bg-gray-800 my-1 h-3 sm:h-5 rounded-md relative'>
-                        <div style={{ width: `${Math.ceil(bossValue / 100)}%` }} className={`h-3 sm:h-5 bg-blue-600 relative rounded-e-sm rounded-s-md`}>
-                            <span className='ml-auto flex justify-end pr-1'>{bossValue}</span>
-                        </div>
-                        <div>
-                            <span className='absolute left-[0.9%] text-[0.35rem] sm:left-[0.9%] sm:text-[0.6rem] mt-[0.1rem] text-yellow-700 font-bold'>100</span>
-                            <span className='absolute left-[9%] text-[0.35rem] sm:left-[9%] sm:text-[0.6rem] mt-[0.1rem] text-gray-200 font-bold'>1000</span>
-                            <span className='absolute left-[85%] text-[0.35rem] sm:left-[90%] sm:text-[0.6rem] mt-[0.1rem] text-yellow-400 font-bold'>10000</span>
-                        </div>
+                    <div 
+                        key={`${bossType}-${bossValue}`} 
+                        className='w-[85%] sm:w-[80%] ml-auto bg-gray-800 my-1 h-3 sm:h-4 rounded-md relative'
+                        >
+                        <span className='absolute text-yellow-400 text-[70%] ml-[40%]'>10000</span>
+                        <div style={{ width: `${Math.ceil(bossValue / 100)}%` }} className={`h-3 sm:h-4 bg-blue-600 relative rounded-e-sm rounded-s-md`}>
+                            
+                            <span className='text-[75%] absolute right-0'>{bossValue}</span>
+                        </div>               
                     </div>
                 ))}
             </div>

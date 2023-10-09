@@ -11,15 +11,19 @@ export default function RegisterAccount({ auth, error, success, gameAccount, use
     // creates a new Game Account
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form submitted');
         post('/create-account', data);
     };
+
+    const handleUID = (e) => {
+        e.preventDefault();
+        post('/find-account', data);
+    }
 
 return (
 <>
     <form 
         onSubmit={handleSubmit} 
-        className='backdrop-blur-[20px] bg-black bg-opacity-60 overflow-hidden w-[50%] mx-auto rounded-xl shadow-lg shadow-gray-800'>
+        className='backdrop-blur-[20px] bg-black bg-opacity-60 overflow-hidden sm:w-[50%] mx-auto rounded-xl shadow-lg shadow-gray-800 w-full'>
         <div className='flex flex-col justify-center items-center w-full gap-2 mt-0 pb-3'>
             <h1 className='text-[1.25rem] flex justify-center text-white py-5'>Make game account</h1>
             <input
@@ -27,14 +31,14 @@ return (
                 name="username"
                 placeholder='Ingame username'
                 value={data.username}
-                className="bg-white border-gray-400 border-[3px] h-[3rem] rounded-lg w-[70%] text-black text-[0.9rem] placeholder:text-gray-400"
+                className="bg-white border-gray-400 border-[3px] h-[3rem] rounded-lg sm:w-[70%] w-[80%] text-black text-[0.9rem] placeholder:text-gray-400"
                 onChange={(e) => setData('username', e.target.value)}
             />
             <input
                 type="password"
                 name="password"
                 placeholder='Password'
-                className="bg-white border-gray-400 border-[3px] h-[3rem] rounded-lg w-[70%] text-black text-[0.9rem] placeholder:text-gray-400"
+                className="bg-white border-gray-400 border-[3px] h-[3rem] rounded-lg sm:w-[70%] w-[80%] text-black text-[0.9rem] placeholder:text-gray-400"
                 onChange={(e) => setData('password', e.target.value)}
             />
         </div>
@@ -51,13 +55,13 @@ return (
             </div>
         )}
 
-        <div className='flex flex-row text-[0.85rem] w-full justify-center items-center gap-[8rem] pb-2'>
+        <div className='flex flex-col sm:flex-row text-[0.85rem] sm:w-full justify-center items-center sm:gap-[8rem] pb-2'>
             <a href="" className='text-blue-500 hover:text-blue-400 transition duration-300 ease-in-out'>Forgot password?</a>
-            <button className='flex justify-center my-3 bg-orange-700 p-2 items-center text-center rounded-lg w-[25%] hover:text-black transition duration-500 ease-in-out' type='submit'>Register</button>
+            <button className='flex justify-center my-3 bg-orange-700 p-2 items-center text-center rounded-lg w-[80%] sm:w-[25%] hover:text-black transition duration-500 ease-in-out' type='submit'>Register</button>
         </div>
     </form>
 
-    <form className='flex justify-center flex-col items-center text-[0.9rem] my-12 backdrop-blur-[7.5px] bg-black bg-opacity-60 w-[40%] rounded-xl py-6 mx-auto shadow-lg shadow-gray-800'>
+    <form className='flex justify-center flex-col items-center text-[0.9rem] my-12 backdrop-blur-[7.5px] bg-black bg-opacity-60 w-full sm:w-[40%] rounded-xl py-6 mx-auto shadow-lg shadow-gray-800' onSubmit={handleUID}>
         <h1 className='text-[0.95rem]'>Find account with UID</h1>
 
         <input
@@ -68,6 +72,7 @@ return (
             onChange={(e) => setData('UID', e.target.value)}
         />
         <p className='w-[70%] text-gray-400 text-[0.7rem]'>You can search your UID to find an existing account or your old account.</p>
+        <button className='flex justify-center my-3 bg-orange-700 p-2 items-center text-center rounded-lg w-[80%] sm:w-[25%] hover:text-black transition duration-500 ease-in-out' type='submit'>search</button>
     </form>
 </>
     );

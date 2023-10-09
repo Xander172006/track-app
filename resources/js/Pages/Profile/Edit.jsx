@@ -28,12 +28,10 @@ const Edit = ({ auth, error, success, gameAccount, user, SalmonrunApi }) => {
         <AuthenticatedLayout user={auth.user}>
             <Head title='account' />
             <main className='p-4'>
-                <div className='max-w-[80%] mx-auto sm:px-6 lg:px-8 space-y-6'>
-                    <div className='flex justify-center'>
-                        <img className='w-[25%]' src="https://vignette.wikia.nocookie.net/fantendo/images/c/c0/Salmonrun_logo.png/revision/latest/scale-to-width-down/300?cb=20180128193715" alt="SalmonRun"/>
-                    </div>
+                <div className='sm:max-w-[80%] max-w-[95%] mt-5 mx-auto sm:px-6 lg:px-8 space-y-6'>
+                 
                     
-                    <div className="p-4 sm:p-8 text-white shadow sm:rounded-lg">
+                    <div className="p-0 sm:p-8 text-white shadow sm:rounded-lg">
                         {!gameAccount ? (
                             <RegisterAccount data={data} error={error} success={success} auth={auth} gameAccount={gameAccount} user={user} />
                         ) : (

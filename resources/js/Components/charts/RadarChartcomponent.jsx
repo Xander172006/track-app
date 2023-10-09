@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from '@inertiajs/react';
+
 import Chart from 'chart.js/auto';
+import 'chartjs-plugin-datalabels';
 
 export default function LineChartcomponent({ GameData }) {
     const shiftcount = Object.keys(GameData.data.shiftResults).length - 1;
@@ -125,12 +127,12 @@ export default function LineChartcomponent({ GameData }) {
                 data: data,
                 color: 'white',
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'red',
-                pointBackgroundColor: 'red',
-                pointBorderColor: 'red',
-                pointHoverBackgroundColor: 'red',
+                borderColor: '#D93E01',
+                pointBackgroundColor: '#D93E01',
+                pointBorderColor: '#D93E01',
+                pointHoverBackgroundColor: '#D93E01',
                 pointHoverBorderColor: 'rgb(255, 99, 132)',
-                borderCapStyle: 'round'
+                borderCapStyle: 'round',
               }
             ]
           },
@@ -144,20 +146,22 @@ export default function LineChartcomponent({ GameData }) {
                   stepSize: 2,
                   textStrokeColor: 'gray',
                   color: 'white',
+                  font: {
+                    size: 12
+                  },
                   backdropColor: 'transparent',
                 },
 
                 angleLines: {
-               
-                  color: '#666666'
+                  color: '#7A1601'
                 },
 
                 grid: {
-                  color: 'gray',
+                  color: 'darkgreen',
                 },
 
                 pointLabels: {
-                  color: 'white'
+                  display: false
                 }
               }
             },
@@ -235,11 +239,75 @@ export default function LineChartcomponent({ GameData }) {
     }
     
     return (
-      <div className='sm:p-2 p-4 grid grid-cols-1 sm:flex sm:flex-row gap-5 place-content-center items-center w-full'>
+      <div className='grid grid-cols-2 gap-3 w-full'>
+        <div className='bg-black w-full rounded-lg flex flex-col items-center shadow-lg shadow-gray-900 p-2 mb-auto'>
+          <h1 className='p-2'><strong>Radar chart</strong></h1>
+          <canvas className='w-full text-white' id="myRadarChart"></canvas>
+        </div>
 
-        <div className='w-full sm:w-[80%] p-1 flex flex-col justify-center items-center'>
+        <div className='bg-black w-full ml-auto rounded-lg flex flex-col items-center shadow-lg shadow-gray-900 p-2 mb-auto'>
+          <h1 className='p-2'><strong>Night waves</strong></h1>
+          <ul className='grid grid-cols-2 gap-3 text-[0.6rem] sm:text-[0.8rem] w-full'>
+                {nightwavesCounts.rush > 0 && (
+                  <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
+                    <img className='w-[40%]' src="https://th.bing.com/th/id/R.22efe99ffc3776ed25453776b563b52f?rik=h32%2fSy6cu3J7tA&pid=ImgRaw&r=0" alt="rush" />
+                    <span className='ml-auto'>{nightwavesCounts.rush}</span>
+                  </li>
+                )}
 
-          <div className='w-full'>
+                {nightwavesCounts.griller > 0 && (
+                  <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
+                      <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/4/49/S3_Griller_icon.png/180px-S3_Griller_icon.png" alt="grillers" />
+                      <span className='ml-auto'>{nightwavesCounts.griller}</span>
+                  </li>
+                )}
+
+                {nightwavesCounts['goldie seeking'] > 0 && (
+                  <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
+                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/b/bc/S3_Goldie_icon.png/180px-S3_Goldie_icon.png" alt="goldie_seeking" />
+                    <span className='ml-auto'>{nightwavesCounts['goldie seeking']}</span>
+                  </li>
+                )}
+
+                {nightwavesCounts['cohack charge'] > 0 && (
+                  <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
+                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/3/3d/S3_Cohock_icon.png" alt="cohack_charge" />
+                    <span className='ml-auto'>{nightwavesCounts['cohack charge']}</span>
+                  </li>
+                )}
+
+                {nightwavesCounts.fog > 0 && (
+                  <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
+                    <img className='w-[40%] text-white' src="https://opinion.cooperativa.cl/noticias/imag/cooperativa_2018/iconos/clima/parcialalta2humo.svg" alt="fog" />
+                    <span className='ml-auto'>{nightwavesCounts.fog}</span>
+                  </li>
+                )}
+
+                {nightwavesCounts.mothership > 0 && (
+                  <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
+                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/4/4b/S3_Chinook_icon.png" alt="mothership" />
+                    <span className='ml-auto'>{nightwavesCounts.mothership}</span>
+                  </li>
+                )}
+
+                {nightwavesCounts.mudmouth > 0 && (
+                  <li className='flex flex-row items-center w-full border-[1px] border-orange-800 p-1 rounded-md'>
+                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/07/S3_Mudmouth_icon.png/180px-S3_Mudmouth_icon.png" alt="mudmouth" />
+                    <span className='ml-auto'>{nightwavesCounts.mudmouth}</span>
+                  </li>
+                )}
+
+                {nightwavesCounts.tornado > 0 && (
+                  <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
+                    <img className='w-[40%]' src="https://th.bing.com/th/id/R.079b81db8147054d38105441706dd656?rik=6mVDiJqqeBNRNw&pid=ImgRaw&r=0" alt="tornado" />
+                    <span className='ml-auto'>{nightwavesCounts.tornado}</span>
+                  </li>
+                )}
+            </ul>
+        </div>
+
+
+          {/* <div className='w-full'>
             <ul className='grid grid-cols-4 gap-3 text-[0.6rem] sm:text-[0.8rem] w-full'>
                 {nightwavesCounts.rush > 0 && (
                   <li className='flex flex-row items-center w-[110%] sm:w-full gap-1 bg-gray-800 p-1 rounded-lg'>
@@ -297,18 +365,13 @@ export default function LineChartcomponent({ GameData }) {
                   </li>
                 )}
             </ul>
-          </div>
-
-          <div className='w-[80%]'>
-            <canvas className='w-full text-white' id="myRadarChart" width='250' height='200'></canvas>
-          </div>
-        </div>
+          </div> */}
 
 
 
 
 
-        <div className='grid grid-cols-1 sm:w-[70%] w-full h-full mb-auto p-2'>
+        {/* <div className='grid grid-cols-1 sm:w-[70%] w-full h-full mb-auto p-2'>
                 <div className='grid grid-cols-2 gap-2 sm:w-[50%] w-[70%] h-[10%]'>
                   <button className='text-gray-300 p-1 rounded-lg flex items-center justify-center gap-1 hover:translate-x-[-6px] transition duration-300 ease-in-out' onClick={decreaseValue}>← previous</button>
                   <button className='text-gray-300 p-1 rounded-lg flex items-center justify-center gap-1 hover:translate-x-[6px] transition duration-300 ease-in-out' onClick={increaseValue}>next →</button>
@@ -390,7 +453,7 @@ export default function LineChartcomponent({ GameData }) {
                     <strong>{kingsdefeated}</strong>
                   </span>
                 </div>
-        </div>
+        </div> */}
     </div>
     )
 }

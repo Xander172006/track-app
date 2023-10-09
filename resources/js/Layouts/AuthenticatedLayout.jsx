@@ -10,7 +10,7 @@ export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-orange-700 to-gray-700">
+        <div className="min-h-screen bg-gradient-to-b from-orange-600 via-red-900 to-orange-950">
             <nav className="bg-black border-b border-gray-100 dark:border-gray-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
@@ -24,6 +24,11 @@ export default function Authenticated({ user, header, children }) {
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href="/dashboard">
                                     Stats dashboard
+                                </NavLink>
+                            </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink href="/rotations">
+                                    Rotations
                                 </NavLink>
                             </div>
                         </div>
@@ -97,6 +102,9 @@ export default function Authenticated({ user, header, children }) {
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('rotations')} active={route().current('dashboard')}>
+                            Rotations
                         </ResponsiveNavLink>
                     </div>
 

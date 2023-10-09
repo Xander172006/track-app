@@ -4,7 +4,7 @@ import { useForm } from '@inertiajs/react';
 export default function footer() {
 
     return (
-        <footer className='w-full mt-auto bg-black'>
+        <footer className='w-full mt-auto bg-black sm:text-[1rem] text-[0.8rem]'>
             <div className='grid grid-cols-2 sm:grid-cols-4 place-items-center gap-5 text-gray-300 p-10'>
                 <div className='flex flex-col justify-center items-center text-start'>
                     <h1 className='font-bold mr-auto mb-3'>Pages</h1>

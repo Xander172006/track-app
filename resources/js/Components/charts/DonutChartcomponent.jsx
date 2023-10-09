@@ -174,17 +174,17 @@ export default function DonutChartcomponent({ GameData, bosses }) {
             {
               data: bossValues,
               backgroundColor: [
-                '#1C1C1C',
-                '#BE8003',
-                '#BB7861',
-                '#294C2B',
-                '#F1F7F2',
-                '#ADD3E0',
-                '#5A3A29',
-                '#FCC454',
-                '#FF5733',
-                '#750000',
-                '#A300A3'
+                '#C13D00',
+                '#890D00 ',
+                '#AD5C00',
+                '#C13D00',
+                '#890D00',
+                '#AD5C00',
+                '#C13D00',
+                '#890D00',
+                '#AD5C00',
+                '#C13D00',
+                '#890D00'
               ],
               borderWidth: 2,
               borderColor: 'black',
@@ -194,7 +194,7 @@ export default function DonutChartcomponent({ GameData, bosses }) {
         options: {
           plugins: {
             legend: {
-              position: 'left',
+              position: 'hidden',
               align: 'center', 
               labels: {
                 color: 'white',
@@ -210,21 +210,83 @@ export default function DonutChartcomponent({ GameData, bosses }) {
 
 
   return (
-    <div className='grid grid-cols-1 w-full'>
-      <div className='w-full sm:w-[100%]'>
-          <h1 className='font-bold text-white text-[1.3rem] bg-orange-700 rounded-md p-2'>Bosses found: </h1>
-          <canvas className='grid grid-cols-2 place-content-center gap-3 w-full' id='MyDonutchart'></canvas>
-         
-          <span className='relative left-[62.5%] bottom-[10.5rem] font-bold text-[0.9rem]'>total: {sum}</span>
-      </div>
+    <div className='grid grid-cols-2 gap-3 w-full'>
+       <div className='bg-black w-full rounded-lg flex flex-col items-center shadow-lg shadow-gray-900 p-1'>
+          <h1 className='p-2'><strong>Bosses chart</strong></h1>
+          <span className='relative left-0 top-[7.5rem] font-bold text-[0.9rem]'>Total: {sum}</span>
+          <canvas className='grid grid-cols-2 place-content-center gap-3 w-full p-2' id='MyDonutchart'></canvas>
+       </div>
+       <div className='bg-black w-full rounded-lg flex flex-col items-center shadow-lg shadow-gray-900  mb-auto'>
+          <h1 className='p-2'><strong>All bosses found:</strong></h1>
+          <ul className='grid grid-cols-2 gap-2 w-[85%] text-[0.9rem]'>
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/9/9a/S3_Steelhead_icon.png?20221009043423" alt="steelhead" className='w-[2rem]' /></span>
+              <span>{bossValues[0]}</span>
+            </li>
 
-      <form className='flex flex-col justify-center items-center gap-4' onSubmit={updateBossesStats}>
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/2/24/S3_Flyfish_icon.png?20221009043406" alt="flyfish" className='w-[2rem]' /></span>
+              <span>{bossValues[1]}</span>
+            </li>
+
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/8/83/S3_Maws_icon.png?20221009043400" alt="maws" className='w-[2rem]' /></span>
+              <span>{bossValues[2]}</span>
+            </li>
+
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/6/62/S3_Steel_Eel_icon.png?20221009043416" alt="eels" className='w-[2rem]' /></span>
+              <span>{bossValues[3]}</span>
+            </li>
+
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/b/b5/S3_Stinger_icon.png?20221009043427" alt="stinger" className='w-[2rem]' /></span>
+              <span>{bossValues[4]}</span>
+            </li>
+
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/8/8c/S3_Scrapper_icon.png?20221009043355" alt="scrapper" className='w-[2rem]' /></span>
+              <span>{bossValues[5]}</span>
+            </li>
+
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/0/09/S3_Drizzler_icon.png?20221009043335" alt="drizzler" className='w-[2rem]' /></span>
+              <span>{bossValues[6]}</span>
+            </li>
+
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/6/65/S3_Flipper-Flopper_icon.png?20221009043339" alt="flipper" className='w-[2rem]' /></span>
+              <span>{bossValues[7]}</span>
+            </li>
+
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/f/fa/S3_Slammin%27_Lid_icon.png?20221009043343" alt="slamonlid" className='w-[2rem]' /></span>
+              <span>{bossValues[8]}</span>
+            </li>
+
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/a/a5/S3_Fish_Stick_icon.png?20221009043313" alt="fishsticks" className='w-[2rem]' /></span>
+              <span>{bossValues[9]}</span>
+            </li>
+
+            <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/9/92/S3_Big_Shot_icon.png?20221009043319" alt="bigshots" className='w-[2rem]' /></span>
+              <span>{bossValues[10]}</span>
+            </li>
+          </ul>
+       </div>
+      {/* <div className='w-full sm:w-[100%]'>
+          <canvas className='grid grid-cols-2 place-content-center gap-3 w-full p-2' id='MyDonutchart'></canvas>
+         
+      </div> */}
+
+      {/* <form className='flex flex-col justify-center items-center gap-4' onSubmit={updateBossesStats}>
           <h2 className='font-bold text-[1.2rem]'>save boss values</h2>
           <button className='bg-orange-700 p-2 rounded-lg w-[40%] hover:scale-[1.05] transition duration-300 ease-in-out' type="submit">save</button>
           {updateSuccess ? (
               <div className="text-green-600 my-2 px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row">Bosses have successfully been updated</div>
           ) : null}
-      </form>
+      </form> */}
     </div>
   );
 }

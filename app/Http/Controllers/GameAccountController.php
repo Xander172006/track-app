@@ -78,6 +78,34 @@ class GameAccountController extends Controller
         return redirect()->route('profile.edit', ['success' => 'Account has been created.']);
     }
 
+    public function findAccount(Request $request)
+    {
+        if (!Auth::check()) {
+            return Inertia::render('Profile/Edit')->with('error', 'You do not have permission to create a game account.');
+        }
+
+        $UID = $request->input('UID');
+        $userId = Auth::user()->id;
+
+        $existingGameAccount = game_accounts::where('UID', $UID)->first();
+
+        if ($existingGameAccount) {
+            $newGameAccount = new game_accounts();
+            $newGameAccount->user_id = $userId;
+            $newGameAccount->username = $existingGameAccount->username;
+            $newGameAccount->UID = $UID;
+            $newGameAccount->save();
+
+            $account = game_accounts::where('user_id', Auth::id())->first();
+            $account->boss()->create();
+
+            return redirect()->route('profile.edit')->with('success', 'Game account created.');
+        } else {
+            return redirect()->route('profile.edit')->with('error', 'Game account not found.');
+        }
+    }
+
+
     public function editProfilePicture(Request $request)
     {
         if (!Auth::check()) {

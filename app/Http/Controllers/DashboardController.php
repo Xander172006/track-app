@@ -18,10 +18,10 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $response = Http::post('http://localhost/api/salmon-run/game-data');
+        $response_gear = Http::get('https://splatoon3.ink/data/coop.json');
 
         if ($request->input('evp')) {
             $api = new SalmonrunStatsApiController();
-            
             $GameData = $api->GameData($request->input('evp'), $request->input('losses'));
         } else {
             $GameData = $response->json();
@@ -32,15 +32,24 @@ class DashboardController extends Controller
         $bosses = Bosses::where('account_id', Auth::id())->first();
         $records = records::all();
         
-    
+        if ($gameAccount == null) {
+            return redirect()->route('profile.edit');
+        }
+        
+        if ($response_gear->successful()) {
+            $gear = $response_gear->json();
+        }
+
         return Inertia::render('Dashboard', [
             'GameData' => $GameData,
             'GameAccount' => $gameAccount,
             'user' => $user,
             'bosses' => $bosses,
             'records' => $records,
+            'gear' => $gear,
         ]);
     }
+
 
     public function updateBosses(Request $request)
     {
