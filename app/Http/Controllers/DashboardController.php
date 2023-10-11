@@ -19,6 +19,7 @@ class DashboardController extends Controller
     {
         $response = Http::post('http://localhost/api/salmon-run/game-data');
         $response_gear = Http::get('https://splatoon3.ink/data/coop.json');
+        $schedulesApi = Http::get('https://splatoon3.ink/data/schedules.json');
 
         if ($request->input('evp')) {
             $api = new SalmonrunStatsApiController();
@@ -40,6 +41,10 @@ class DashboardController extends Controller
             $gear = $response_gear->json();
         }
 
+        if ($schedulesApi->successful()) {
+            $rotations = $schedulesApi->json();
+        }
+
         return Inertia::render('Dashboard', [
             'GameData' => $GameData,
             'GameAccount' => $gameAccount,
@@ -47,6 +52,7 @@ class DashboardController extends Controller
             'bosses' => $bosses,
             'records' => $records,
             'gear' => $gear,
+            'rotations' => $rotations 
         ]);
     }
 

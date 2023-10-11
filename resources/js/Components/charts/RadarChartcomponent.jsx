@@ -219,7 +219,6 @@ export default function LineChartcomponent({ GameData }) {
 
 
     let totalquota = 0;
-    console.log(GameData.data)
 
     let kingsdefeated = GameData.data.totalAmountKings.cohozuna + GameData.data.totalAmountKings.horrorborus;
 
@@ -240,12 +239,12 @@ export default function LineChartcomponent({ GameData }) {
     
     return (
       <div className='grid grid-cols-2 gap-3 w-full'>
-        <div className='bg-black w-full rounded-lg flex flex-col items-center shadow-lg shadow-gray-900 p-2 mb-auto'>
+        <div className='bg-black w-full rounded-lg flex flex-col items-center shadow-lg shadow-gray-900 p-2 mb-auto border-orange-800 border-[4px]'>
           <h1 className='p-2'><strong>Radar chart</strong></h1>
           <canvas className='w-full text-white' id="myRadarChart"></canvas>
         </div>
 
-        <div className='bg-black w-full ml-auto rounded-lg flex flex-col items-center shadow-lg shadow-gray-900 p-2 mb-auto'>
+        <div className='bg-black w-full ml-auto rounded-lg flex flex-col items-center shadow-lg shadow-gray-900 p-2 mb-auto border-orange-800 border-[4px]'>
           <h1 className='p-2'><strong>Night waves</strong></h1>
           <ul className='grid grid-cols-2 gap-3 text-[0.6rem] sm:text-[0.8rem] w-full'>
                 {nightwavesCounts.rush > 0 && (

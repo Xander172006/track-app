@@ -18,8 +18,10 @@ import ShiftDisplay from '@/Components/ShiftDisplay';
 import StatsDisplay from '@/Components/StatsDisplay';
 import BossesDisplay from '@/Components/BossesDisplay';
 import Carouseldisplay from '@/Components/CarouselDisplay';
+import StatsUpdateDisplay from '@/Components/update/updateStats';
+import IndividualWaves from '@/Components/update/IndividualWaves';
 
-export default function Dashboard({ auth, GameAccount, user, bosses, GameData, records, gear }) {
+export default function Dashboard({ auth, GameAccount, user, bosses, GameData, records, gear, rotations }) {
     const { data, setData, post } = useForm({
         evp: '',
         losses: ''
@@ -29,7 +31,6 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
     const [GamesLossed, setGamesLossed] = useState('');
     
     const monthlyGear = gear.data.coopResult.monthlyGear;
-    console.log(monthlyGear);
 
     const HandleEvpLevel = (e) => {
         setEvplevel(e.target.value);
@@ -56,7 +57,6 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
             console.error('Error updating stats:', error);
         }
     };
-
 
     return (
         <AuthenticatedLayout user={auth.user}>
@@ -99,27 +99,27 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                         </div>
                         
                         <div className='grid grid-cols-2 gap-6 w-full'>
-                            <div className='bg-black p-4 w-full rounded-lg mb-auto shadow-lg shadow-gray-900'>
-                                <h1><strong>total amount of scales</strong></h1>
-                                <ul className='flex flex-row gap-6 my-2 justify-center'>
-                                    <li className='flex flex-col justify-center items-center'>
-                                        <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/a/a1/S3_Icon_bronze_fish_scale.png/36px-S3_Icon_bronze_fish_scale.png" alt="bronzescale" width="40px" /></span>
+                            <div className='bg-black p-4 w-full rounded-lg shadow-lg shadow-gray-900 mb-[40%]'>
+                                <h1 className='text-[1.15rem]'><strong>total amount of scales</strong></h1>
+                                <ul className='flex flex-row justify-center items-center gap-6 w-full h-[60%] mb-auto'>
+                                    <li className='flex flex-col justify-center items-center w-full'>
+                                        <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/a/a1/S3_Icon_bronze_fish_scale.png/36px-S3_Icon_bronze_fish_scale.png" alt="bronzescale" width="50px" /></span>
                                         <span>{GameAccount.bronzescales}</span>
                                     </li>
 
-                                    <li className='flex flex-col justify-center items-center'>
-                                        <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/00/S3_Icon_silver_fish_scale.png/36px-S3_Icon_silver_fish_scale.png" alt="silverscale" width="40px" /></span>
+                                    <li className='flex flex-col justify-center items-center w-full'>
+                                        <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/00/S3_Icon_silver_fish_scale.png/36px-S3_Icon_silver_fish_scale.png" alt="silverscale" width="50px" /></span>
                                         <span>{GameAccount.silverscales}</span>
                                     </li>
 
-                                    <li className='flex flex-col justify-center items-center'>
-                                        <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/2/20/S3_Icon_gold_fish_scale.png/36px-S3_Icon_gold_fish_scale.png" alt="goldscale" width="40px" /></span>
+                                    <li className='flex flex-col justify-center items-center w-full'>
+                                        <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/2/20/S3_Icon_gold_fish_scale.png/36px-S3_Icon_gold_fish_scale.png" alt="goldscale" width="50px" /></span>
                                         <span>{GameAccount.goldscales}</span>
                                     </li>
                                 </ul>
                             </div>
-                            <div className='bg-black p-4 w-full rounded-lg shadow-lg shadow-gray-900'>
-                                <h1><strong>Monthly gear</strong></h1>
+                            <div className='bg-black p-4 w-full rounded-lg shadow-lg shadow-gray-900 mb-auto'>
+                                <h1 className='text-[1.2rem]'><strong>Monthly gear</strong></h1>
                                 <div className='w-full p-2 flex flex-col justify-center items-center mt-4'>
                                     <img className='w-[80%]' src={monthlyGear.image.url} alt="monthlyGear" />
                                     <p className='text-green-600 font-extrabold text-[1.2rem]'>{monthlyGear.name}</p>
@@ -164,7 +164,11 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                         {GameData ? (
                             <>
                                 <div className='flex justify-center w-full items-center gap-4'>
-                                    <img className='w-[12.5%]' src="https://th.bing.com/th/id/R.1bb44838a0455f3390d4955428615166?rik=h5IjWk4xXfwS0A&pid=ImgRaw&r=0" alt="Logo" />
+                                    {GameData.data.playerEvp == 999 ? (
+                                        <img className='w-[12.5%]' src="https://images.gamepedia.jp/splatoon3/badge/odme.png" alt="Logo" />
+                                    ) : (
+                                        <img className='w-[12.5%]' src="https://th.bing.com/th/id/R.1bb44838a0455f3390d4955428615166?rik=h5IjWk4xXfwS0A&pid=ImgRaw&r=0" alt="Logo" />
+                                    )}
                                     <h1 className='text-gray-950 text-[1.1rem] font-extrabold opacity-90'>Api tracker results</h1>
                                 </div>
                                 <RadarChartcomponent GameData={GameData}/>
@@ -206,28 +210,34 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                             <div><Progressbar bosses={bosses} records={records}/></div>
                         </div>
                         <div className='p-4 bg-black rounded-lg w-full shadow-lg shadow-gray-900'>
-                            <h1>update stats</h1>
+                            <h1><strong>Track stats</strong></h1>
                              <form className='my-3 flex flex-col gap-4 mt-3' onSubmit={updateStats}>
                                     <div className='flex flex-col'>
                                         <strong className='border-b-[1px] border-orange-800 text-orange-700'>Eggsecutive rank</strong>
-                                        <input 
-                                            className='bg-gray-900 rounded-lg h-[2rem] w-[30%] my-1 text-gray-300 mr-auto hover:w-[35%] transition-width duration-500 ease-linea border-none focus:outline-none focus:border-none focus:ring-orange-800 dark:focus:ring-orange-800 focus:ring-offset-gray-800'
-                                            value={EvpLevel}
-                                            onChange={HandleEvpLevel}
-                                            type="number"
-                                            name='evp'
-                                        />
+                                        <span>
+                                            <input 
+                                                className='bg-gray-900 rounded-lg h-[2rem] w-[30%] my-1 text-gray-300 mr-auto hover:w-[35%] transition-width duration-500 ease-linea border-none focus:outline-none focus:border-none focus:ring-orange-800 dark:focus:ring-orange-800 focus:ring-offset-gray-800'
+                                                value={EvpLevel}
+                                                onChange={HandleEvpLevel}
+                                                type="number"
+                                                name='evp'
+                                            />
+                                            <span className='text-gray-300 text-[0.8rem] ml-2'>evp rank</span>
+                                        </span>
                                     </div>
                                     <div className='flex flex-row w-full gap-6 items-end'>
                                         <div className='flex flex-col w-full'>
                                             <strong className='border-b-[1px] border-orange-800 text-orange-700'>Games lossed</strong>
-                                            <input 
-                                                className='bg-gray-900 rounded-lg h-[2rem] w-[35%] my-1 text-gray-300 mr-auto hover:w-[40%] transition-width duration-500 ease-linea border-none focus:outline-none focus:border-none focus:ring-orange-800 dark:focus:ring-orange-800 focus:ring-offset-gray-800'
-                                                value={GamesLossed}
-                                                onChange={HandleGameslossed}
-                                                type="number"
-                                                name='losses'
-                                            />
+                                            <span>
+                                                <input 
+                                                    className='bg-gray-900 rounded-lg h-[2rem] w-[35%] my-1 text-gray-300 mr-auto hover:w-[40%] transition-width duration-500 ease-linea border-none focus:outline-none focus:border-none focus:ring-orange-800 dark:focus:ring-orange-800 focus:ring-offset-gray-800'
+                                                    value={GamesLossed}
+                                                    onChange={HandleGameslossed}
+                                                    type="number"
+                                                    name='losses'
+                                                />
+                                                <span className='text-gray-300 text-[0.8rem] ml-2'>Games you've lossed</span>
+                                            </span>
                                         </div>
                                         <div>
                                             <button type='submit' className='text-white bg-orange-700 py-2 px-3 rounded-lg ml-auto hover:scale-[1.05] focus:bg-orange-500 focus:text-gray-300 transition duration-300 ease-in-out'>update</button>
@@ -235,6 +245,24 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                                     </div>
                             </form>
                         </div>
+                        {GameData && (
+                            <div className='p-4 bg-black rounded-lg w-full shadow-lg shadow-gray-900'>
+                                <h1><strong>update stats</strong></h1>
+                                <StatsUpdateDisplay GameData={GameData} bosses={bosses}/>
+                            </div>
+                        )}
+                    </div>
+                    </div>
+                    <div className='w-[95%] my-10 mx-auto'>
+                        {GameData && (
+                            <>
+                            <div className='flex flex-row justify-center gap-5 items-center my-4 w-full'>
+                                <img className='w-[2.5%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/b/bf/S2_Icon_Grizzco.png/36px-S2_Icon_Grizzco.png" alt="SalmonIcon" />
+                                <h3 className='flex items-center text-orange-700 text-[1.4rem] font-bold'>Individual shifts</h3>
+                            </div>
+                            <IndividualWaves GameData={GameData} bosses={bosses} rotations={rotations}/>
+                            </>
+                        )}
                     </div>
                     {/*
                     <div className="bg-black text-white p-4 overflow-hidden shadow-md shadow-gray-900 rounded-lg flex flex-row items-center gap-2">
@@ -399,7 +427,6 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
             <Footer/>
             )}
               */}
-            </div>
         </div>
         <div className='mt-12'>
             <Footer />

@@ -153,9 +153,6 @@ export default function DonutChartcomponent({ GameData, bosses }) {
     }
   };
 
-  
-  console.log(bossValues);
-
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -188,10 +185,12 @@ export default function DonutChartcomponent({ GameData, bosses }) {
               ],
               borderWidth: 2,
               borderColor: 'black',
+           
             },
           ],
         },
         options: {
+          cutout: 45,
           plugins: {
             legend: {
               position: 'hidden',
@@ -211,12 +210,12 @@ export default function DonutChartcomponent({ GameData, bosses }) {
 
   return (
     <div className='grid grid-cols-2 gap-3 w-full'>
-       <div className='bg-black w-full rounded-lg flex flex-col items-center shadow-lg shadow-gray-900 p-1'>
+       <div className='bg-black w-full rounded-lg flex flex-col items-center shadow-lg shadow-gray-900 p-1 border-orange-800 border-[4px]'>
           <h1 className='p-2'><strong>Bosses chart</strong></h1>
-          <span className='relative left-0 top-[7.5rem] font-bold text-[0.9rem]'>Total: {sum}</span>
-          <canvas className='grid grid-cols-2 place-content-center gap-3 w-full p-2' id='MyDonutchart'></canvas>
+          <span className='relative left-0 top-[5.5rem] sm:top-[7rem] font-bold text-[0.9rem]'>Total: {sum}</span>
+          <canvas className='grid grid-cols-2 place-content-center gap-3 w-full p-2 border-[2px] border-orange-800 rounded-[50%]' id='MyDonutchart'></canvas>
        </div>
-       <div className='bg-black w-full rounded-lg flex flex-col items-center shadow-lg shadow-gray-900  mb-auto'>
+       <div className='bg-black w-full rounded-lg flex flex-col items-center shadow-lg shadow-gray-900  mb-auto border-orange-800 border-[4px] p-2'>
           <h1 className='p-2'><strong>All bosses found:</strong></h1>
           <ul className='grid grid-cols-2 gap-2 w-[85%] text-[0.9rem]'>
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
