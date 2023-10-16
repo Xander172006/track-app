@@ -48,11 +48,11 @@ return (
     <form className='flex flex-col' onSubmit={UpdateSecurity}>
             <div className='flex flex-row justify-between bg-[#262626] rounded-t-lg p-4'>
                 <h2 className='font-semibold'>Email & password</h2>
-                <button className='text-[0.85rem] border-[2px] border-gray-700 px-3 rounded-xl w-[10%] hover:cursor-pointer hover:bg-gray-700 transition duration-300 ease-in-out'>Edit</button>
+                <button className='text-[0.85rem] border-[2px] border-gray-700 px-3 rounded-xl sm:w-[10%] hover:cursor-pointer hover:bg-gray-700 transition duration-300 ease-in-out'>Edit</button>
             </div>
             <ul className='bg-[#191919]'>
                 <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
-                    <div className='w-[80%] flex flex-row item-center p-4 items-center justify-between'>
+                    <div className='sm:w-[80%] flex flex-row item-center p-4 items-center justify-between'>
                         <p>Email: </p>
                         <input
                             className='text-[0.85rem] w-[65%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
@@ -64,7 +64,7 @@ return (
                     </div>
                 </li>
                 <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
-                    <div className='w-[80%] flex flex-row item-center p-4 items-center justify-between'>
+                    <div className='sm:w-[80%] flex flex-row item-center p-4 items-center justify-between'>
                         <p>current password: </p>
                         <input
                             className='text-[0.85rem] w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
@@ -77,7 +77,7 @@ return (
                     </div>
                 </li>
                 <li className='w-[95%] mx-auto text-[0.8rem]'>
-                    <div className='w-[80%] flex flex-row item-center p-4 items-center justify-between'>
+                    <div className='sm:w-[80%] flex flex-row item-center p-4 items-center justify-between'>
                         <p>new password: </p>
                         <input
                             className='text-[0.85rem] w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'

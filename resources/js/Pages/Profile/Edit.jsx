@@ -63,13 +63,13 @@ const Edit = ({ auth, error, success, gameAccount, user, SalmonrunApi }) => {
                     ) : (
                         <>
 
-                        <div className='grid grid-cols-2 place-content-start items-center w-[25%] gap-2 ml-[10%] bg-gray-600 rounded-xl shadow-md shadow-gray-900 text-[0.9rem]'>
-                            <button onClick={() => setActiveTab("gebruikersinformatie")} className={`w-full items-center rounded-md text-center py-1 px-2 gap-3  ${activeTab === "gebruikersinformatie" ? "bg-gray-800 text-white rounded-l-xl font-semibold" : ""}`}>user settings</button>
-                            <button onClick={() => setActiveTab("gameAccountSettings")} className={`w-full items-center rounded-md text-center py-1 px-2 gap-3 ${activeTab === "gameAccountSettings" ? "bg-gray-800 text-white rounded-r-xl font-semibold" : ""}`}>game account settings</button>
+                        <div className='grid grid-cols-2 place-content-start items-center sm:w-[25%] w-[100%] gap-2 sm:ml-[10%] bg-gray-600 rounded-xl shadow-md shadow-gray-900 text-[0.9rem]'>
+                            <button onClick={() => setActiveTab("gebruikersinformatie")} className={`w-full items-center rounded-md text-center py-1 px-2 gap-3 min-h-[100%]  ${activeTab === "gebruikersinformatie" ? "bg-gray-800 text-white rounded-l-xl font-semibold" : ""}`}>user settings</button>
+                            <button onClick={() => setActiveTab("gameAccountSettings")} className={`w-full items-center rounded-md text-center py-1 px-2 gap-3 min-h-[100%] ${activeTab === "gameAccountSettings" ? "bg-gray-800 text-white rounded-r-xl font-semibold" : ""}`}>game account settings</button>
                         </div>
                             {activeTab === 'gebruikersinformatie' && (
-                                <div className="grid sm:grid-cols-3 grid-cols-1 gap-4 my-[2%] w-[90%] place-content-center items-center ml-auto text-[#BCBCBC]">
-                                    <div className="bg-[#191919] rounded-md sm:col-span-1 w-[90%] grid grid-cols-1 place-content-center shadow-lg shadow-gray-950 mb-auto pt-2 border-[0.5px] border-gray-900">
+                                <div className="grid sm:grid-cols-3 grid-cols-1 gap-4 my-[2%] sm:w-[90%] w-full place-content-center items-center ml-auto text-[#BCBCBC]">
+                                    <div className="bg-[#191919] rounded-md sm:col-span-1 sm:w-[90%] w-full grid grid-cols-1 place-content-center shadow-lg shadow-gray-950 mb-auto pt-2 border-[0.5px] border-gray-900">
                                         {user.profiel ? (
                                             <>
                                                 <img
@@ -126,7 +126,7 @@ const Edit = ({ auth, error, success, gameAccount, user, SalmonrunApi }) => {
                                         )}
                                     </div>
 
-                                    <div className="sm:col-span-2 grid grid-cols-1 mb-auto w-[80%] gap-6">
+                                    <div className="sm:col-span-2 grid grid-cols-1 mb-auto sm:w-[80%] w-full gap-6">
                                         <div className='bg-[#191919] rounded-lg shadow-md shadow-gray-900 border-[0.5px] border-gray-800'>
                                             <GebruikersInformatie user={user} />
                                         </div>
@@ -139,8 +139,8 @@ const Edit = ({ auth, error, success, gameAccount, user, SalmonrunApi }) => {
                             )}
 
                             {activeTab === 'gameAccountSettings' && (
-                                <div className="grid sm:grid-cols-3 grid-cols-1 gap-4 my-[2.5%] w-[90%] place-content-center items-center ml-auto text-[#BCBCBC]">
-                                    <div className="bg-[#191919] w-[90%] rounded-md sm:col-span-1 grid grid-cols-1 place-content-center shadow-lg shadow-gray-950">
+                                <div className="grid sm:grid-cols-3 grid-cols-1 gap-4 my-[2.5%] sm:w-[90%] place-content-center items-center ml-auto text-[#BCBCBC]">
+                                    <div className="bg-[#191919] sm:w-[90%] rounded-md sm:col-span-1 grid grid-cols-1 place-content-center shadow-lg shadow-gray-950">
                                         {user.profiel ? (
                                             <>
                                                 <img
@@ -197,8 +197,8 @@ const Edit = ({ auth, error, success, gameAccount, user, SalmonrunApi }) => {
                                         )}
                                     </div>
 
-                                    <div className="sm:col-span-2 grid grid-cols-1 mb-auto w-[90%] gap-6">
-                                        <div className='grid grid-cols-2 items-center gap-5'>
+                                    <div className="sm:col-span-2 grid grid-cols-1 mb-auto  sm:w-[90%] gap-6">
+                                        <div className='grid sm:grid-cols-2 items-center gap-5'>
                                             <GameAccountStats gameAccount={gameAccount}/>
                                         </div>
                                         <div className='bg-[#191919]'>

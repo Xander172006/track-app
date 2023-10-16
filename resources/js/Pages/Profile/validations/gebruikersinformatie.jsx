@@ -93,8 +93,8 @@ export default function GebruikersInformatie({ user }) {
                     <h2 className='font-semibold text-[1.1rem]'>Profile</h2>
                 </div>
                     <ul className='bg-[#191919] rounded-b-xl'>
-                        <li className='w-[80%] ml-4 text-[0.8rem] border-b-[1px] border-gray-700'>
-                            <form className='w-[60%] flex flex-row item-center p-4 items-center justify-between' onSubmit={handleProfile} encType="multipart/form-data">
+                        <li className='sm:w-[80%] w-[75%] ml-4 text-[0.8rem] border-b-[1px] border-gray-700'>
+                            <form className='sm:w-[60%] w-full flex flex-row item-center p-4 items-center justify-between' onSubmit={handleProfile} encType="multipart/form-data">
                                 <label className="custom-file-upload">
                                     {user.profiel ? (
                                         <img
@@ -112,14 +112,14 @@ export default function GebruikersInformatie({ user }) {
                         </li>
 
                         <form onSubmit={UpdateUserAccount}>
-                            <div className='flex justify-end w-[95%]'>
-                                <button className='text-[0.85rem] border-[2px] border-gray-700 px-3 rounded-xl w-[5%] hover:cursor-pointer hover:bg-gray-700 transition duration-300 ease-in-out absolute'>Edit</button>
+                            <div className='flex justify-end sm:w-[95%]'>
+                                <button className='text-[0.85rem] border-[2px] border-gray-700 px-3 rounded-xl sm:w-[5%] sm:mr-0 mr-2 hover:cursor-pointer hover:bg-gray-700 transition duration-300 ease-in-out absolute'>Edit</button>
                             </div>
-                            <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
-                                <div className='w-[60%] flex flex-row item-center p-4 items-center justify-between'>
+                            <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700 sm:mt-0 mt-5'>
+                                <div className='sm:w-[60%] flex flex-row item-center p-4 items-center justify-between'>
                                     <p style={{fontWeight: 100}} className='text-gray-400'>name: </p>
                                     <input
-                                        className='text-[0.85rem] w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
+                                        className='text-[0.85rem] sm:w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
                                         value={AccountUsername}
                                         onChange={HandleUsername}
                                         type='text'
@@ -128,10 +128,10 @@ export default function GebruikersInformatie({ user }) {
                                 </div>
                             </li>
                             <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
-                                <div className='w-[60%] flex flex-row item-center p-4 items-center justify-between'>
+                                <div className='sm:w-[60%] flex flex-row item-center p-4 items-center justify-between'>
                                     <p style={{fontWeight: 100}} className='text-gray-400'>Birthday:  </p>
                                     <input 
-                                        className='text-[0.85rem] w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
+                                        className='text-[0.85rem] sm:w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
                                         id='calendar-icon'
                                         value={AccountGeboortedatum}
                                         onChange={HandleGeboortedatum}
@@ -141,10 +141,10 @@ export default function GebruikersInformatie({ user }) {
                                 </div>
                             </li>
                             <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
-                                <div className='w-[60%] flex flex-row item-center p-4 items-center justify-between'>
+                                <div className='sm:w-[60%] flex flex-row item-center p-4 items-center justify-between'>
                                     <p style={{fontWeight: 100}} className='text-gray-400'> Pronounce as:</p>
                                     <select
-                                        className='text-[0.85rem] w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-10 focus:outline-none focus:border-gray-500 focus:ring-0'
+                                        className='text-[0.85rem] sm:w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-10 focus:outline-none focus:border-gray-500 focus:ring-0'
                                         value={AccountGeslacht}
                                         onChange={HandleGeslacht}
                                         name='geslacht'
@@ -156,10 +156,10 @@ export default function GebruikersInformatie({ user }) {
                                 </div>
                             </li>
                             <li className='w-[95%] mx-auto text-[0.8rem]'>
-                                <div className='w-[60%] flex flex-row item-center p-4 items-center justify-between'>
+                                <div className='sm:w-[60%] flex flex-row item-center p-4 items-center justify-between'>
                                     <p style={{fontWeight: 100}} className='text-gray-400'> Country/region:     </p>
                                     <input 
-                                        className='text-[0.85rem] w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
+                                        className='text-[0.85rem] sm:w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
                                         value={AccountRegio}
                                         onChange={HandleRegio}
                                         type='text'
