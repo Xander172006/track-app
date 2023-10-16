@@ -70,12 +70,12 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                             <div className='bg-black p-2 w-full rounded-lg flex flex-row items-center gap-1 shadow-lg shadow-gray-900'>
                                     <span className='w-[15%]'><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/7/7a/S3_Cohozuna_icon.png/120px-S3_Cohozuna_icon.png" alt="Cohozuna" /></span>
                                     <strong>cohozuna's:</strong>
-                                    <span className='ml-auto mr-4'>{GameAccount.KingSalmonidsDefeated}</span>
+                                    <span className='ml-auto mr-4'>{bosses.cohozuna}</span>
                                 </div>
                             <div className='bg-black p-2 w-full rounded-lg flex flex-row items-center gap-1 shadow-lg shadow-gray-900'>
                                 <span className='w-[15%]'><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/0a/S3_Horrorboros_icon.png/180px-S3_Horrorboros_icon.png" alt="Horrorborrus" /></span>
                                 <strong>Horrorborrus:</strong>
-                                <span className='ml-auto mr-4'>{GameAccount.KingSalmonidsDefeated}</span>
+                                <span className='ml-auto mr-4'>{bosses.horrorborrus}</span>
                             </div>
                         </div>
                         <div className='grid grid-cols-1 gap-6 w-full'>
@@ -246,24 +246,21 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                             </form>
                         </div>
                         {GameData && (
-                            <div className='p-4 bg-black rounded-lg w-full shadow-lg shadow-gray-900'>
-                                <h1><strong>update stats</strong></h1>
-                                <StatsUpdateDisplay GameData={GameData} bosses={bosses}/>
-                            </div>
+                            <StatsUpdateDisplay GameData={GameData} bosses={bosses}/>
                         )}
                     </div>
                     </div>
-                    <div className='w-[95%] my-10 mx-auto'>
-                        {GameData && (
+                    {GameData && (
+                        <div className='w-[97.5%] my-10 mx-auto bg-black p-4 rounded-lg shadow-lg shadow-gray-900'>
                             <>
-                            <div className='flex flex-row justify-center gap-5 items-center my-4 w-full'>
-                                <img className='w-[2.5%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/b/bf/S2_Icon_Grizzco.png/36px-S2_Icon_Grizzco.png" alt="SalmonIcon" />
-                                <h3 className='flex items-center text-orange-700 text-[1.4rem] font-bold'>Individual shifts</h3>
-                            </div>
-                            <IndividualWaves GameData={GameData} bosses={bosses} rotations={rotations}/>
+                                <div className='flex flex-row justify-center gap-5 items-center my-4 w-full'>
+                                    <img className='w-[2.5%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/b/bf/S2_Icon_Grizzco.png/36px-S2_Icon_Grizzco.png" alt="SalmonIcon" />
+                                    <h3 className='flex items-center text-orange-700 text-[1.4rem] font-bold'>Individual shifts</h3>
+                                </div>
+                                <IndividualWaves GameData={GameData} bosses={bosses} rotations={rotations}/>
                             </>
-                        )}
-                    </div>
+                        </div>
+                    )}
                     {/*
                     <div className="bg-black text-white p-4 overflow-hidden shadow-md shadow-gray-900 rounded-lg flex flex-row items-center gap-2">
                         {GameAccount && (

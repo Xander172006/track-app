@@ -76,6 +76,9 @@ class DashboardController extends Controller
                 $account->slamonlids += intval($request->input('boss9'));
                 $account->fishticks += intval($request->input('boss10'));
                 $account->bigshots += intval($request->input('boss11'));
+
+                $account->cohozuna += intval($request->input('cohozuna'));
+                $account->horrorborrus += intval($request->input('horrorborrus'));
                 $account->save();
             } else {
                 return response()->json(['message' => 'Account not found'], 404);

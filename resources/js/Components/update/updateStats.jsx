@@ -31,7 +31,8 @@ export default function StatsUpdateDisplay({ GameData, bosses }) {
     'boss10': 0,
     'boss11': 0,
   }
-  
+
+  const KingsFound = GameData.data.totalAmountKings;
 
   // gives the correct sum of each bosscount for shifts
   for (let i = 0; i <= shiftscount; i++) {
@@ -109,6 +110,9 @@ export default function StatsUpdateDisplay({ GameData, bosses }) {
     boss9: fishsticksCount,
     boss10: salmonlidsCount,
     boss11: bigShotsCount,
+
+    cohozuna: KingsFound.cohozuna,
+    horrorborrus: KingsFound.horrorborus
   });
 
 
@@ -139,15 +143,20 @@ export default function StatsUpdateDisplay({ GameData, bosses }) {
   
   return (
     <div className='grid grid-cols-1 gap-3 w-full'>
-       <div className='bg-black w-full h-full pb-auto rounded-lg flex flex-col items-center shadow-lg shadow-gray-900'>
-        <form className='flex flex-col gap-4 w-[70%] mr-auto mt-3' onSubmit={updateBossesStats}>
-          <p className='text-[0.85rem] text-gray-300 w-[70%]'>Save the new boss values to your game stats</p>
-          {updateSuccess ? (
-              <div className="text-green-600 my-2 px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row w-[80%]">Bosses have successfully been updated</div>
-          ) : null}
-          <button className='bg-orange-700 py-1 rounded-lg w-[35%] mt-4 hover:scale-[1.05] transition duration-300 ease-in-out' type="submit">save</button>
-        </form>
-      </div>
+      <form onSubmit={updateBossesStats}>
+        <div className='bg-black w-[75%] h-full pb-auto rounded-lg flex flex-col gap-4 items-center shadow-lg shadow-gray-900 p-3'>
+            <h1 className='mr-auto'><strong>Kings found</strong></h1>
+            <div className='flex flex-row justify-center items-center w-[75%] gap-5 my-auto'>
+              <span className='flex flex-row items-center w-full gap-1 border-[1px] border-orange-700 p-2 rounded-md'><img className='w-[35%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/7/7a/S3_Cohozuna_icon.png/120px-S3_Cohozuna_icon.png" alt="Cohozuna" /><p>{KingsFound.cohozuna}</p></span>
+              <span className='flex flex-row items-center w-full gap-1 border-[1px] border-orange-700 p-2 rounded-md'><img className='w-[35%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/0a/S3_Horrorboros_icon.png/180px-S3_Horrorboros_icon.png" alt="Horrorborrus" /><p>{KingsFound.horrorborus}</p></span>
+            </div>
+
+            {updateSuccess ? (
+              <div className="text-green-600 my-2 mx-6 font-thin text-[0.8rem] flex flex-row w-[60%]">Bosses have successfully been updated</div>
+            ) : null}
+            <button className='bg-orange-700 py-1 px-3 rounded-lg w-[100%] mx-auto hover:scale-[1.05] transition duration-300 ease-in-out mt-7' type="submit">update stats</button>
+        </div>
+      </form>
     </div>
   );
 }

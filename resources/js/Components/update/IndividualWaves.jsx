@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 export default function IndividualWaves({ GameData, bosses, rotations }) {
   const shifts = GameData.data.shiftResults;
   const findmap = rotations.data.coopGroupingSchedule.regularSchedules.nodes;
-  console.log(shifts);
 
   const [displayedShifts, setDisplayedShifts] = useState(4);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -75,7 +74,7 @@ export default function IndividualWaves({ GameData, bosses, rotations }) {
                 }}
             >
             <div className='p-4 grid grid-cols-1 gap-2' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-                <div className='flex justify-between w-full'>
+                <div className='flex justify-between w-full p-1'>
                     <div className='text-white bg-black p-1 rounded-md text-[0.8rem] text-center flex items-center'><h1>{findmap[0].setting.coopStage.name}</h1></div>
                     <div className='text-white bg-black p-1 rounded-md text-[0.8rem] w-[50%] flex flex-row gap-2'>
                         <img className='w-[20%]' src={findmap[0].setting.weapons[0].image.url} alt="weapon1" />
