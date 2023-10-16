@@ -100,7 +100,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                         
                         <div className='grid grid-cols-2 gap-6 w-full'>
                             <div className='bg-black p-4 w-full rounded-lg shadow-lg shadow-gray-900 mb-[40%]'>
-                                <h1 className='text-[1.15rem]'><strong>total amount of scales</strong></h1>
+                                <h1><strong>total amount of scales</strong></h1>
                                 <ul className='flex flex-row justify-center items-center gap-6 w-full h-[60%] mb-auto'>
                                     <li className='flex flex-col justify-center items-center w-full'>
                                         <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/a/a1/S3_Icon_bronze_fish_scale.png/36px-S3_Icon_bronze_fish_scale.png" alt="bronzescale" width="50px" /></span>
@@ -119,9 +119,9 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                                 </ul>
                             </div>
                             <div className='bg-black p-4 w-full rounded-lg shadow-lg shadow-gray-900 mb-auto'>
-                                <h1 className='text-[1.2rem]'><strong>Monthly gear</strong></h1>
+                                <h1><strong>Monthly gear</strong></h1>
                                 <div className='w-full p-2 flex flex-col justify-center items-center mt-4'>
-                                    <img className='w-[80%]' src={monthlyGear.image.url} alt="monthlyGear" />
+                                    <img className='w-[70%]' src={monthlyGear.image.url} alt="monthlyGear" />
                                     <p className='text-green-600 font-extrabold text-[1.2rem]'>{monthlyGear.name}</p>
                                 </div>
                             </div>
@@ -145,7 +145,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                                                 <p className='flex justify-center mt-1'>{GameAccount.username}</p>
                                             </>
                                         ) : (
-                                            <img src="https://cdn.accounts.nintendo.com/account/images/common/defaults/mii.png?t=1693897123" alt="profilePicture" className='w-[25%] rounded-3xl' />
+                                            <img src="https://cdn.accounts.nintendo.com/account/images/common/defaults/mii.png?t=1693897123" alt="profilePicture" className='rounded-[20px] w-[60%]' />
                                         )}
                                     </div>
                                     <ul className='flex flex-col gap-4 text-[0.9rem] border-orange-800 border-[2px] m-2 p-2 rounded-md w-[70%]'>
@@ -240,7 +240,7 @@ export default function Dashboard({ auth, GameAccount, user, bosses, GameData, r
                                             </span>
                                         </div>
                                         <div>
-                                            <button type='submit' className='text-white bg-orange-700 py-2 px-3 rounded-lg ml-auto hover:scale-[1.05] focus:bg-orange-500 focus:text-gray-300 transition duration-300 ease-in-out'>update</button>
+                                            <button type='submit' className='text-white bg-orange-700 py-2 px-3 rounded-lg ml-auto hover:scale-[1.05] focus:bg-orange-700 focus:text-gray-300 transition duration-300 ease-in-out'>update</button>
                                         </div>
                                     </div>
                             </form>

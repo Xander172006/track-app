@@ -25,6 +25,9 @@ return new class extends Migration
             $table->integer('slamonlids')->default(0);
             $table->integer('fishticks')->default(0);
             $table->integer('bigshots')->default(0);
+
+            $table->integer('cohozuna')->default(0);
+            $table->integer('horrorborrus')->default(0);
             $table->unsignedBigInteger('account_id')->nullable();
             $table->timestamps();
 

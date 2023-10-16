@@ -75,7 +75,7 @@ class GameAccountController extends Controller
         $Bosses->account_id = $findGameAccount->id;
         $Bosses->save();
 
-        return redirect()->route('profile.edit', ['success' => 'Account has been created.']);
+        return redirect()->route('profile.Edit', ['success' => 'Account has been created.']);
     }
 
     public function findAccount(Request $request)
@@ -99,9 +99,9 @@ class GameAccountController extends Controller
             $account = game_accounts::where('user_id', Auth::id())->first();
             $account->boss()->create();
 
-            return redirect()->route('profile.edit')->with('success', 'Game account created.');
+            return redirect()->route('profile.Edit')->with('success', 'Game account created.');
         } else {
-            return redirect()->route('profile.edit')->with('error', 'Game account not found.');
+            return redirect()->route('profile.Edit')->with('error', 'Game account not found.');
         }
     }
 
@@ -123,6 +123,8 @@ class GameAccountController extends Controller
             $user = User::where('id', Auth::id())->first();
             $user->profiel = $newFileName;
             $user->save();
+
+            header('Refresh:0');
         }
     }
 
@@ -152,6 +154,8 @@ class GameAccountController extends Controller
                 $account->geslacht = $request->input('geslacht');
                 $account->Land = $request->input('regio');
                 $account->save();
+
+                return redirect()->back();
             } else {
                 return response()->json(['message' => 'Username cannot be empty'], 400);
             }
@@ -162,16 +166,30 @@ class GameAccountController extends Controller
 
     public function updateUserSecurity(Request $request)
     {
-        $account = User::where('id', Auth::id())->first();
-
-        if ($account) {
-            $newemail = $request->input('email');
-
-            $account->email = $newemail;
-            $account->save();
-        } else {
+        $user = User::find(Auth::id());
+    
+        if (!$user) {
             return response()->json(['message' => 'User account not found'], 404);
         }
+    
+        // Validate the current password
+        $currentPassword = $request->input('currentPassword');
+        if (!Hash::check($currentPassword, $user->password)) {
+            return redirect()->back()->with('error', 'Current password is incorrect');
+        }
+    
+        $newEmail = $request->input('email');
+        $user->email = $newEmail;
+    
+        // Check if a new password is provided
+        $newPassword = $request->input('newPassword');
+        if (!empty($newPassword)) {
+            $user->password = Hash::make($newPassword);
+        }
+    
+        $user->save();
+    
+        return redirect()->back()->with('success', 'User security information updated successfully');
     }
 
     public function updateGameAccount(Request $request)
@@ -188,6 +206,20 @@ class GameAccountController extends Controller
             $gameAccount->save();
         } else {
             return response()->json(['message' => 'Game account not found'], 404);
+        }
+    }
+
+    public function updateScales(Request $request)
+    {
+        $gameAccount = game_accounts::where('user_id', Auth::id())->first();
+
+        if ($gameAccount){
+            $gameAccount->bronzescales = $request->input('bronzescales');
+            $gameAccount->silverscales = $request->input('silverscales');
+            $gameAccount->goldscales = $request->input('goldscales');
+            $gameAccount->save();
+        } else {
+            return response()->json(['message' => 'Scales updating not found']);
         }
     }
 }

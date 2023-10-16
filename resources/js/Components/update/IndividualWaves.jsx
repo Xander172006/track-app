@@ -91,7 +91,7 @@ export default function IndividualWaves({ GameData, bosses, rotations }) {
 
                 <div className='grid grid-cols-3 w-full'>
                     {shift.results[0] && (
-                        <div className='bg-orange-800 border-l-[1px] border-r-[1px] border-orange-700 text-[1rem] text-black font-semibold w-full rounded-l-md'>
+                        <div className='bg-orange-700 border-l-[1px] border-r-[1px] border-orange-800 text-[1rem] text-black font-semibold w-full rounded-l-md'>
                             <p className='flex justify-center'>wave 1</p>
                             <span className='w-full bg-black flex justify-center py-1 gap-1'>
                                 <p className='text-[0.85rem] font-semibold text-white'>{shift.results[0].quota}</p>
@@ -102,7 +102,12 @@ export default function IndividualWaves({ GameData, bosses, rotations }) {
                             {shift.results[0].nightWave !== 'daytime' ? (
                                 <span className='flex justify-center items-center'><img className='w-[30%]' src={nightwaveIcon(shift.results[0].nightWave)} alt='nightWaveIcon'/></span>
                             ) : (
-                                <p className='flex justify-center pt-2'>{shift.results[0].nightWave}</p>
+                                <span className='flex flex-row justify-center items-center text-center gap-1 pt-2'>
+                                    <p className='flex justify-center font-normal'>{shift.results[0].nightWave}</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-sun-fill" viewBox="0 0 16 16">
+                                        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                                        </svg>
+                                </span>
                             )}
 
                             {!shift.results[0].bossCounts == 0 ? (
@@ -113,7 +118,7 @@ export default function IndividualWaves({ GameData, bosses, rotations }) {
                         </div>
                     )}
                     {shift.results[1] && (
-                        <div className='bg-orange-800 border-l-[1px] border-r-[1px] border-orange-700 text-[1rem] text-black font-semibold w-full'>
+                        <div className='bg-orange-700 border-l-[1px] border-r-[1px] border-orange-800 text-[1rem] text-black font-semibold w-full'>
                             <p className='flex justify-center'>wave 2</p>
                             <span className='w-full bg-black flex justify-center py-1 gap-1'>
                                 <p className='text-[0.85rem] font-semibold text-white'>{shift.results[1].quota}</p>
@@ -124,7 +129,12 @@ export default function IndividualWaves({ GameData, bosses, rotations }) {
                             {shift.results[1].nightWave !== 'daytime' ? (
                                 <span className='flex justify-center items-center'><img className='w-[30%]' src={nightwaveIcon(shift.results[1].nightWave)} alt='nightWaveIcon'/></span>
                             ) : (
-                                <p className='flex justify-center pt-2'>{shift.results[1].nightWave}</p>
+                                <span className='flex flex-row justify-center items-center text-center gap-1 pt-2'>
+                                    <p className='flex justify-center font-normal'>{shift.results[1].nightWave}</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-sun-fill" viewBox="0 0 16 16">
+                                        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                                        </svg>
+                                </span>
                             )}
 
                             {!shift.results[1].bossCounts == 0 ? (
@@ -135,7 +145,7 @@ export default function IndividualWaves({ GameData, bosses, rotations }) {
                         </div>
                     )}
                     {shift.results[2] && (
-                        <div className='bg-orange-800 border-l-[1px] border-r-[1px] border-orange-700 text-[1rem] text-black font-semibold w-full rounded-r-md'>
+                        <div className='bg-orange-700 border-l-[1px] border-r-[1px] border-orange-800 text-[1rem] text-black font-semibold w-full rounded-r-md'>
                             <p className='flex justify-center'>wave 3</p>
                             <span className='w-full bg-black flex justify-center py-1 gap-1'>
                                 <p className='text-[0.85rem] font-semibold text-white'>{shift.results[2].quota}</p>
@@ -146,7 +156,12 @@ export default function IndividualWaves({ GameData, bosses, rotations }) {
                             {shift.results[2].nightWave !== 'daytime' ? (
                                 <span className='flex justify-center items-center'><img className='w-[30%]' src={nightwaveIcon(shift.results[2].nightWave)} alt='nightWaveIcon'/></span>
                             ) : (
-                                <p className='flex justify-center pt-2'>{shift.results[2].nightWave}</p>
+                                <span className='flex flex-row justify-center items-center text-center gap-1 pt-2'>
+                                    <p className='flex justify-center font-normal'>{shift.results[2].nightWave}</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-sun-fill" viewBox="0 0 16 16">
+                                        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                                        </svg>
+                                </span>
                             )}
 
                             {!shift.results[2].bossCounts == 0 ? (

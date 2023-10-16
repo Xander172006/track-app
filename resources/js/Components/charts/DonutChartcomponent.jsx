@@ -185,7 +185,10 @@ export default function DonutChartcomponent({ GameData, bosses }) {
               ],
               borderWidth: 2,
               borderColor: 'black',
-           
+              animation: {
+                rotate: true,
+                scale: true
+              },
             },
           ],
         },
@@ -200,7 +203,6 @@ export default function DonutChartcomponent({ GameData, bosses }) {
               },
             },
           },
-    
         },
       });
     }

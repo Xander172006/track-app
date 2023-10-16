@@ -7,15 +7,33 @@ export default function gameAccountStats({ gameAccount }) {
         username: '',
         password: '',
         UID: '',
+        shifts: gameAccount.Shiftsworked,
+        goldeneggs: gameAccount.GoldenEggsCollected,
+        powereggs: gameAccount.PowerEggsCollected,
+        kings: gameAccount.KingSalmonidsDefeated,
+        crewmembers: gameAccount.CrewMembersRescued,
+        totalPoints: gameAccount.Totalpoints,
+
+        bronzescales: gameAccount.bronzescales,
+        silverscales: gameAccount.silverscales,
+        goldscales: gameAccount.goldscales
     });
     
+    // input value states Game stats
     const [shiftsWorked, setShiftsWorked] = useState(gameAccount.Shiftsworked);
     const [GoldenEggsCollected, setGoldenEggsCollected] = useState(gameAccount.GoldenEggsCollected);
     const [PowerEggsCollected, setPowerEggsCollected] = useState(gameAccount.PowerEggsCollected);
     const [KingSalmonidsDefeated, setKingSalmonidsDefeated] = useState(gameAccount.KingSalmonidsDefeated);
     const [CrewMembersRescued, setCrewMembersRescued] = useState(gameAccount.CrewMembersRescued);
     const [Totalpoints, setTotalpoints] = useState(gameAccount.Totalpoints);
+    
+    // input value states scales
+    const [BronzeScales, setBronzeScales] = useState(gameAccount.BronzeScales);
+    const [SilverScales, setSilverScales] = useState(gameAccount.SilverScales);
+    const [GoldScales, setGoldScales] = useState(gameAccount.GoldScales);
 
+
+    // handle states for Game stats form
     const handleShiftsWorkedChange = (e) => {
         setShiftsWorked(e.target.value);
         setData('shifts', e.target.value);
@@ -53,8 +71,29 @@ export default function gameAccountStats({ gameAccount }) {
     };
 
 
-    // displays the tab of the settings menu
+    // handle states for scales form
+    const handleBronzeScales = (e) => {
+        setBronzeScales(e.target.value);
+        setData('bronzescales', e.target.value);
+        localStorage.setItem('BronzeScales', e.target.value);
+    };
+    const handleSilverScales = (e) => {
+        setSilverScales(e.target.value);
+        setData('silverscales', e.target.value);
+        localStorage.setItem('SilverScales', e.target.value);
+    };
+    const handleGoldScales = (e) => {
+        setGoldScales(e.target.value);
+        setData('goldscales', e.target.value);
+        localStorage.setItem('GoldScales', e.target.value);
+    };
+
+
+
+    // displays a success message after form requets
     const [updateSuccess, setUpdateSuccess] = useState(false);
+    const [updatescales, setUpdateScales] = useState(false);
+
 
     // Updates Game Account stats
     const updateGameStats = async (e) => {
@@ -66,9 +105,154 @@ export default function gameAccountStats({ gameAccount }) {
         }
     };
 
+    const updateScales = async (e) => {
+        try {
+            post('/update-game-scales', data);
+            setUpdateScales(true);
+        } catch (error) {
+            console.error('Error updating scales form', error);
+        }
+    }
+
     return (
         <>
-        <div className='bg-black h-[1rem] rounded-t-[3rem] p-4 flex justify-center'>
+            <div className='w-full'>
+                <form onSubmit={updateGameStats}>
+                    <div className='flex flex-row justify-between bg-[#262626] rounded-t-lg p-4'>
+                        <h1 className='font-semibold'>Grizzco Point Card</h1>
+                        <button className='text-[0.85rem] border-[2px] border-gray-700 px-3 rounded-xl w-[20%] hover:cursor-pointer hover:bg-gray-700 transition duration-300 ease-in-out'>Edit</button>
+                    </div>
+                    <ul className='bg-[#191919] rounded-b-lg shadow-lg shadow-gray-950'>
+                        <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
+                            <div className='flex flex-row item-center p-4 items-center justify-between'>
+                                <p className='text-gray-500'>Shifts worked: </p>
+                                <input
+                                    className="text-[0.85rem] w-[40%] rounded-md border-[1px] border-orange-700 bg-transparent h-7 focus:outline-none focus:border-orange-700 focus:ring-0 ml-auto mr-2"
+                                    value={data.shifts}
+                                    onChange={handleShiftsWorkedChange}
+                                    type='number'
+                                    name='shifts'
+                                    id='shiftsinput'
+                                />
+                            </div>
+                        </li>
+                        <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
+                            <div className='flex flex-row item-center p-4 items-center justify-between'>
+                                <p className='text-gray-500'>Golden Eggs collected: </p>
+                                <input
+                                    className="text-[0.85rem] w-[40%] rounded-md border-[1px] border-orange-700 bg-transparent h-7 focus:outline-none focus:border-orange-700 focus:ring-0 ml-auto mr-2"
+                                    value={data.goldeneggs}
+                                    onChange={handleGoldenEggsChange}
+                                    type='number'
+                                    name='goldeneggs'
+                                    id='goldeneggsinput'
+                                />
+                            </div>
+                        </li>
+                        <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
+                            <div className='flex flex-row item-center p-4 items-center justify-between'>
+                                <p className='text-gray-500'>Power Eggs collected: </p>
+                                <input
+                                    className="text-[0.85rem] w-[40%] rounded-md border-[1px] border-orange-700 bg-transparent h-7 focus:outline-none focus:border-orange-700 focus:ring-0 ml-auto mr-2"
+                                    value={data.powereggs}
+                                    onChange={handlePowerEggsChange}
+                                    type='number'
+                                    name='powereggs'
+                                    id='powereggsinput'
+                                />
+                            </div>
+                        </li>
+                        <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
+                            <div className='flex flex-row item-center p-4 items-center justify-between'>
+                                <p className='text-gray-500'>King Salmonids defeated: </p>
+                                <input
+                                    className="text-[0.85rem] w-[40%] rounded-md border-[1px] border-orange-700 bg-transparent h-7 focus:outline-none focus:border-orange-700 focus:ring-0 ml-auto mr-2"
+                                    value={data.kings}
+                                    onChange={handleKingSalmonidsChange}
+                                    type='number'
+                                    name='kings'
+                                    id='kingsinput'
+                                />
+                            </div>
+                        </li>
+                        <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
+                            <div className='flex flex-row item-center p-4 items-center justify-between'>
+                                <p className='text-gray-500'>Crew Members defeated: </p>
+                                <input
+                                    className="text-[0.85rem] w-[40%] rounded-md border-[1px] border-orange-700 bg-transparent h-7 focus:outline-none focus:border-orange-700 focus:ring-0 ml-auto mr-2"
+                                    value={data.crewmembers}
+                                    onChange={handleCrewMembersChange}
+                                    type='number'
+                                    name='crewmembers'
+                                    id='crewmembersinput'
+                                />
+                            </div>
+                        </li>
+                        <li className='w-[95%] mx-auto text-[0.8rem]'>
+                            <div className='flex flex-row item-center p-4 items-center justify-between'>
+                                <p className='text-gray-500'>Total points: </p>
+                                <input
+                                    className="text-[0.85rem] w-[40%] rounded-md border-[1px] border-orange-700 bg-transparent h-7 focus:outline-none focus:border-orange-700 focus:ring-0 ml-auto mr-2"
+                                    value={data.totalPoints}
+                                    onChange={handleTotalPointsChange}
+                                    type='number'
+                                    name='totalPoints'
+                                    id='totalPointsinput'
+                                />
+                            </div>
+                        </li>
+                        <p className='flex justify-center my-3 text-[0.7rem] p-4 text-gray-600'>You can find these statitics on the official nintendo switch online app. Through there go to splatoon 3 and check for Salmon run.</p>
+                    </ul>
+                </form>
+            </div>
+
+            <div className='w-full mb-auto'>
+                <form onSubmit={updateScales}>
+                    <div className='flex flex-row justify-between bg-[#262626] rounded-t-lg p-4'>
+                        <h1 className='font-semibold'>Scales</h1>
+                        <button className='text-[0.85rem] border-[2px] border-gray-700 px-3 rounded-xl w-[20%] hover:cursor-pointer hover:bg-gray-700 transition duration-300 ease-in-out'>Edit</button>
+                    </div>
+                    <ul className='bg-[#191919] rounded-b-lg shadow-lg shadow-gray-950'>
+                        <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
+                            <div className='flex flex-row item-center p-4 items-center justify-between'>
+                                <p className='text-yellow-800'>bronze scales: </p>
+                                <input
+                                    className="text-[0.85rem] w-[30%] rounded-md border-[1px] border-orange-700 bg-transparent h-7 focus:outline-none focus:border-orange-700 focus:ring-0 ml-auto mr-2"
+                                    value={data.bronzescales}
+                                    onChange={handleBronzeScales}
+                                    type='number'
+                                    name='bronzescales'
+                                />
+                            </div>
+                        </li>
+                        <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
+                            <div className='flex flex-row item-center p-4 items-center justify-between'>
+                                <p className='text-gray-400'>silver scales: </p>
+                                <input
+                                    className="text-[0.85rem] w-[30%] rounded-md border-[1px] border-orange-700 bg-transparent h-7 focus:outline-none focus:border-orange-700 focus:ring-0 ml-auto mr-2"
+                                    value={data.silverscales}
+                                    onChange={handleSilverScales}
+                                    type='number'
+                                    name='silverscales'
+                                />
+                            </div>
+                        </li>
+                        <li className='w-[95%] mx-auto text-[0.8rem] rounded-b-lg'>
+                            <div className='flex flex-row item-center p-4 items-center justify-between'>
+                                <p className='text-yellow-500'>gold scales</p>
+                                <input
+                                    className="text-[0.85rem] w-[30%] rounded-md border-[1px] border-orange-700 bg-transparent h-7 focus:outline-none focus:border-orange-700 focus:ring-0 ml-auto mr-2"
+                                    value={data.goldscales}
+                                    onChange={handleGoldScales}
+                                    type='number'
+                                    name='goldscales'
+                                />
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        {/* <div className='bg-black h-[1rem] rounded-t-[3rem] p-4 flex justify-center'>
             <h1 className='text-[1.25rem] text-orange-700'>Grizzco Point Card </h1>
         </div>
 
@@ -167,7 +351,7 @@ export default function gameAccountStats({ gameAccount }) {
                     <li className=' py-3 mx-6 font-thin text-[0.9rem] flex flex-row'><span>UID: </span> <span className='ml-auto'>{gameAccount.UID}</span></li>
                 </ul>
             </form>
-        </div>
+        </div> */}
         </>
     )
 }

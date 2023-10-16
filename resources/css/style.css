@@ -39,3 +39,7 @@ input[type="file"] {
         transform: translateX(calc(-250px * 9));
     }
 }
+
+#calendar-icon::-webkit-calendar-picker-indicator {
+    color: white;
+}

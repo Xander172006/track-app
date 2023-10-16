@@ -36,11 +36,12 @@ Route::post('/create-account', [GameAccountController::class, 'createAccount'])-
 Route::post('/find-account', [GameAccountController::class, 'findAccount'])->name('findAccount');
 
 
-
+// update profile/game account routes
 Route::post('/update-profile-picture', [GameAccountController::class, 'editProfilePicture'])->name('editProfilePicture');
 Route::post('/update-user-bio', [GameAccountController::class, 'updateBio'])->name('updateBio');
 
 Route::post('/update-game-account', [GameAccountController::class, 'updateGameAccount'])->name('updateGameAccount');
+Route::post('/update-game-scales', [GameAccountController::class, 'updateScales'])->name('updateScales');
 Route::post('/update-user-account', [GameAccountController::class, 'updateUserAccount'])->name('updateUserAccount');
 Route::post('/update-user-security', [GameAccountController::class, 'updateUserSecurity'])->name('updateUserSecurity');
 

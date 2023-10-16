@@ -8,7 +8,8 @@ export default function GebruikersInformatie({ user }) {
 
     // sets value of the user security information
     const [AccountEmail, setEmail] = useState(user.email);
-    const [AccountPassword, setPassword] = useState("");
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
     
     // email
     const HandleEmail = (e) => {
@@ -18,10 +19,16 @@ export default function GebruikersInformatie({ user }) {
     }
 
     // password
-    const HandlePassword = (e) => {
-        setPassword(e.target.value);
-        setData('password', e.target.value);
-        localStorage.setItem('AccountPassword', e.target.value);
+    const HandleCurrentPassword = (e) => {
+        setCurrentPassword(e.target.value);
+        setData('currentPassword', e.target.value);
+        localStorage.setItem('currentPassword', e.target.value);
+    }
+
+    const HandleNewPassword = (e) => {
+        setNewPassword(e.target.value);
+        setData('newPassword', e.target.value);
+        localStorage.setItem('newPassword', e.target.value);
     }
 
     const [updateSuccess, setUpdateSuccess] = useState(false);
@@ -38,46 +45,55 @@ export default function GebruikersInformatie({ user }) {
     
 return (
     <>
-        <div className='bg-black h-[1rem] rounded-t-[3rem] p-5 flex justify-center'>
-            <h1 className='text-[1.25rem]'>Security information</h1>                   
-        </div>
-
-        <div className='bg-gray-900 mt-6'>
-            <form className='flex flex-col' onSubmit={UpdateSecurity}>
-                <div className='flex flex-row justify-between px-7 py-4'>
-                    <h2>E-mailadres & password</h2>
-                    <button className='text-[0.85rem] border-[2px] border-gray-600 px-3 rounded-xl
-                    hover:bg-gray-600 transition duration-300 ease-in-out'>Edit</button>
-                </div>
-                <ul className='bg-gray-700'>
-                    <li className='px-6 py-3 mx-6 font-thin border-b-[1px] border-gray-500 text-[0.8rem] flex flex-row items-center'>
-                        <span>Email: </span>
+    <form className='flex flex-col' onSubmit={UpdateSecurity}>
+            <div className='flex flex-row justify-between bg-[#262626] rounded-t-lg p-4'>
+                <h2 className='font-semibold'>Email & password</h2>
+                <button className='text-[0.85rem] border-[2px] border-gray-700 px-3 rounded-xl w-[10%] hover:cursor-pointer hover:bg-gray-700 transition duration-300 ease-in-out'>Edit</button>
+            </div>
+            <ul className='bg-[#191919]'>
+                <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
+                    <div className='w-[80%] flex flex-row item-center p-4 items-center justify-between'>
+                        <p>Email: </p>
                         <input
-                            className='ml-auto w-[60%] bg-gray-700 h-7 border-none text-gray-100 text-[0.9rem] placeholder:text-gray-300'
+                            className='text-[0.85rem] w-[65%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
                             value={AccountEmail}
                             onChange={HandleEmail}
                             type='email'
                             name='email'
                         />
-                    </li>
-                    <li className='px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row items-center'>
-                        <span>Make new password: </span>
+                    </div>
+                </li>
+                <li className='w-[95%] mx-auto text-[0.8rem] border-b-[1px] border-gray-700'>
+                    <div className='w-[80%] flex flex-row item-center p-4 items-center justify-between'>
+                        <p>current password: </p>
                         <input
-                            className='ml-auto w-[40%] bg-gray-700 h-7 border-[1px] border-gray-500 text-gray-100 text-[0.9rem] placeholder:text-gray-400 placeholder:text-[0.9rem]'
-                            value={AccountPassword}
-                            onChange={HandlePassword}
+                            className='text-[0.85rem] w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
+                            value={currentPassword}
+                            onChange={HandleCurrentPassword}
+                            placeholder='current password'
+                            type="password" 
+                            name='currentPassword'
+                        />
+                    </div>
+                </li>
+                <li className='w-[95%] mx-auto text-[0.8rem]'>
+                    <div className='w-[80%] flex flex-row item-center p-4 items-center justify-between'>
+                        <p>new password: </p>
+                        <input
+                            className='text-[0.85rem] w-[50%] rounded-md border-[1.5px] border-gray-600 bg-transparent h-9 focus:outline-none focus:border-gray-500 focus:ring-0 dark:focus:ring-orange-800 dark:focus:ring-offset-gray-800'
+                            value={newPassword}
+                            onChange={HandleNewPassword}
                             placeholder='new password'
                             type="password" 
-                            name='password'
+                            name='newPassword'
                         />
-                    </li>
-
-                    {updateSuccess ? (
-                        <div className="text-green-600 my-2 px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row">User information updated successfully</div>
-                    ) : null}
-                </ul>
-            </form>
-        </div>
+                    </div>
+                </li>
+            {updateSuccess ? (
+                <div className="text-green-600 my-2 px-6 py-3 mx-6 font-thin text-[0.8rem] flex flex-row">User information updated successfully</div>
+            ) : null}
+        </ul>
+    </form>
     </>
     )
 }
