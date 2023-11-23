@@ -1,11 +1,12 @@
 # Salmon run stats tracker app
 
 Xander Poggenklaas
-> * splatoon 3
-<br>
-> * nintendo
-<br>
-> * backend development
+
+* Splatoon 3
+</br>
+* Nintendo
+</br>
+* Backend development
 
 <br>
 
