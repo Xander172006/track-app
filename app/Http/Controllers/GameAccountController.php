@@ -75,7 +75,7 @@ class GameAccountController extends Controller
         $Bosses->account_id = $findGameAccount->id;
         $Bosses->save();
 
-        return redirect()->route('profile.Edit', ['success' => 'Account has been created.']);
+        return redirect()->route('profile.edit', ['success' => 'Account has been created.']);
     }
 
     public function findAccount(Request $request)
