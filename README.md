@@ -3,9 +3,7 @@
 Xander Poggenklaas
 
 * Splatoon 3
-</br>
 * Nintendo
-</br>
 * Backend development
 
 <br>
@@ -31,7 +29,7 @@ the project is made with the following programming languages and frameworks:
 
 
 ### dashboard
-![dashboard preview](./docs/images/Dashboard%20starting%20layout.jpeg)
+![dashboard preview](./docs/images/Dashboard.jpeg)
 
 <br>
 
