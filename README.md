@@ -39,11 +39,9 @@ the project is made with the following programming languages and frameworks:
 ## How to use it?
 
 make sure you have the following libraries and frameworks installed such as:
-> * tailwind css
-<br>
-> * node js
-<br>
-> * composer
+* tailwind css
+* node js
+* composer
 
 <br>
 
