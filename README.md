@@ -68,7 +68,7 @@ Make sure you are in the correct directory and run the following command to migr
 Once the connection is stable and you have registered or created an account you can use view the dashboard as wel as the upcoming rotations.
 <br />
 
-<div style="display: flex; gap: 20px;">
+<div style="display: flex; gap: 40px;">
     <img src="./docs/images/dashboard_image.jpeg" width="350px" height="450px" />
     <img align="top" src="./docs/images/rotations_image.png" width="450px" height="300px" />
 </div>
