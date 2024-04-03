@@ -147,8 +147,8 @@ export default function StatsUpdateDisplay({ GameData, bosses }) {
         <div className='bg-black w-[75%] h-full pb-auto rounded-lg flex flex-col gap-4 items-center shadow-lg shadow-gray-900 p-3'>
             <h1 className='mr-auto'><strong>Kings found</strong></h1>
             <div className='flex flex-row justify-center items-center w-[75%] gap-5 my-auto'>
-              <span className='flex flex-row items-center w-full gap-1 border-[1px] border-orange-700 p-2 rounded-md'><img className='w-[35%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/7/7a/S3_Cohozuna_icon.png/120px-S3_Cohozuna_icon.png" alt="Cohozuna" /><p>{KingsFound.cohozuna}</p></span>
-              <span className='flex flex-row items-center w-full gap-1 border-[1px] border-orange-700 p-2 rounded-md'><img className='w-[35%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/0a/S3_Horrorboros_icon.png/180px-S3_Horrorboros_icon.png" alt="Horrorborrus" /><p>{KingsFound.horrorborus}</p></span>
+              <span className='flex flex-row items-center w-full gap-1 border-[1px] border-orange-700 p-2 rounded-md'><img className='w-[35%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/8/8b/S3_Icon_Cohozuna.png" alt="Cohozuna" /><p>{KingsFound.cohozuna}</p></span>
+              <span className='flex flex-row items-center w-full gap-1 border-[1px] border-orange-700 p-2 rounded-md'><img className='w-[35%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/4/4d/S3_Icon_Horrorboros.png" alt="Horrorborrus" /><p>{KingsFound.horrorborus}</p></span>
             </div>
 
             {updateSuccess ? (

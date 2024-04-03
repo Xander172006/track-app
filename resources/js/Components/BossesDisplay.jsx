@@ -18,17 +18,17 @@ export default function BossesDisplay({ GameData }) {
   let bigShotsCount = 0;
 
   let bossIcons = {
-    'steelhead': "https://cdn.wikimg.net/en/splatoonwiki/images/9/9a/S3_Steelhead_icon.png?20221009043423",
-    'flyfish': "https://cdn.wikimg.net/en/splatoonwiki/images/2/24/S3_Flyfish_icon.png?20221009043406",
-    'maws': "https://cdn.wikimg.net/en/splatoonwiki/images/8/83/S3_Maws_icon.png?20221009043400",
-    'steeleals': "https://cdn.wikimg.net/en/splatoonwiki/images/6/62/S3_Steel_Eel_icon.png?20221009043416",
-    'stinger': "https://cdn.wikimg.net/en/splatoonwiki/images/b/b5/S3_Stinger_icon.png?20221009043427",
-    'scrapper': "https://cdn.wikimg.net/en/splatoonwiki/images/8/8c/S3_Scrapper_icon.png?20221009043355",
-    'drizzlers': "https://cdn.wikimg.net/en/splatoonwiki/images/0/09/S3_Drizzler_icon.png?20221009043335",
-    'flippers': "https://cdn.wikimg.net/en/splatoonwiki/images/6/65/S3_Flipper-Flopper_icon.png?20221009043339",
-    'slamonlids': "https://cdn.wikimg.net/en/splatoonwiki/images/f/fa/S3_Slammin%27_Lid_icon.png?20221009043343",
-    'fishsticks': "https://cdn.wikimg.net/en/splatoonwiki/images/a/a5/S3_Fish_Stick_icon.png?20221009043313",
-    'Big shots': "https://cdn.wikimg.net/en/splatoonwiki/images/9/92/S3_Big_Shot_icon.png?20221009043319"
+    'steelhead': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/36/S3_Badge_Steelhead_100.png/48px-S3_Badge_Steelhead_100.png",
+    'flyfish': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/1/18/S3_Badge_Flyfish_100.png/48px-S3_Badge_Flyfish_100.png",
+    'maws': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/34/S3_Badge_Maws_100.png/48px-S3_Badge_Maws_100.png",
+    'steeleals': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/5/56/S3_Badge_Steel_Eel_100.png/48px-S3_Badge_Steel_Eel_100.png",
+    'stinger': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/a/ad/S3_Badge_Stinger_100.png/48px-S3_Badge_Stinger_100.png",
+    'scrapper': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/7/79/S3_Badge_Scrapper_100.png/48px-S3_Badge_Scrapper_100.png",
+    'drizzlers': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/38/S3_Badge_Drizzler_100.png/48px-S3_Badge_Drizzler_100.png",
+    'flippers': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/1/18/S3_Badge_Flipper-Flopper_100.png/48px-S3_Badge_Flipper-Flopper_100.png",
+    'slamonlids': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/0e/S3_Badge_Slammin%27_Lid_100.png/48px-S3_Badge_Slammin%27_Lid_100.png",
+    'fishsticks': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/7/79/S3_Badge_Fish_Stick_100.png/48px-S3_Badge_Fish_Stick_100.png",
+    'Big shots': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/31/S3_Badge_Big_Shot_100.png/48px-S3_Badge_Big_Shot_100.png"
   }
 
 

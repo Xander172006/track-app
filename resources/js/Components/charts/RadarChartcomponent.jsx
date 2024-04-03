@@ -256,21 +256,21 @@ export default function LineChartcomponent({ GameData }) {
 
                 {nightwavesCounts.griller > 0 && (
                   <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
-                      <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/4/49/S3_Griller_icon.png/180px-S3_Griller_icon.png" alt="grillers" />
+                      <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/a/a4/S3_Icon_Griller.png" alt="grillers" />
                       <span className='ml-auto'>{nightwavesCounts.griller}</span>
                   </li>
                 )}
 
                 {nightwavesCounts['goldie seeking'] > 0 && (
                   <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
-                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/b/bc/S3_Goldie_icon.png/180px-S3_Goldie_icon.png" alt="goldie_seeking" />
+                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/7/7f/S3_Icon_Goldie.png" alt="goldie_seeking" />
                     <span className='ml-auto'>{nightwavesCounts['goldie seeking']}</span>
                   </li>
                 )}
 
                 {nightwavesCounts['cohack charge'] > 0 && (
                   <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
-                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/3/3d/S3_Cohock_icon.png" alt="cohack_charge" />
+                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/8/82/S3_Icon_Cohock.png" alt="cohack_charge" />
                     <span className='ml-auto'>{nightwavesCounts['cohack charge']}</span>
                   </li>
                 )}
@@ -284,14 +284,14 @@ export default function LineChartcomponent({ GameData }) {
 
                 {nightwavesCounts.mothership > 0 && (
                   <li className='flex flex-row items-center w-[110%] sm:w-full border-[1px] border-orange-800 p-1 rounded-md'>
-                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/4/4b/S3_Chinook_icon.png" alt="mothership" />
+                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/d/d8/S3_Icon_Chinook.png" alt="mothership" />
                     <span className='ml-auto'>{nightwavesCounts.mothership}</span>
                   </li>
                 )}
 
                 {nightwavesCounts.mudmouth > 0 && (
                   <li className='flex flex-row items-center w-full border-[1px] border-orange-800 p-1 rounded-md'>
-                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/07/S3_Mudmouth_icon.png/180px-S3_Mudmouth_icon.png" alt="mudmouth" />
+                    <img className='w-[40%]' src="https://cdn.wikimg.net/en/splatoonwiki/images/b/b2/S3_Icon_Mudmouth.png" alt="mudmouth" />
                     <span className='ml-auto'>{nightwavesCounts.mudmouth}</span>
                   </li>
                 )}

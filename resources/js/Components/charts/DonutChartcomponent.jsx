@@ -20,17 +20,17 @@ export default function DonutChartcomponent({ GameData, bosses }) {
 
   // image icons for each boss
   let bossIcons = {
-    'steelhead': "https://cdn.wikimg.net/en/splatoonwiki/images/9/9a/S3_Steelhead_icon.png?20221009043423",
-    'flyfish': "https://cdn.wikimg.net/en/splatoonwiki/images/2/24/S3_Flyfish_icon.png?20221009043406",
-    'maws': "https://cdn.wikimg.net/en/splatoonwiki/images/8/83/S3_Maws_icon.png?20221009043400",
-    'steeleals': "https://cdn.wikimg.net/en/splatoonwiki/images/6/62/S3_Steel_Eel_icon.png?20221009043416",
-    'stinger': "https://cdn.wikimg.net/en/splatoonwiki/images/b/b5/S3_Stinger_icon.png?20221009043427",
-    'scrapper': "https://cdn.wikimg.net/en/splatoonwiki/images/8/8c/S3_Scrapper_icon.png?20221009043355",
-    'drizzlers': "https://cdn.wikimg.net/en/splatoonwiki/images/0/09/S3_Drizzler_icon.png?20221009043335",
-    'flippers': "https://cdn.wikimg.net/en/splatoonwiki/images/6/65/S3_Flipper-Flopper_icon.png?20221009043339",
-    'slamonlids': "https://cdn.wikimg.net/en/splatoonwiki/images/f/fa/S3_Slammin%27_Lid_icon.png?20221009043343",
-    'fishsticks': "https://cdn.wikimg.net/en/splatoonwiki/images/a/a5/S3_Fish_Stick_icon.png?20221009043313",
-    'Big shots': "https://cdn.wikimg.net/en/splatoonwiki/images/9/92/S3_Big_Shot_icon.png?20221009043319"
+    'steelhead': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/36/S3_Badge_Steelhead_100.png/48px-S3_Badge_Steelhead_100.png",
+    'flyfish': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/1/18/S3_Badge_Flyfish_100.png/48px-S3_Badge_Flyfish_100.png",
+    'maws': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/34/S3_Badge_Maws_100.png/48px-S3_Badge_Maws_100.png",
+    'steeleals': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/5/56/S3_Badge_Steel_Eel_100.png/48px-S3_Badge_Steel_Eel_100.png",
+    'stinger': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/a/ad/S3_Badge_Stinger_100.png/48px-S3_Badge_Stinger_100.png",
+    'scrapper': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/7/79/S3_Badge_Scrapper_100.png/48px-S3_Badge_Scrapper_100.png",
+    'drizzlers': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/38/S3_Badge_Drizzler_100.png/48px-S3_Badge_Drizzler_100.png",
+    'flippers': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/1/18/S3_Badge_Flipper-Flopper_100.png/48px-S3_Badge_Flipper-Flopper_100.png",
+    'slamonlids': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/0e/S3_Badge_Slammin%27_Lid_100.png/48px-S3_Badge_Slammin%27_Lid_100.png",
+    'fishsticks': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/7/79/S3_Badge_Fish_Stick_100.png/48px-S3_Badge_Fish_Stick_100.png",
+    'Big shots': "https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/31/S3_Badge_Big_Shot_100.png/48px-S3_Badge_Big_Shot_100.png"
   }
 
 
@@ -221,57 +221,57 @@ export default function DonutChartcomponent({ GameData, bosses }) {
           <h1 className='p-2'><strong>All bosses found:</strong></h1>
           <ul className='grid grid-cols-2 gap-2 w-[85%] text-[0.9rem]'>
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/9/9a/S3_Steelhead_icon.png?20221009043423" alt="steelhead" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/36/S3_Badge_Steelhead_100.png/48px-S3_Badge_Steelhead_100.png" alt="steelhead" className='w-[2rem]' /></span>
               <span>{bossValues[0]}</span>
             </li>
 
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/2/24/S3_Flyfish_icon.png?20221009043406" alt="flyfish" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/1/18/S3_Badge_Flyfish_100.png/48px-S3_Badge_Flyfish_100.png" alt="flyfish" className='w-[2rem]' /></span>
               <span>{bossValues[1]}</span>
             </li>
 
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/8/83/S3_Maws_icon.png?20221009043400" alt="maws" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/34/S3_Badge_Maws_100.png/48px-S3_Badge_Maws_100.png" alt="maws" className='w-[2rem]' /></span>
               <span>{bossValues[2]}</span>
             </li>
 
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/6/62/S3_Steel_Eel_icon.png?20221009043416" alt="eels" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/5/56/S3_Badge_Steel_Eel_100.png/48px-S3_Badge_Steel_Eel_100.png" alt="eels" className='w-[2rem]' /></span>
               <span>{bossValues[3]}</span>
             </li>
 
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/b/b5/S3_Stinger_icon.png?20221009043427" alt="stinger" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/a/ad/S3_Badge_Stinger_100.png/48px-S3_Badge_Stinger_100.png" alt="stinger" className='w-[2rem]' /></span>
               <span>{bossValues[4]}</span>
             </li>
 
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/8/8c/S3_Scrapper_icon.png?20221009043355" alt="scrapper" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/7/79/S3_Badge_Scrapper_100.png/48px-S3_Badge_Scrapper_100.png" alt="scrapper" className='w-[2rem]' /></span>
               <span>{bossValues[5]}</span>
             </li>
 
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/0/09/S3_Drizzler_icon.png?20221009043335" alt="drizzler" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/38/S3_Badge_Drizzler_100.png/48px-S3_Badge_Drizzler_100.png" alt="drizzler" className='w-[2rem]' /></span>
               <span>{bossValues[6]}</span>
             </li>
 
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/6/65/S3_Flipper-Flopper_icon.png?20221009043339" alt="flipper" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/1/18/S3_Badge_Flipper-Flopper_100.png/48px-S3_Badge_Flipper-Flopper_100.png" alt="flipper" className='w-[2rem]' /></span>
               <span>{bossValues[7]}</span>
             </li>
 
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/f/fa/S3_Slammin%27_Lid_icon.png?20221009043343" alt="slamonlid" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/0e/S3_Badge_Slammin%27_Lid_100.png/48px-S3_Badge_Slammin%27_Lid_100.png" alt="slamonlid" className='w-[2rem]' /></span>
               <span>{bossValues[8]}</span>
             </li>
 
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/a/a5/S3_Fish_Stick_icon.png?20221009043313" alt="fishsticks" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/7/79/S3_Badge_Fish_Stick_100.png/48px-S3_Badge_Fish_Stick_100.png" alt="fishsticks" className='w-[2rem]' /></span>
               <span>{bossValues[9]}</span>
             </li>
 
             <li className='flex flex-row justify-around p-1 rounded-md items-center border-[1px] border-orange-800'>
-              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/9/92/S3_Big_Shot_icon.png?20221009043319" alt="bigshots" className='w-[2rem]' /></span>
+              <span><img src="https://cdn.wikimg.net/en/splatoonwiki/images/thumb/3/31/S3_Badge_Big_Shot_100.png/48px-S3_Badge_Big_Shot_100.png" alt="bigshots" className='w-[2rem]' /></span>
               <span>{bossValues[10]}</span>
             </li>
           </ul>

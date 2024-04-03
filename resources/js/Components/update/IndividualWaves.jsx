@@ -24,25 +24,25 @@ export default function IndividualWaves({ GameData, bosses, rotations }) {
   function nightwaveIcon(nightWave) {
     switch (nightWave) {
         case 'grillers':
-            return 'https://cdn.wikimg.net/en/splatoonwiki/images/thumb/4/49/S3_Griller_icon.png/180px-S3_Griller_icon.png';
+            return 'https://cdn.wikimg.net/en/splatoonwiki/images/a/a4/S3_Icon_Griller.png';
         break;
         case 'rush':
             return 'https://th.bing.com/th/id/R.22efe99ffc3776ed25453776b563b52f?rik=h32%2fSy6cu3J7tA&pid=ImgRaw&r=0';
         break;
         case 'goldie_seeking':
-            return 'https://cdn.wikimg.net/en/splatoonwiki/images/thumb/b/bc/S3_Goldie_icon.png/180px-S3_Goldie_icon.png';
+            return 'https://cdn.wikimg.net/en/splatoonwiki/images/7/7f/S3_Icon_Goldie.png';
         break;
         case 'cohack_charge':
-            return 'https://cdn.wikimg.net/en/splatoonwiki/images/3/3d/S3_Cohock_icon.png';
+            return 'https://cdn.wikimg.net/en/splatoonwiki/images/8/82/S3_Icon_Cohock.png';
         break;
         case 'fog':
             return 'https://opinion.cooperativa.cl/noticias/imag/cooperativa_2018/iconos/clima/parcialalta2humo.svg';
         break;
         case 'mothership':
-            return 'https://cdn.wikimg.net/en/splatoonwiki/images/4/4b/S3_Chinook_icon.png';
+            return 'https://cdn.wikimg.net/en/splatoonwiki/images/d/d8/S3_Icon_Chinook.png';
         break;
         case 'mudmouth':
-            return 'https://cdn.wikimg.net/en/splatoonwiki/images/thumb/0/07/S3_Mudmouth_icon.png/180px-S3_Mudmouth_icon.png';
+            return 'https://cdn.wikimg.net/en/splatoonwiki/images/b/b2/S3_Icon_Mudmouth.png';
         break;
         case 'tornado':
             return 'https://th.bing.com/th/id/R.079b81db8147054d38105441706dd656?rik=6mVDiJqqeBNRNw&pid=ImgRaw&r=0';
