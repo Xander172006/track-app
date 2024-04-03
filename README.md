@@ -70,7 +70,7 @@ Once the connection is stable and you have registered or created an account you 
 
 <div style="display: flex; gap: 20px;">
     <img src="./docs/images/dashboard_image.jpeg" width="350px" height="450px" />
-    <img src="./docs/images/rotations_image.png" width="450px" height="300px" />
+    <img align="top" src="./docs/images/rotations_image.png" width="450px" height="300px" />
 </div>
 
 <br />
